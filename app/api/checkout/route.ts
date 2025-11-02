@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+});
 
 const PRICE_ID_GOLDEN_PEARL_ONLINE = process.env.PRICE_ID_GOLDEN_PEARL_ONLINE || 'price_123_online';
 const PRICE_ID_GOLDEN_PEARL_INPERSON = process.env.PRICE_ID_GOLDEN_PEARL_INPERSON || 'price_123_inperson';
@@ -35,6 +36,7 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ url: session.url });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     console.error(err);
     return NextResponse.json({ error: err.message || 'Checkout failed' }, { status: 500 });
