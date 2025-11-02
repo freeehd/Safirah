@@ -49,7 +49,7 @@ export default function AboutPage() {
   return (
     <div className="page-wrapper">
       {/* <BubbleMenu
-        logo={<span className="logo-text">Safirah Coaching</span>}
+        logo={<span className="logo-text">Safi Hirah Coaching</span>}
         items={menuItems}
         menuBg={pastel.subtle}
         menuContentColor={pastel.text}

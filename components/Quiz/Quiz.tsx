@@ -274,7 +274,7 @@ const Quiz: React.FC<QuizProps> = ({ onClose }) => {
                 ts: new Date().toISOString()
             };
             if (typeof window !== 'undefined' && window.localStorage) {
-                window.localStorage.setItem('safirah_quiz_lead', JSON.stringify(payload));
+                window.localStorage.setItem('Safi Hirah_quiz_lead', JSON.stringify(payload));
             }
             // Best-effort server submit to Systeme.io via API route
             setSubmitting(true);

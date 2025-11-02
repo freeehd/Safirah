@@ -454,13 +454,13 @@ const PillNav: React.FC<PillNavProps> = ({
         {isRouterLink(homeHref) ? (
           <Link href={homeHref} className="glass-pill px-5 py-3 rounded-full no-underline">
             <span className="text-xl font-serif font font-semibold -tracking-tight" style={{ color: resolvedPillTextColor }}>
-              Safirah Coaching
+              Safi Hirah Coaching
             </span>
           </Link>
         ) : (
           <a href={homeHref} className="glass-pill px-5 py-3 rounded-full no-underline">
             <span className="text-xl font-serif font font-semibold -tracking-tight" style={{ color: resolvedPillTextColor }}>
-              Safirah Coaching
+              Safi Hirah Coaching
             </span>
           </a>
         )}
@@ -514,13 +514,13 @@ const PillNav: React.FC<PillNavProps> = ({
             {isRouterLink(homeHref) ? (
               <Link href={homeHref} className="glass-pill px-4 py-2 rounded-full no-underline inline-flex items-center">
                 <span className="text-sm font-serif font font-semibold -tracking-tight" style={{ color: resolvedPillTextColor }}>
-                  Safirah Coaching
+                  Safi Hirah Coaching
                 </span>
               </Link>
             ) : (
               <a href={homeHref} className="glass-pill px-4 py-2 rounded-full no-underline inline-flex items-center">
                 <span className="text-sm font-serif font font-semibold -tracking-tight" style={{ color: resolvedPillTextColor }}>
-                  Safirah Coaching
+                  Safi Hirah Coaching
                 </span>
               </a>
             )}

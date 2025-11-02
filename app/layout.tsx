@@ -4,7 +4,7 @@ import './globals.css';
 import ConditionalNav from '@/components/ConditionalNav';
 
 export const metadata: Metadata = {
-  title: 'Safirah Coaching',
+  title: 'Safi Hirah Coaching',
   description: 'Mindset and success coaching for women entrepreneurs.',
 };
 
