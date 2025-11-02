@@ -1,0 +1,254 @@
+import { NextRequest } from 'next/server';
+
+const SYSTEME_API_BASE = process.env.SYSTEME_API_BASE; // e.g. https://api.systeme.io/api/public/v1
+const SYSTEME_BASE_URL = process.env.SYSTEME_BASE_URL || 'https://api.systeme.io';
+const SYSTEME_API_PREFIX = process.env.SYSTEME_API_PREFIX ?? '/public/v1';
+const SYSTEME_API_KEY = process.env.SYSTEME_API_KEY;
+const SYSTEME_QUIZ_TAG_ID = process.env.SYSTEME_QUIZ_TAG_ID; // e.g. "123456"
+
+// Simple in-memory cache for tag ids by name (per server instance)
+const tagIdCache = new Map<string, string>();
+
+function baseUrl(path: string) {
+  const explicit = (SYSTEME_API_BASE || '').trim();
+  if (explicit) {
+    const base = explicit.replace(/\/$/, '');
+    if (!path) return base;
+    return `${base}${path.startsWith('/') ? '' : '/'}${path}`;
+  }
+  const base = SYSTEME_BASE_URL.replace(/\/$/, '');
+  const hasPublic = /\/public(\/|$)/.test(base);
+  const prefix = hasPublic ? '' : SYSTEME_API_PREFIX;
+  const withPrefix = `${base}${prefix ? (prefix.startsWith('/') ? '' : '/') + prefix : ''}`.replace(/\/$/, '');
+  if (!path) return withPrefix; // avoid trailing slash to prevent double slashes later
+  return `${withPrefix}${path.startsWith('/') ? '' : '/'}${path}`;
+}
+
+function baseUrlVariants(path: string): string[] {
+  const primary = baseUrl(path);
+  const variants = [primary];
+  const explicit = (SYSTEME_API_BASE || '').trim();
+  if (explicit) {
+    const exp = explicit.replace(/\/$/, '');
+    const addPath = (b: string) => `${b}${path ? (path.startsWith('/') ? '' : '/') + path : ''}`;
+    if (/\/public\//.test(exp)) {
+      const alt = exp.replace(/\/public\/v?\d+$/, '').replace(/\/$/, '');
+      if (alt && addPath(alt) !== primary) variants.push(addPath(alt));
+    } else {
+      const alt = `${exp}/public/v1`;
+      if (addPath(alt) !== primary) variants.push(addPath(alt));
+    }
+  }
+  return Array.from(new Set(variants));
+}
+
+function authHeaderVariants() {
+  // Prefer Bearer first for Management API; fall back to X-API-KEY
+  return [
+    { 'X-API-Key': SYSTEME_API_KEY as string },
+    { Authorization: `Bearer ${SYSTEME_API_KEY}` },
+    { 'X-API-KEY': SYSTEME_API_KEY as string },
+  ];
+}
+
+async function fetchWithAuth(url: string, init: RequestInit): Promise<Response> {
+  const variants = authHeaderVariants();
+  let last: Response | undefined;
+  for (const variant of variants) {
+    const res = await fetch(url, {
+      ...init,
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', ...(init.headers as any), ...variant },
+    });
+    if (res.ok) return res;
+    last = res;
+  }
+  return last as Response;
+}
+
+// Management-only mode: do not auto-list/create tags to avoid 404s across API families.
+async function getOrCreateTagId(_: string, __?: any): Promise<string | undefined> {
+  return undefined;
+}
+
+async function createOrUpdateContact(
+  email: string,
+  name?: string,
+  diag?: any,
+  opts?: { tagId?: string | number; quizResult?: string; entryPoint?: string }
+) {
+  let lastCreateResponse: Response | undefined;
+  // Strictly Management API payloads only
+  const base = baseUrl('');
+  const url = `${base}${base.endsWith('/') ? '' : ''}/contacts`;
+  const fieldsFromName = name ? [{ slug: 'first_name', value: name }] : [];
+  const fieldsQuiz = opts?.quizResult ? [{ slug: 'quiz_result', value: opts.quizResult }] : [];
+  const fieldsEntry = opts?.entryPoint ? [{ slug: 'entry_point', value: opts.entryPoint }] : [];
+  const fieldsAlt = name ? [{ name: 'first_name', value: name }] : [];
+  const attempts: Array<{ body: any; label: string }> = [
+    { body: { email, fields: [...fieldsFromName, ...fieldsQuiz, ...fieldsEntry], ...(opts?.tagId ? { tags: [{ id: opts.tagId }] } : {}) }, label: 'mgmt:fields-slug+tags-obj' },
+    { body: { email, fields: [...fieldsFromName, ...fieldsQuiz, ...fieldsEntry], ...(opts?.tagId ? { tagIds: [opts.tagId] } : {}) }, label: 'mgmt:fields-slug+tagIds' },
+    { body: { email, fields: [...fieldsAlt, ...fieldsQuiz, ...fieldsEntry], ...(opts?.tagId ? { tag_ids: [opts?.tagId] } : {}) }, label: 'mgmt:fields-name+tag_ids' },
+  ];
+  for (const attempt of attempts) {
+    const res = await fetchWithAuth(url, { method: 'POST', body: JSON.stringify(attempt.body) });
+    if (diag) { try { const text = await res.clone().text(); diag.steps.push({ step: 'contacts:create', variant: attempt.label, status: res.status, ok: res.ok, url, body: attempt.body, responseSample: text?.slice(0, 400) }); } catch {} }
+    if (res.ok) {
+      try { const data = await res.json(); return { id: data?.id ?? data?.data?.id ?? data?.contact?.id ?? data?.data?.contact?.id ?? null }; } catch { return { id: null }; }
+    }
+    lastCreateResponse = res;
+  }
+  // Fallback: if last create attempt indicated existing/validation error, try to fetch by email
+  if (typeof lastCreateResponse !== 'undefined' && (lastCreateResponse.status === 409 || lastCreateResponse.status === 400 || lastCreateResponse.status === 422)) {
+    const getUrl = `${url}?email=${encodeURIComponent(email)}`;
+    const getRes = await fetchWithAuth(getUrl, { method: 'GET' });
+    if (diag) {
+      try { const text = await getRes.clone().text(); diag.steps.push({ step: 'contacts:getByEmail', status: getRes.status, ok: getRes.ok, url: getUrl, responseSample: text?.slice(0, 400) }); } catch {}
+    }
+    if (getRes.ok) {
+      try {
+        const data = await getRes.json();
+        const contact = Array.isArray(data) ? data[0] : (data?.data ?? data?.contact ?? data);
+        return { id: contact?.id ?? null };
+      } catch {}
+    }
+    const searchUrl = baseUrl('/contacts/search');
+    const searchRes = await fetchWithAuth(searchUrl, { method: 'POST', body: JSON.stringify({ email }) });
+    if (diag) {
+      try { const text = await searchRes.clone().text(); diag.steps.push({ step: 'contacts:search', status: searchRes.status, ok: searchRes.ok, url: searchUrl, responseSample: text?.slice(0, 400) }); } catch {}
+    }
+    if (searchRes.ok) {
+      try {
+        const data = await searchRes.json();
+        const contact = Array.isArray(data) ? data[0] : (data?.data ?? data?.contact ?? data);
+        return { id: contact?.id ?? null };
+      } catch {}
+    }
+  }
+
+  return { id: null };
+}
+
+async function attachTag(
+  { contactId, email, tagId }: { contactId?: string | number | null; email: string; tagId: string | number },
+  diag?: any,
+) {
+  if (!contactId) return false;
+  const tagIdNum = typeof tagId === 'string' && /^\d+$/.test(tagId) ? Number(tagId) : tagId;
+  const url = baseUrl(`/contacts/${contactId}/tags`);
+  // Try the three common bodies for management API
+  const bodies = [
+    { body: { tagId: tagIdNum }, label: 'tagId' },
+    { body: { id: tagIdNum }, label: 'id' },
+    { body: { tag_id: tagIdNum }, label: 'tag_id' },
+  ];
+  for (const b of bodies) {
+    const res = await fetchWithAuth(url, { method: 'POST', body: JSON.stringify(b.body) });
+    if (diag) {
+      try {
+        const text = await res.clone().text();
+        diag.steps.push({ step: `tags:attach:${b.label}`, status: res.status, ok: res.ok, url, body: b.body, responseSample: text?.slice(0, 400) });
+      } catch {}
+    }
+    if (res.ok) return true;
+  }
+  return false;
+}
+
+async function updateContactQuizResult(contactId: string | number, value: string, diag?: any) {
+  // Attempt several PATCH payload shapes to set custom field "quiz_result"
+  const url = baseUrl(`/contacts/${contactId}`);
+  const attempts: Array<{ body: any; label: string }> = [
+    { body: { fields: [{ name: 'quiz_result', value }] }, label: 'fields:array-name' },
+    { body: { fields: { quiz_result: value } }, label: 'fields:object' },
+    { body: { custom_fields: { quiz_result: value } }, label: 'custom_fields:object' },
+    { body: { customFields: { quiz_result: value } }, label: 'customFields:object' },
+    { body: { field_values: [{ name: 'quiz_result', value }] }, label: 'field_values:array-name' },
+    { body: { fields: [{ key: 'quiz_result', value }] }, label: 'fields:array-key' },
+  ];
+  for (const attempt of attempts) {
+    const res = await fetchWithAuth(url, { method: 'PATCH', headers: { 'Content-Type': 'application/merge-patch+json' }, body: JSON.stringify(attempt.body) });
+    if (diag) {
+      try { const text = await res.clone().text(); diag.steps.push({ step: `contacts:updateQuizResult:${attempt.label}`, status: res.status, ok: res.ok, url, body: attempt.body, responseSample: text?.slice(0, 400) }); } catch {}
+    }
+    if (res.ok) return true;
+  }
+  return false;
+}
+
+async function updateContactEntryPoint(contactId: string | number, value: string, diag?: any) {
+  // Attempt several PATCH payload shapes to set custom field "entry_point"
+  const url = baseUrl(`/contacts/${contactId}`);
+  const attempts: Array<{ body: any; label: string }> = [
+    { body: { fields: [{ name: 'entry_point', value }] }, label: 'fields:array-name' },
+    { body: { fields: { entry_point: value } }, label: 'fields:object' },
+    { body: { custom_fields: { entry_point: value } }, label: 'custom_fields:object' },
+    { body: { customFields: { entry_point: value } }, label: 'customFields:object' },
+    { body: { field_values: [{ name: 'entry_point', value }] }, label: 'field_values:array-name' },
+    { body: { fields: [{ key: 'entry_point', value }] }, label: 'fields:array-key' },
+  ];
+  for (const attempt of attempts) {
+    const res = await fetchWithAuth(url, { method: 'PATCH', headers: { 'Content-Type': 'application/merge-patch+json' }, body: JSON.stringify(attempt.body) });
+    if (diag) {
+      try { const text = await res.clone().text(); diag.steps.push({ step: `contacts:updateEntryPoint:${attempt.label}`, status: res.status, ok: res.ok, url, body: attempt.body, responseSample: text?.slice(0, 400) }); } catch {}
+    }
+    if (res.ok) return true;
+  }
+  return false;
+}
+
+export async function POST(req: NextRequest) {
+  try {
+    if (!SYSTEME_API_KEY) {
+      return new Response(JSON.stringify({ error: 'SYSTEME_API_KEY is not configured' }), { status: 500 });
+    }
+
+    const body = await req.json();
+    const email: string | undefined = body?.email;
+    const name: string | undefined = body?.name;
+    const tag: string | undefined = body?.tag;
+    const meta = body?.meta ?? {};
+    const rawResult = body?.result ?? meta?.result;
+    const resultMap: Record<string, string> = { A: '1', B: '2', C: '3', D: '4', '1': '1', '2': '2', '3': '3', '4': '4' };
+    const quizResultValue: string | undefined = typeof rawResult === 'string' ? resultMap[rawResult.toUpperCase?.() ?? rawResult] : undefined;
+    const entryPoint: string | undefined = body?.entry_point ?? meta?.entry_point;
+    const debug = !!body?.debug;
+    const diag: any = debug ? { steps: [] as any[] } : null;
+
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+      return new Response(JSON.stringify({ error: 'Valid email is required' }), { status: 400 });
+    }
+
+    const tagIdFromBody: string | undefined = body?.tagId;
+    let tagIdToUse: string | undefined = tagIdFromBody || SYSTEME_QUIZ_TAG_ID;
+
+    const { id: contactId } = await createOrUpdateContact(email, name, diag, { tagId: tagIdToUse, quizResult: quizResultValue, entryPoint });
+    if (diag) diag.steps.push({ step: 'createOrUpdateContact', contactId: contactId ?? null });
+
+    let tagAttached: boolean | undefined = undefined;
+    if (tagIdToUse) {
+      try {
+        tagAttached = await attachTag({ contactId, email, tagId: tagIdToUse }, diag);
+      } catch (e) {
+        console.error('Failed to attach tag', e);
+        tagAttached = false;
+      }
+      if (diag) diag.steps.push({ step: 'attachTag', tagId: tagIdToUse, attached: !!tagAttached });
+    }
+
+    if (contactId && quizResultValue) {
+      try { await updateContactQuizResult(contactId, quizResultValue, diag); } catch {}
+    }
+    if (contactId && entryPoint) {
+      try { await updateContactEntryPoint(contactId, entryPoint, diag); } catch {}
+    }
+
+    // Optional: we skip notes update in strict management mode to avoid 401 noise
+
+    const responsePayload: any = { ok: !!(contactId), contactId: contactId ?? null, tagAttached: tagAttached ?? null };
+    if (diag) responsePayload.diagnostics = diag;
+    return new Response(JSON.stringify(responsePayload), { status: 200, headers: { 'Content-Type': 'application/json' } });
+  } catch (e: any) {
+    console.error('Lead API error', e);
+    return new Response(JSON.stringify({ error: 'Unexpected error' }), { status: 500 });
+  }
+}

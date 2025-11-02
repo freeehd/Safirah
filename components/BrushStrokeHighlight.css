@@ -1,0 +1,57 @@
+
+.brush-stroke-highlight {
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+  isolation: isolate; /* keep ::after behind text but above surroundings */
+}
+
+.brush-stroke-highlight::after {
+  content: '';
+  position: absolute;
+  /* tighter insets to avoid overflow */
+  top: -0.08em;
+  right: -0.06em;
+  bottom: -0.08em;
+  left: -0.06em;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(135deg, var(--highlight-color), #ffc5b9);
+
+  /* Tiled band with periodic waves; repeats seamlessly across X */
+  -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40' preserveAspectRatio='none'%3e%3cpath d='M0,14 C10,8 20,20 30,14 C40,8 50,20 60,14 C70,8 80,20 90,14 C100,8 110,20 120,14 L120,30 C110,36 100,24 90,30 C80,36 70,24 60,30 C50,36 40,24 30,30 C20,36 10,24 0,30 Z' fill='%23000'/%3e%3c/svg%3e");
+  mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40' preserveAspectRatio='none'%3e%3cpath d='M0,14 C10,8 20,20 30,14 C40,8 50,20 60,14 C70,8 80,20 90,14 C100,8 110,20 120,14 L120,30 C110,36 100,24 90,30 C80,36 70,24 60,30 C50,36 40,24 30,30 C20,36 10,24 0,30 Z' fill='%23000'/%3e%3c/svg%3e");
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  /* exactly 4 bumps across the element width */
+  -webkit-mask-size: 25% 100%;
+  mask-size: 25% 100%;
+  -webkit-mask-position: 0% 50%;
+  mask-position: 0% 50%;
+
+  /* very subtle motion to keep it classy */
+  transform-origin: 10% 50%;
+  backface-visibility: hidden;
+  will-change: transform, -webkit-mask-position, mask-position;
+  animation: stroke-wave 8s ease-in-out infinite, mask-travel 12s linear infinite;
+}
+
+@keyframes stroke-wave {
+  0%, 100% {
+    transform: translateY(0) rotate(-0.35deg) skewY(-0.35deg) scale(1.003);
+  }
+  50% {
+    transform: translateY(-0.045em) rotate(0.45deg) skewY(0.5deg) scale(1.01);
+  }
+}
+
+@keyframes mask-travel {
+  0% {
+    -webkit-mask-position: 0% 50%;
+    mask-position: 0% 50%;
+  }
+  100% {
+    -webkit-mask-position: 25% 50%;
+    mask-position: 25% 50%;
+  }
+}
