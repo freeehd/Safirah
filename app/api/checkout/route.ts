@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-  apiVersion: '2024-09-30.acacia',
-});
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
 const PRICE_ID_GOLDEN_PEARL_ONLINE = process.env.PRICE_ID_GOLDEN_PEARL_ONLINE || 'price_123_online';
 const PRICE_ID_GOLDEN_PEARL_INPERSON = process.env.PRICE_ID_GOLDEN_PEARL_INPERSON || 'price_123_inperson';
