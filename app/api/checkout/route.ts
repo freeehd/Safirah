@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-});
-
 const PRICE_ID_GOLDEN_PEARL_ONLINE = process.env.PRICE_ID_GOLDEN_PEARL_ONLINE || 'price_123_online';
 const PRICE_ID_GOLDEN_PEARL_INPERSON = process.env.PRICE_ID_GOLDEN_PEARL_INPERSON || 'price_123_inperson';
 
@@ -19,6 +16,14 @@ export async function POST(req: NextRequest) {
       variant === 'inperson' ? PRICE_ID_GOLDEN_PEARL_INPERSON : PRICE_ID_GOLDEN_PEARL_ONLINE;
 
     const origin = req.headers.get('origin') ?? process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
+
+    // Ensure Stripe is configured and instantiate lazily to avoid build-time failures
+    const secretKey = process.env.STRIPE_SECRET_KEY;
+    if (!secretKey) {
+      return NextResponse.json({ error: 'Stripe is not configured (missing STRIPE_SECRET_KEY)' }, { status: 500 });
+    }
+
+    const stripe = new Stripe(secretKey as string, {});
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
