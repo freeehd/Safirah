@@ -7,12 +7,12 @@ const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [motionScale, setMotionScale] = useState(1);
 
-  const highlightColor = 'var(--highlight-color, #f8bdda)';
+  const highlightColor = 'var(--highlight-color, #d29a89)'; // was #f8bdda
   const textColor = 'var(--text-color, #2a1f29)';
   const textOnAccent = 'var(--text-on-accent, #ffffff)';
-  const bgColor = 'var(--bg-color, #fff7fb)';
+  const bgColor = 'var(--bg-color, #f7f4f1)'; // was #fff7fb
   const backgroundLayers =
-    'radial-gradient(circle at 15% 15%, rgba(255, 200, 224, 0.45), transparent 55%), radial-gradient(circle at 85% 25%, rgba(255, 216, 233, 0.4), transparent 55%), radial-gradient(circle at 20% 85%, rgba(255, 232, 242, 0.5), transparent 60%)';
+    'radial-gradient(circle at 15% 15%, rgba(236, 217, 210, 0.45), transparent 55%), radial-gradient(circle at 85% 25%, rgba(224, 197, 187, 0.4), transparent 55%), radial-gradient(circle at 20% 85%, rgba(236, 217, 210, 0.5), transparent 60%)'; // swapped pinks → accents
 
   useEffect(() => {
     setIsVisible(true);
@@ -52,7 +52,7 @@ const Hero = () => {
           className="hidden md:block absolute -top-40 -right-40 h-96 w-96 rounded-full blur-3xl animate-pulse"
           style={{
             background:
-              'radial-gradient(circle, rgba(248, 189, 218, 0.75) 0%, rgba(248, 189, 218, 0.05) 70%)',
+              'radial-gradient(circle, rgba(236, 217, 210, 0.75) 0%, rgba(236, 217, 210, 0.05) 70%)', // accent #ecd9d2
             opacity: 0.45,
             transform: `translate(${mousePosition.x * motionScale}px, ${mousePosition.y * motionScale}px)`,
             transition: 'transform 0.6s ease-out',
@@ -63,7 +63,7 @@ const Hero = () => {
           className="hidden md:block absolute -bottom-40 -left-40 h-96 w-96 rounded-full blur-3xl animate-pulse"
           style={{
             background:
-              'radial-gradient(circle, rgba(255, 206, 230, 0.6) 0%, rgba(255, 206, 230, 0.05) 70%)',
+              'radial-gradient(circle, rgba(224, 197, 187, 0.6) 0%, rgba(224, 197, 187, 0.05) 70%)', // accent #E0c5bb
             opacity: 0.35,
             transform: `translate(${-mousePosition.x * motionScale}px, ${-mousePosition.y * motionScale}px)`,
             transition: 'transform 0.6s ease-out',
@@ -102,16 +102,16 @@ const Hero = () => {
                   className="absolute inset-0 opacity-40 sm:opacity-30"
                   style={{
                     background:
-                      'linear-gradient(to top, var(--highlight-color, #f8bdda), transparent 55%)'
+                      'linear-gradient(to top, var(--highlight-color, #d29a89), transparent 55%)' // highlight
                   }}
                 />
               </div>
 
-              {/* 🩷 Floating “Hi I'm Hirah” card (RESTORED) */}
+              {/* Floating “Hi I'm Hirah” card */}
               <div
                 className="absolute -bottom-8 -left-8 rounded-2xl p-5 sm:p-6 backdrop-blur-md border"
                 style={{
-                  backgroundColor: highlightColor,
+                  backgroundColor: highlightColor, // #d29a89
                   color: textOnAccent,
                   borderColor: 'rgba(255,255,255,0.35)',
                   transform: `translate(${mousePosition.x * 0.4 * motionScale}px, ${mousePosition.y * 0.4 * motionScale}px)`,
@@ -144,7 +144,7 @@ const Hero = () => {
               <div
                 className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 border-2 backdrop-blur-sm"
                 style={{
-                  backgroundColor: 'rgba(248,189,218,0.15)',
+                  backgroundColor: 'rgba(236, 217, 210, 0.15)', // was rgba(248,189,218,0.15)
                   borderColor: highlightColor
                 }}
               >
@@ -168,17 +168,18 @@ const Hero = () => {
                 Building the{' '}
                 <span className="relative inline-block">
                   <span style={{ color: highlightColor }} className="font-semibold">
-      <BrushStrokeHighlight
-  colorStart="#f8bdda"
-  colorEnd="#ffdce2"
-  waveWidthPercent={80}
-  animationDuration="4s"
-  width="fit-content"
-  height="8rem"
-  rounded='20rem'
-  blurred={true}
->
-Mindset  </BrushStrokeHighlight>
+                    <BrushStrokeHighlight
+                      colorStart="#d29a89"  // was #f8bdda
+                      colorEnd="#E0c5bb"   // was #ffdce2
+                      waveWidthPercent={80}
+                      animationDuration="4s"
+                      width="fit-content"
+                      height="8rem"
+                      rounded='20rem'
+                      blurred={true}
+                    >
+                      Mindset
+                    </BrushStrokeHighlight>
                   </span>
                   <svg
                     className="absolute -bottom-2 left-0 w-full"
@@ -221,7 +222,7 @@ Mindset  </BrushStrokeHighlight>
                   className="group relative overflow-hidden rounded-full px-8 py-4 font-semibold transition-all hover:scale-105"
                   style={{
                     backgroundImage:
-                      'linear-gradient(135deg, var(--highlight-color, #f8bdda) 0%, rgba(255, 203, 229, 0.85) 100%)',
+                      'linear-gradient(135deg, var(--highlight-color, #d29a89) 0%, rgba(224, 197, 187, 0.85) 100%)', // highlight → accent2
                     color: textOnAccent
                   }}
                 >
@@ -239,7 +240,7 @@ Mindset  </BrushStrokeHighlight>
                   style={{
                     borderColor: highlightColor,
                     color: textColor,
-                    backgroundColor: 'rgba(248, 189, 218, 0.08)'
+                    backgroundColor: 'rgba(236, 217, 210, 0.08)' // was rgba(248,189,218,0.08)
                   }}
                 >
                   Learn My Story

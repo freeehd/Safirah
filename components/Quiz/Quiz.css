@@ -10,7 +10,7 @@
     justify-content: center;
     padding: 2rem;
     box-sizing: border-box;
-    background: linear-gradient(175deg, #f8edeb 0%, #fde2e4 60%, #fad2e1 100%);
+    background: linear-gradient(175deg, #f7f4f1 0%, #ecd9d2 60%, #E0c5bb 100%);
     z-index: 2000;
     opacity: 0;
     visibility: hidden;
@@ -70,7 +70,7 @@
 
 .start-area { position: relative; display: inline-block; }
 .start-bloom { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -52%); pointer-events: none; z-index: 0; }
-.start-bloom-svg { filter: drop-shadow(0 0 14px rgba(232,84,128,0.4)); }
+.start-bloom-svg { filter: drop-shadow(0 0 14px rgba(210,154,137,0.4)); }
 .start-button { position: relative; z-index: 1; }
 
 .quiz-question {
@@ -150,7 +150,7 @@
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(232,84,128,0.35) 0%, rgba(232,84,128,0) 70%);
+  background: radial-gradient(circle, rgba(210,154,137,0.35) 0%, rgba(210,154,137,0) 70%);
   transform: translate(-50%, -50%) scale(0);
   animation: ripple 480ms ease-out forwards;
 }
@@ -175,7 +175,7 @@
 .progress-bar {
     width: 0%;
     height: 100%;
-    background: linear-gradient(90deg, var(--cta-color) 0%, #ff8fa3 100%);
+    background: linear-gradient(90deg, var(--cta-color) 0%, #d29a89 100%);
     border-radius: 10px;
     transition: width 0.5s ease;
     position: relative;
@@ -191,7 +191,7 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(232,84,128,0.7) 0%, rgba(232,84,128,0) 70%);
+    background: radial-gradient(circle, rgba(210,154,137,0.7) 0%, rgba(210,154,137,0) 70%);
     animation: prog-pulse 520ms ease-out forwards;
     pointer-events: none;
 }
@@ -290,7 +290,7 @@
 .quiz-results.entered p { animation: results-fade 520ms 260ms ease-out both; }
 .quiz-results.entered .results-next { animation-delay: 380ms; }
 .quiz-results.entered .results-cta { animation: results-cta 560ms 420ms ease-out both; }
-.results-bloom { position: absolute; left: 50%; top: 50px; transform: translateX(-50%); opacity: 0.18; pointer-events: none; filter: drop-shadow(0 0 18px rgba(232,84,128,0.35)); }
+.results-bloom { position: absolute; left: 50%; top: 50px; transform: translateX(-50%); opacity: 0.18; pointer-events: none; filter: drop-shadow(0 0 18px rgba(210,154,137,0.35)); }
 
 @keyframes results-in {
   0% { opacity: 0; transform: translateY(28px) scale(0.94); }

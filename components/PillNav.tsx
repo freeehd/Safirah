@@ -539,7 +539,7 @@ const PillNav: React.FC<PillNavProps> = ({
                   <span
                     className="hover-circle absolute left-1/2 bottom-0 rounded-full z-[1] block pointer-events-none"
                     style={{
-                      background: 'rgba(255, 132, 214, 0.4)',
+                      background: '#d29a89',
                       willChange: 'transform'
                     }}
                     aria-hidden="true"
