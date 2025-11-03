@@ -180,7 +180,7 @@ const QuizCTA: React.FC<QuizCTAProps> = ({ onStartQuiz }) => {
   const onGo = () => {
     const isMobile = typeof window !== "undefined" && window.innerWidth <= 640;
     const count = isMobile ? 6 : 8;
-    const palette = { petalStart: "#FFB3C1", petalEnd: "#E85480", centerStart: "#FFE5A8", centerEnd: "#F4C95D" };
+    const palette = { petalStart: "#9FD7C7", petalEnd: "#2A7F62", centerStart: "#FFE5A8", centerEnd: "#F4C95D" };
 
     const items: Array<{
       id: number;
@@ -248,7 +248,7 @@ const QuizCTA: React.FC<QuizCTAProps> = ({ onStartQuiz }) => {
         ring-1 shadow-sm
         bg-[rgba(255,255,255,0.65)] backdrop-blur
       "
-      style={{ borderColor: "rgba(232,180,168,0.28)" }}
+      style={{ borderColor: "rgba(42,127,98,0.28)" }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsMouseInside(true)}
       onMouseLeave={() => setIsMouseInside(false)}
@@ -324,8 +324,8 @@ const QuizCTA: React.FC<QuizCTAProps> = ({ onStartQuiz }) => {
           className="mx-auto inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs sm:text-sm font-medium ring-1"
           style={{
             color: "var(--text-color,#57534E)",
-            backgroundColor: "rgba(232,180,168,0.10)",
-            borderColor: "rgba(232,180,168,0.35)",
+            backgroundColor: "rgba(42,127,98,0.10)",
+            borderColor: "rgba(42,127,98,0.35)",
           }}
           aria-label="Interactive Quiz"
         >
@@ -364,14 +364,14 @@ const QuizCTA: React.FC<QuizCTAProps> = ({ onStartQuiz }) => {
                 bg-white/80 backdrop-blur ring-1 shadow-sm
                 text-left
               "
-              style={{ borderColor: "rgba(232,180,168,0.28)" }}
+              style={{ borderColor: "rgba(42,127,98,0.28)" }}
             >
               <span className="card-icon mr-2 inline-flex" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="20" height="20">
                   <defs>
                     <radialGradient id="cardPetalGrad" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#FFB3C1" />
-                      <stop offset="100%" stopColor="#E85480" />
+                      <stop offset="0%" stopColor="#9FD7C7" />
+                      <stop offset="100%" stopColor="#2A7F62" />
                     </radialGradient>
                   </defs>
                   <g fill="url(#cardPetalGrad)">
@@ -423,8 +423,8 @@ const QuizCTA: React.FC<QuizCTAProps> = ({ onStartQuiz }) => {
               shadow-sm
             "
             style={{
-              backgroundColor: "var(--cta-color,#FFB5A7)",
-              color: "var(--cta-text-color,#fff)",
+              backgroundColor: "#2A7F62",
+              color: "#ffffff",
             }}
             aria-label="Start the Mindset Quiz now"
             onClick={onGo}

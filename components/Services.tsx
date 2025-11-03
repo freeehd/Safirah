@@ -6,9 +6,9 @@ import { Button } from '@/components/ui/button';
 import { Compass, Users, Crown, CheckCircle2 } from 'lucide-react';
 
 const pastel = {
-  accent: 'var(--highlight-color, #e8b4a8)',
-  text: 'var(--text-color, #57534E)',
-  subtle: 'var(--subtle-accent, #FCD5CE)',
+  accent: 'var(--highlight-color, #eb4a8)',
+  text: 'var(--text-color, #s)',
+  subtle: 'var(--subtle-accent, #s)',
 };
 
 type Props = {
