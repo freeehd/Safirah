@@ -101,13 +101,16 @@ export default function MiniServices({
                 ))}
               </ul>
               <div className="pt-1">
-                <Button
-                  onClick={onTier1}
-                  className="rounded-full px-6 h-10 transition-transform hover:scale-[1.02]"
-                  style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}
+              
+                   <Button
+                  asChild
+                  variant="outline"
+                  className="rounded-full px-6 h-10 border-2"
+                    style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}
                 >
-                  Book a Session →
+                  <a href="/contact">Book Consultation</a>
                 </Button>
+
               </div>
             </CardContent>
           </Card>
@@ -196,12 +199,14 @@ export default function MiniServices({
                 ))}
               </ul>
               <div className="pt-1">
-                <Button
-                  onClick={onTier3}
-                  className="rounded-full px-6 h-10 transition-transform hover:scale-[1.02]"
-                  style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}
+              
+                   <Button
+                  asChild
+                  variant="outline"
+                  className="rounded-full px-6 h-10 border-2"
+                    style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}
                 >
-                  Join Waitlist →
+                  <a href={tier2Href}>Join Waitlist</a>
                 </Button>
               </div>
             </CardContent>

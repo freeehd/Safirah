@@ -16,6 +16,7 @@ export default function ClientNav() {
     { label: 'About', href: '/about' },
     { label: 'Services', href: '/services' },
     { label: 'Events', href: '/events' },
+    { label: 'Lifestyle Quiz', href: '/quiz' },
     { label: 'Contact', href: '/contact' },
   ];
 

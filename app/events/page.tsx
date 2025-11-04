@@ -390,7 +390,7 @@ function ImagePlaceholder({ ratio = '4/3' }: { ratio?: '1/1' | '4/3' | '16/9' })
       }}
     >
       <div className="absolute inset-0 grid place-items-center text-sm opacity-80" style={{ color: pastel.text }}>
-        <Camera className="h-4 w-4 mr-2" /> Add image
+       <img src="/assets/8.webp" alt="Hirah Safi, life and success coach" className="w-full h-full object-cover" />
       </div>
       <div
         className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"

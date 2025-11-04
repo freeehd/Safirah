@@ -100,11 +100,11 @@ export default function AboutPage() {
               <div className="flex flex-wrap gap-3 pt-2">
                 <Button className="rounded-full px-6 transition-transform hover:scale-[1.02]"
                         style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}>
-                  Start Your Shift
+                <a href="/services">Start Your Shift</a>
                 </Button>
                 <Button variant="outline" className="rounded-full px-6 border-2"
                         style={{ borderColor: pastel.accent, color: pastel.text, backgroundColor: 'rgba(232,180,168,0.08)' }}>
-                  Learn My Approach
+                  <a href="/contact">Book Consultation</a>
                 </Button>
               </div>
             </motion.div>
@@ -343,14 +343,14 @@ export default function AboutPage() {
               <div className="flex flex-wrap gap-3">
                 <Button className="rounded-full px-6 transition-transform hover:scale-[1.02]"
                         style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}>
-                  Book a Discovery Call
+                 <a href="/contact">Book a Discovery Call</a>
                 </Button>
-                <a href='/services'>
+               
                 <Button variant="outline" className="rounded-full px-6 border-2"
                         style={{ borderColor: pastel.accent, color: pastel.text }}>
-                  See Coaching Packages
+                  <a href="/services">See Coaching Packages</a>
                 </Button>
-                </a>
+                
               </div>
             </motion.div>
             <motion.div {...fadeUp} className="relative p-8" style={{ background: 'linear-gradient(160deg,#fde2e4,#fad2e1)' }}>

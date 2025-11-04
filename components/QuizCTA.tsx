@@ -319,18 +319,34 @@ const QuizCTA: React.FC<QuizCTAProps> = ({ onStartQuiz }) => {
 
       {/* content */}
       <div className="quiz-cta-text relative z-10 text-center max-w-5xl mx-auto">
+        {/* Prominent top heading to emphasize the quiz */}
+        <div className="mx-auto mb-3 sm:mb-4 max-w-fit">
+          <h3
+            className="inline-flex items-center gap-2 rounded-xl px-4 sm:px-5 py-2 text-lg sm:text-xl font-semibold tracking-wide text-[color:var(--text-color,#2A7F62)] bg-[rgba(42,127,98,0.12)] ring-1 ring-[rgba(42,127,98,0.35)] shadow-sm"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 2l1.9 4.6L19 7.2l-3.3 3 0.9 4.8L12 13.9 7.4 15l0.9-4.8L5 7.2l5.1-0.6L12 2z"
+                fill="currentColor"
+                opacity="0.9"
+              />
+            </svg>
+            <span>Take the Quiz Now</span>
+          </h3>
+        </div>
         {/* NEW: clear quiz badge */}
         <div
-          className="mx-auto inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs sm:text-sm font-medium ring-1"
+          className="mx-auto inline-flex items-center gap-2 rounded-full px-4 sm:px-5 py-1.5 sm:py-2 text-sm sm:text-base font-semibold ring-2 tracking-wide shadow-sm"
           style={{
-            color: "var(--text-color,#57534E)",
-            backgroundColor: "rgba(42,127,98,0.10)",
-            borderColor: "rgba(42,127,98,0.35)",
+            color: "var(--text-color,#2A7F62)",
+            backgroundColor: "rgba(42,127,98,0.18)",
+            borderColor: "rgba(42,127,98,0.5)",
+            boxShadow: "0 4px 14px rgba(42,127,98,0.16), inset 0 1px 0 rgba(255,255,255,0.6)",
           }}
           aria-label="Interactive Quiz"
         >
           {/* tiny sparkle/quiz icon (inline SVG, no new deps) */}
-          <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
             <path
               d="M12 2l1.9 4.6L19 7.2l-3.3 3 0.9 4.8L12 13.9 7.4 15l0.9-4.8L5 7.2l5.1-0.6L12 2z"
               fill="currentColor"

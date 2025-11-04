@@ -130,7 +130,7 @@ export default function ShiftToSuccess() {
           {/* petite CTA — added at the very end */}
           <div className="mt-5 sm:mt-6 flex justify-center">
             <a
-              href="/book-clarity-session"
+              href="/contact"
               className="inline-flex items-center rounded-full px-5 py-2.5 text-sm font-semibold shadow-sm transition-transform"
               style={{
                 backgroundColor: 'var(--cta-color,#FFB5A7)',

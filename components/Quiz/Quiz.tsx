@@ -271,6 +271,7 @@ const Quiz: React.FC<QuizProps> = ({ onClose }) => {
                 result,
                 answers: userAnswers,
                 counts: optionCounts,
+    tagNames: ["Quiz"],
                 ts: new Date().toISOString()
             };
             if (typeof window !== 'undefined' && window.localStorage) {
@@ -279,21 +280,31 @@ const Quiz: React.FC<QuizProps> = ({ onClose }) => {
             // Best-effort server submit to Systeme.io via API route
             setSubmitting(true);
             try {
-                await fetch('/api/lead', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        name: leadName,
-                        email: leadEmail,
-                        debug: (process.env.NEXT_PUBLIC_LEAD_DEBUG === '1'),
-                        meta: {
-                            entry_point: 'quiz',
-                            result,
-                            answers: userAnswers,
-                            counts: optionCounts,
-                        },
-                    }),
-                });
+              await fetch('/api/lead', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    // Kit subscriber fields
+    email: leadEmail,
+    name: leadName,             // we map -> first_name
+    // optional create-time state if you want:
+    // state: 'active',
+
+    // Tag this lead as "Quiz" (the API will create the tag if needed)
+    tagNames: ['Quiz'],
+
+    // Your quiz metadata -> becomes custom fields after we auto-create them
+    meta: {
+      entry_point: 'quiz',
+      result,
+      answers: userAnswers,
+      counts: optionCounts
+    },
+
+    // OPTIONAL: only include a real form by ID or NAME to avoid 404s
+    // formName: 'Your Real Form Name'  // or formId: 47
+  })
+});
             } catch (err) {
                 // ignore; local capture already stored
                 console.error('Lead submit failed', err);

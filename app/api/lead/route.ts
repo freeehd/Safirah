@@ -1,254 +1,173 @@
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-const SYSTEME_API_BASE = process.env.SYSTEME_API_BASE; // e.g. https://api.systeme.io/api/public/v1
-const SYSTEME_BASE_URL = process.env.SYSTEME_BASE_URL || 'https://api.systeme.io';
-const SYSTEME_API_PREFIX = process.env.SYSTEME_API_PREFIX ?? '/public/v1';
-const SYSTEME_API_KEY = process.env.SYSTEME_API_KEY;
-const SYSTEME_QUIZ_TAG_ID = process.env.SYSTEME_QUIZ_TAG_ID; // e.g. "123456"
+const KIT_API_BASE = (process.env.KIT_API_BASE || 'https://api.kit.com').replace(/\/$/, '');
+const KIT_API_KEY = process.env.KIT_API_KEY as string;
 
-// Simple in-memory cache for tag ids by name (per server instance)
-const tagIdCache = new Map<string, string>();
+// Optional defaults (tags only). Forms/sequences are intentionally unsupported here.
+const DEFAULT_TAG_IDS = (process.env.KIT_DEFAULT_TAG_ID || '')
+  .split(',')
+  .map(s => s.trim())
+  .filter(Boolean);
+const DEFAULT_TAG_NAME = process.env.KIT_DEFAULT_TAG_NAME?.trim();
 
-function baseUrl(path: string) {
-  const explicit = (SYSTEME_API_BASE || '').trim();
-  if (explicit) {
-    const base = explicit.replace(/\/$/, '');
-    if (!path) return base;
-    return `${base}${path.startsWith('/') ? '' : '/'}${path}`;
+function k(path: string) { return `${KIT_API_BASE}/v4${path.startsWith('/') ? '' : '/'}${path}`; }
+
+async function kfetch<T = any>(url: string, init?: RequestInit): Promise<T> {
+  const res = await fetch(url, {
+    ...init,
+    headers: { 'Content-Type': 'application/json', 'X-Kit-Api-Key': KIT_API_KEY!, ...(init?.headers || {}) },
+    cache: 'no-store'
+  });
+  if (!res.ok) {
+    const text = await res.text().catch(() => '');
+    throw new Error(`${url} -> ${res.status} ${res.statusText} :: ${text}`);
   }
-  const base = SYSTEME_BASE_URL.replace(/\/$/, '');
-  const hasPublic = /\/public(\/|$)/.test(base);
-  const prefix = hasPublic ? '' : SYSTEME_API_PREFIX;
-  const withPrefix = `${base}${prefix ? (prefix.startsWith('/') ? '' : '/') + prefix : ''}`.replace(/\/$/, '');
-  if (!path) return withPrefix; // avoid trailing slash to prevent double slashes later
-  return `${withPrefix}${path.startsWith('/') ? '' : '/'}${path}`;
+  try { return (await res.json()) as T; } catch { return {} as T; }
 }
 
-function baseUrlVariants(path: string): string[] {
-  const primary = baseUrl(path);
-  const variants = [primary];
-  const explicit = (SYSTEME_API_BASE || '').trim();
-  if (explicit) {
-    const exp = explicit.replace(/\/$/, '');
-    const addPath = (b: string) => `${b}${path ? (path.startsWith('/') ? '' : '/') + path : ''}`;
-    if (/\/public\//.test(exp)) {
-      const alt = exp.replace(/\/public\/v?\d+$/, '').replace(/\/$/, '');
-      if (alt && addPath(alt) !== primary) variants.push(addPath(alt));
-    } else {
-      const alt = `${exp}/public/v1`;
-      if (addPath(alt) !== primary) variants.push(addPath(alt));
-    }
-  }
-  return Array.from(new Set(variants));
-}
+/* ---------- Custom fields: ensure they exist ---------- */
+let customFieldsCache: Array<{ id: number; key: string; label: string }> | null = null;
 
-function authHeaderVariants() {
-  // Prefer Bearer first for Management API; fall back to X-API-KEY
-  return [
-    { 'X-API-Key': SYSTEME_API_KEY as string },
-    { Authorization: `Bearer ${SYSTEME_API_KEY}` },
-    { 'X-API-KEY': SYSTEME_API_KEY as string },
-  ];
+async function listCustomFields() {
+  if (customFieldsCache) return customFieldsCache;
+  const data = await kfetch<{ custom_fields: Array<{ id: number; key: string; label: string }> }>(k('/custom_fields'));
+  customFieldsCache = data.custom_fields || [];
+  return customFieldsCache;
 }
+const labelFromKey = (key: string) =>
+  key.replace(/[_\-]+/g, ' ').replace(/\s+/g, ' ').trim().replace(/\b\w/g, m => m.toUpperCase());
 
-async function fetchWithAuth(url: string, init: RequestInit): Promise<Response> {
-  const variants = authHeaderVariants();
-  let last: Response | undefined;
-  for (const variant of variants) {
-    const res = await fetch(url, {
-      ...init,
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', ...(init.headers as any), ...variant },
+async function ensureCustomFieldsExist(fieldKeys: string[]) {
+  if (!fieldKeys.length) return;
+  const existing = await listCustomFields();
+  const have = new Set(existing.map(f => f.key.toLowerCase()));
+  for (const raw of fieldKeys) {
+    const key = String(raw || '').toLowerCase();
+    if (!key || have.has(key)) continue;
+    const created = await kfetch<{ custom_field: { id: number; key: string; label: string } }>(k('/custom_fields'), {
+      method: 'POST',
+      body: JSON.stringify({ label: labelFromKey(key) })
     });
-    if (res.ok) return res;
-    last = res;
+    customFieldsCache = [ ...(customFieldsCache || []), created.custom_field ];
+    have.add(created.custom_field.key.toLowerCase());
   }
-  return last as Response;
 }
 
-// Management-only mode: do not auto-list/create tags to avoid 404s across API families.
-async function getOrCreateTagId(_: string, __?: any): Promise<string | undefined> {
-  return undefined;
+/* ---------- Tags: list/ensure/apply ---------- */
+let tagsCache: Array<{ id: number; name: string }> | null = null;
+
+async function listTags() {
+  if (tagsCache) return tagsCache;
+  const data = await kfetch<{ tags: Array<{ id: number; name: string }> }>(k('/tags'));
+  tagsCache = (data.tags || []);
+  return tagsCache;
+}
+const isNumericLike = (v: unknown) => typeof v === 'number' || (typeof v === 'string' && /^\d+$/.test(v));
+
+async function ensureTagId(input: string | number): Promise<number> {
+  if (isNumericLike(input)) {
+    const id = Number(input);
+    // Verify the ID exists so we don’t blow up later
+    await kfetch(k(`/tags/${id}`));
+    return id;
+  }
+  const name = String(input).trim();
+  if (!name) throw new Error('Empty tag name provided');
+  const tags = await listTags();
+  const found = tags.find(t => t.name.toLowerCase() === name.toLowerCase());
+  if (found) return found.id;
+  const created = await kfetch<{ tag: { id: number; name: string } }>(k('/tags'), {
+    method: 'POST',
+    body: JSON.stringify({ name })
+  });
+  tagsCache = [ ...(tagsCache || []), created.tag ];
+  return created.tag.id;
 }
 
-async function createOrUpdateContact(
-  email: string,
-  name?: string,
-  diag?: any,
-  opts?: { tagId?: string | number; quizResult?: string; entryPoint?: string }
-) {
-  let lastCreateResponse: Response | undefined;
-  // Strictly Management API payloads only
-  const base = baseUrl('');
-  const url = `${base}${base.endsWith('/') ? '' : ''}/contacts`;
-  const fieldsFromName = name ? [{ slug: 'first_name', value: name }] : [];
-  const fieldsQuiz = opts?.quizResult ? [{ slug: 'quiz_result', value: opts.quizResult }] : [];
-  const fieldsEntry = opts?.entryPoint ? [{ slug: 'entry_point', value: opts.entryPoint }] : [];
-  const fieldsAlt = name ? [{ name: 'first_name', value: name }] : [];
-  const attempts: Array<{ body: any; label: string }> = [
-    { body: { email, fields: [...fieldsFromName, ...fieldsQuiz, ...fieldsEntry], ...(opts?.tagId ? { tags: [{ id: opts.tagId }] } : {}) }, label: 'mgmt:fields-slug+tags-obj' },
-    { body: { email, fields: [...fieldsFromName, ...fieldsQuiz, ...fieldsEntry], ...(opts?.tagId ? { tagIds: [opts.tagId] } : {}) }, label: 'mgmt:fields-slug+tagIds' },
-    { body: { email, fields: [...fieldsAlt, ...fieldsQuiz, ...fieldsEntry], ...(opts?.tagId ? { tag_ids: [opts?.tagId] } : {}) }, label: 'mgmt:fields-name+tag_ids' },
-  ];
-  for (const attempt of attempts) {
-    const res = await fetchWithAuth(url, { method: 'POST', body: JSON.stringify(attempt.body) });
-    if (diag) { try { const text = await res.clone().text(); diag.steps.push({ step: 'contacts:create', variant: attempt.label, status: res.status, ok: res.ok, url, body: attempt.body, responseSample: text?.slice(0, 400) }); } catch {} }
-    if (res.ok) {
-      try { const data = await res.json(); return { id: data?.id ?? data?.data?.id ?? data?.contact?.id ?? data?.data?.contact?.id ?? null }; } catch { return { id: null }; }
-    }
-    lastCreateResponse = res;
-  }
-  // Fallback: if last create attempt indicated existing/validation error, try to fetch by email
-  if (typeof lastCreateResponse !== 'undefined' && (lastCreateResponse.status === 409 || lastCreateResponse.status === 400 || lastCreateResponse.status === 422)) {
-    const getUrl = `${url}?email=${encodeURIComponent(email)}`;
-    const getRes = await fetchWithAuth(getUrl, { method: 'GET' });
-    if (diag) {
-      try { const text = await getRes.clone().text(); diag.steps.push({ step: 'contacts:getByEmail', status: getRes.status, ok: getRes.ok, url: getUrl, responseSample: text?.slice(0, 400) }); } catch {}
-    }
-    if (getRes.ok) {
-      try {
-        const data = await getRes.json();
-        const contact = Array.isArray(data) ? data[0] : (data?.data ?? data?.contact ?? data);
-        return { id: contact?.id ?? null };
-      } catch {}
-    }
-    const searchUrl = baseUrl('/contacts/search');
-    const searchRes = await fetchWithAuth(searchUrl, { method: 'POST', body: JSON.stringify({ email }) });
-    if (diag) {
-      try { const text = await searchRes.clone().text(); diag.steps.push({ step: 'contacts:search', status: searchRes.status, ok: searchRes.ok, url: searchUrl, responseSample: text?.slice(0, 400) }); } catch {}
-    }
-    if (searchRes.ok) {
-      try {
-        const data = await searchRes.json();
-        const contact = Array.isArray(data) ? data[0] : (data?.data ?? data?.contact ?? data);
-        return { id: contact?.id ?? null };
-      } catch {}
-    }
-  }
-
-  return { id: null };
+async function applyTag(subscriberId: number, tagId: number) {
+  await kfetch(k(`/tags/${tagId}/subscribers/${subscriberId}`), { method: 'POST', body: '{}' });
 }
 
-async function attachTag(
-  { contactId, email, tagId }: { contactId?: string | number | null; email: string; tagId: string | number },
-  diag?: any,
-) {
-  if (!contactId) return false;
-  const tagIdNum = typeof tagId === 'string' && /^\d+$/.test(tagId) ? Number(tagId) : tagId;
-  const url = baseUrl(`/contacts/${contactId}/tags`);
-  // Try the three common bodies for management API
-  const bodies = [
-    { body: { tagId: tagIdNum }, label: 'tagId' },
-    { body: { id: tagIdNum }, label: 'id' },
-    { body: { tag_id: tagIdNum }, label: 'tag_id' },
-  ];
-  for (const b of bodies) {
-    const res = await fetchWithAuth(url, { method: 'POST', body: JSON.stringify(b.body) });
-    if (diag) {
-      try {
-        const text = await res.clone().text();
-        diag.steps.push({ step: `tags:attach:${b.label}`, status: res.status, ok: res.ok, url, body: b.body, responseSample: text?.slice(0, 400) });
-      } catch {}
-    }
-    if (res.ok) return true;
-  }
-  return false;
+/* ---------- Subscriber upsert ---------- */
+async function upsertSubscriber(input: {
+  email: string;
+  first_name?: string | null;
+  fields?: Record<string, any> | null;
+  // optional: state?: 'active' | 'unsubscribed' | ...
+}) {
+  const body: any = {
+    email_address: input.email,
+    first_name: input.first_name ?? null,
+    fields: input.fields ?? null
+  };
+  // If you want to set state on *first create*, you can also pass state here:
+  // if (input.state) body.state = input.state;
+
+  const data = await kfetch<{ subscriber: { id: number } }>(k('/subscribers'), {
+    method: 'POST',
+    body: JSON.stringify(body)
+  });
+  return data.subscriber;
 }
 
-async function updateContactQuizResult(contactId: string | number, value: string, diag?: any) {
-  // Attempt several PATCH payload shapes to set custom field "quiz_result"
-  const url = baseUrl(`/contacts/${contactId}`);
-  const attempts: Array<{ body: any; label: string }> = [
-    { body: { fields: [{ name: 'quiz_result', value }] }, label: 'fields:array-name' },
-    { body: { fields: { quiz_result: value } }, label: 'fields:object' },
-    { body: { custom_fields: { quiz_result: value } }, label: 'custom_fields:object' },
-    { body: { customFields: { quiz_result: value } }, label: 'customFields:object' },
-    { body: { field_values: [{ name: 'quiz_result', value }] }, label: 'field_values:array-name' },
-    { body: { fields: [{ key: 'quiz_result', value }] }, label: 'fields:array-key' },
-  ];
-  for (const attempt of attempts) {
-    const res = await fetchWithAuth(url, { method: 'PATCH', headers: { 'Content-Type': 'application/merge-patch+json' }, body: JSON.stringify(attempt.body) });
-    if (diag) {
-      try { const text = await res.clone().text(); diag.steps.push({ step: `contacts:updateQuizResult:${attempt.label}`, status: res.status, ok: res.ok, url, body: attempt.body, responseSample: text?.slice(0, 400) }); } catch {}
-    }
-    if (res.ok) return true;
-  }
-  return false;
-}
-
-async function updateContactEntryPoint(contactId: string | number, value: string, diag?: any) {
-  // Attempt several PATCH payload shapes to set custom field "entry_point"
-  const url = baseUrl(`/contacts/${contactId}`);
-  const attempts: Array<{ body: any; label: string }> = [
-    { body: { fields: [{ name: 'entry_point', value }] }, label: 'fields:array-name' },
-    { body: { fields: { entry_point: value } }, label: 'fields:object' },
-    { body: { custom_fields: { entry_point: value } }, label: 'custom_fields:object' },
-    { body: { customFields: { entry_point: value } }, label: 'customFields:object' },
-    { body: { field_values: [{ name: 'entry_point', value }] }, label: 'field_values:array-name' },
-    { body: { fields: [{ key: 'entry_point', value }] }, label: 'fields:array-key' },
-  ];
-  for (const attempt of attempts) {
-    const res = await fetchWithAuth(url, { method: 'PATCH', headers: { 'Content-Type': 'application/merge-patch+json' }, body: JSON.stringify(attempt.body) });
-    if (diag) {
-      try { const text = await res.clone().text(); diag.steps.push({ step: `contacts:updateEntryPoint:${attempt.label}`, status: res.status, ok: res.ok, url, body: attempt.body, responseSample: text?.slice(0, 400) }); } catch {}
-    }
-    if (res.ok) return true;
-  }
-  return false;
-}
-
+/* ---------- POST handler ---------- */
 export async function POST(req: NextRequest) {
   try {
-    if (!SYSTEME_API_KEY) {
-      return new Response(JSON.stringify({ error: 'SYSTEME_API_KEY is not configured' }), { status: 500 });
-    }
-
+    if (!KIT_API_KEY) return NextResponse.json({ error: 'Missing KIT_API_KEY' }, { status: 500 });
     const body = await req.json();
-    const email: string | undefined = body?.email;
-    const name: string | undefined = body?.name;
-    const tag: string | undefined = body?.tag;
-    const meta = body?.meta ?? {};
-    const rawResult = body?.result ?? meta?.result;
-    const resultMap: Record<string, string> = { A: '1', B: '2', C: '3', D: '4', '1': '1', '2': '2', '3': '3', '4': '4' };
-    const quizResultValue: string | undefined = typeof rawResult === 'string' ? resultMap[rawResult.toUpperCase?.() ?? rawResult] : undefined;
-    const entryPoint: string | undefined = body?.entry_point ?? meta?.entry_point;
-    const debug = !!body?.debug;
-    const diag: any = debug ? { steps: [] as any[] } : null;
 
-    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
-      return new Response(JSON.stringify({ error: 'Valid email is required' }), { status: 400 });
+    const email: string | undefined = body.email || body.email_address;
+    const name: string | undefined = body.name || body.firstName || body.first_name;
+    const debug = Boolean(body.debug);
+    if (!email) return NextResponse.json({ error: 'Missing email' }, { status: 400 });
+
+    // Map your quiz meta -> custom fields
+    const meta = body.meta ?? {};
+    const fields: Record<string, any> = {
+      entry_point: meta.entry_point ?? 'quiz',
+      quiz_result: meta.result ?? null,
+      quiz_answers_json: meta.answers ? JSON.stringify(meta.answers) : null,
+      quiz_count_a: meta.counts?.A ?? null,
+      quiz_count_b: meta.counts?.B ?? null,
+      quiz_count_c: meta.counts?.C ?? null,
+      quiz_count_d: meta.counts?.D ?? null
+    };
+
+    // 0) Ensure custom fields exist so values persist
+    await ensureCustomFieldsExist(Object.keys(fields).filter(k => fields[k] !== undefined));
+
+    // 1) Upsert subscriber (single API per the docs)
+    const sub = await upsertSubscriber({ email, first_name: name ?? null, fields });
+
+    // 2) Resolve/apply tags (IDs or names; auto-create names)
+    const requestedTagIds: (string | number)[] = Array.isArray(body.tagIds) ? body.tagIds : [];
+    const requestedTagNames: string[] = Array.isArray(body.tagNames) ? body.tagNames : [];
+    let tagInputs: (string | number)[] = [...requestedTagIds, ...requestedTagNames];
+
+    if (!tagInputs.length) {
+      if (DEFAULT_TAG_IDS.length) tagInputs = [...DEFAULT_TAG_IDS];
+      else if (DEFAULT_TAG_NAME) tagInputs = [DEFAULT_TAG_NAME];
     }
 
-    const tagIdFromBody: string | undefined = body?.tagId;
-    let tagIdToUse: string | undefined = tagIdFromBody || SYSTEME_QUIZ_TAG_ID;
-
-    const { id: contactId } = await createOrUpdateContact(email, name, diag, { tagId: tagIdToUse, quizResult: quizResultValue, entryPoint });
-    if (diag) diag.steps.push({ step: 'createOrUpdateContact', contactId: contactId ?? null });
-
-    let tagAttached: boolean | undefined = undefined;
-    if (tagIdToUse) {
+    const appliedTagIds: number[] = [];
+    for (const t of tagInputs) {
       try {
-        tagAttached = await attachTag({ contactId, email, tagId: tagIdToUse }, diag);
+        const id = await ensureTagId(t);
+        await applyTag(sub.id, id);
+        appliedTagIds.push(id);
       } catch (e) {
-        console.error('Failed to attach tag', e);
-        tagAttached = false;
+        // Skip invalid numeric IDs; name path will auto-create or throw meaningfully
+        if (!isNumericLike(t)) throw e;
       }
-      if (diag) diag.steps.push({ step: 'attachTag', tagId: tagIdToUse, attached: !!tagAttached });
     }
 
-    if (contactId && quizResultValue) {
-      try { await updateContactQuizResult(contactId, quizResultValue, diag); } catch {}
-    }
-    if (contactId && entryPoint) {
-      try { await updateContactEntryPoint(contactId, entryPoint, diag); } catch {}
-    }
-
-    // Optional: we skip notes update in strict management mode to avoid 401 noise
-
-    const responsePayload: any = { ok: !!(contactId), contactId: contactId ?? null, tagAttached: tagAttached ?? null };
-    if (diag) responsePayload.diagnostics = diag;
-    return new Response(JSON.stringify(responsePayload), { status: 200, headers: { 'Content-Type': 'application/json' } });
+    return NextResponse.json({
+      ok: true,
+      subscriberId: sub.id,
+      tagsApplied: appliedTagIds,
+      ...(debug && { debug: { fieldsCreated: (customFieldsCache || []).map(f => f.key), tagsApplied: appliedTagIds } })
+    });
   } catch (e: any) {
-    console.error('Lead API error', e);
-    return new Response(JSON.stringify({ error: 'Unexpected error' }), { status: 500 });
+    return NextResponse.json({ error: e.message || 'Unknown error' }, { status: 500 });
   }
 }
