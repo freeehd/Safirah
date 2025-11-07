@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 import BubbleMenu from '@/components/BubbleMenu';
@@ -9,12 +9,12 @@ import BrushStrokeHighlight from '@/components/BrushStrokeHighlight';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { CalendarDays, MapPin, Users, Camera, Clock, Sparkles, Star } from 'lucide-react';
+import { CalendarDays, MapPin, Clock, Sparkles, Star } from 'lucide-react';
 
 const pastel = {
   accent: 'var(--highlight-color, #e8b4a8)',
   text: 'var(--text-color, #57534E)',
-  subtle: 'var(--subtle-accent, #FCD5CE)',
+  subtle: 'var(--subtle-accent, #FCD5CE)'
 };
 
 const container = 'mx-auto max-w-7xl px-5 sm:px-8';
@@ -33,9 +33,9 @@ function useFadeUp() {
 type EventItem = {
   slug: string;
   title: string;
-  date: string;         // human string e.g. "Sat, 14 Dec 2025"
-  time: string;         // e.g. "10:00–13:00 PKT"
-  city: string;         // e.g. "Islamabad • In-Person"
+  date: string; // human string
+  time: string; // e.g. "10:00–13:00 PKT"
+  city: string; // e.g. "Islamabad • In-Person"
   mode: 'Online' | 'In-Person' | 'Hybrid';
   short: string;
 };
@@ -48,7 +48,7 @@ const upcoming: EventItem[] = [
     time: 'TBA',
     city: 'Online • Zoom',
     mode: 'Online',
-    short: 'A gentle deep-dive to map goals, values and next steps without overwhelm.',
+    short: 'A gentle deep-dive to map goals, values and next steps without overwhelm.'
   },
   {
     slug: 'boundaries-with-barakah',
@@ -57,7 +57,7 @@ const upcoming: EventItem[] = [
     time: 'TBA',
     city: 'Online • Zoom',
     mode: 'Online',
-    short: 'Learn loving limits, nervous-system friendly planning, and sustainable pace.',
+    short: 'Learn loving limits, nervous-system friendly planning, and sustainable pace.'
   },
   {
     slug: 'pricing-with-peace',
@@ -66,32 +66,32 @@ const upcoming: EventItem[] = [
     time: 'TBA',
     city: 'Online • Zoom',
     mode: 'Online',
-    short: 'Step into authority, price with confidence, and hold value with softness.',
-  },
+    short: 'Step into authority, price with confidence, and hold value with softness.'
+  }
 ];
 
 export default function EventsPage() {
   const fadeUp = useFadeUp();
-  // Lead modal state
-  const [leadOpen, setLeadOpen] = useState(false);
-  const [leadType, setLeadType] = useState<'waitlist' | 'eventlist' | null>(null);
-  const [leadName, setLeadName] = useState('');
-  const [leadEmail, setLeadEmail] = useState('');
-  const [leadConsent, setLeadConsent] = useState(false);
-  const [leadSubmitting, setLeadSubmitting] = useState(false);
-  const [leadDone, setLeadDone] = useState(false);
 
-  const menuItems = [
-    { label: 'Home', href: '/', rotation: -8, hoverStyles: { bgColor: '#FFB5A7', textColor: '#FFFFFF' } },
-    { label: 'About', href: '/about', rotation: 8, hoverStyles: { bgColor: '#FCD5CE', textColor: '#57534E' } },
-    { label: 'Services', href: '/services', rotation: -8, hoverStyles: { bgColor: '#FEC89A', textColor: '#57534E' } },
-    { label: 'Contact', href: '#', rotation: 8, hoverStyles: { bgColor: '#F9DCC4', textColor: '#57534E' } }
-  ];
+  // Early-bird logic (Toronto time)
+  const deadline = new Date('2025-11-15T23:59:59-05:00').getTime();
+  const [nowMs, setNowMs] = useState<number>(Date.now());
+  useEffect(() => {
+    const id = setInterval(() => setNowMs(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  const saleActive = nowMs < deadline;
+  const fullPrice = 45;
+  const salePrice = 35;
+  const displayPrice = saleActive ? `$${salePrice}` : `$${fullPrice}`;
+  const msRemaining = Math.max(0, deadline - nowMs);
+  const d = Math.floor(msRemaining / (24*60*60*1000));
+  const h = Math.floor((msRemaining % (24*60*60*1000)) / (60*60*1000));
+  const m = Math.floor((msRemaining % (60*60*1000)) / (60*1000));
+  const s = Math.floor((msRemaining % (60*1000)) / 1000);
 
   return (
     <div className="page-wrapper">
-     
-
       {/* HERO */}
       <section className={`relative isolate overflow-hidden ${sectionY}`}>
         {/* soft backdrop blobs */}
@@ -127,14 +127,13 @@ export default function EventsPage() {
               </BrushStrokeHighlight>
             </h1>
             <p className="font-lato text-lg leading-relaxed opacity-90 mt-4" style={{ color: pastel.text }}>
-              Join a warm, faith-aligned space to build clarity, community, and momentum —
-              online or in person.
+              Join a warm, faith-aligned space to build clarity, community, and momentum — online or in person.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* FEATURED: Golden Pearl */}
+      {/* FEATURED: Soulmate Workshop */}
       <section className={`${container} ${sectionY} pt-0`}>
         <motion.div
           {...fadeUp}
@@ -148,11 +147,13 @@ export default function EventsPage() {
                 className="absolute -inset-5 -z-10 blur-3xl opacity-50"
                 style={{ background: `radial-gradient(60% 60% at 50% 50%, ${pastel.subtle}, transparent)` }}
               />
-              <div className="h-full w-full rounded-2xl bg-white/70 backdrop-blur ring-1 p-4 sm:p-6 grid gap-4"
-                   style={{ borderColor: 'rgba(232,180,168,0.28)' }}>
+              <div
+                className="h-full w-full rounded-2xl bg-white/70 backdrop-blur ring-1 p-4 sm:p-6 grid gap-4"
+                style={{ borderColor: 'rgba(232,180,168,0.28)' }}
+              >
                 <ImagePlaceholder ratio="16/9" />
                 <div className="flex items-center gap-2">
-                  <Badge><Star className="h-3.5 w-3.5" /> Flagship</Badge>
+                  <Badge><Star className="h-3.5 w-3.5" /> New</Badge>
                   <Badge>Women-First</Badge>
                   <Badge>Faith-Aligned</Badge>
                 </div>
@@ -161,33 +162,43 @@ export default function EventsPage() {
 
             {/* Copy */}
             <div className="p-6 md:p-10">
-              <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs sm:text-sm mb-3"
-                   style={{ borderColor: 'rgba(232,180,168,0.35)', color: pastel.text }}>
-                <Sparkles className="h-4 w-4" /> Golden Pearl — Flagship Event
+              <div
+                className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs sm:text-sm mb-3"
+                style={{ borderColor: 'rgba(232,180,168,0.35)', color: pastel.text }}
+              >
+                <Sparkles className="h-4 w-4" /> Soulmate — Featured Workshop
               </div>
               <h2 className="font-playfair text-3xl md:text-4xl" style={{ color: pastel.text }}>
-                The Golden Pearl Experience
+                The “Soulmate” Workshop (Toronto)
               </h2>
               <p className="font-lato mt-3 opacity-90" style={{ color: pastel.text }}>
-                A transformational gathering for ambitious Muslim women to dissolve inner blocks, reconnect with
-                Tawakkul, and craft a loving, practical roadmap. Expect sisterhood, gentle structure, and real clarity.
+                Not a dating class — a self‑rescue mission to stop outsourcing happiness and build unshakeable inner strength.
               </p>
 
               <div className="mt-5 grid sm:grid-cols-3 gap-3 text-sm font-lato">
-                <InfoPill icon={<CalendarDays className="h-4 w-4" />} text="Next date: TBA — Join waitlist" />
-                <InfoPill icon={<Clock className="h-4 w-4" />} text="Half-day intensive" />
-                <InfoPill icon={<MapPin className="h-4 w-4" />} text="Hybrid — Islamabad + Zoom" />
+                <InfoPill icon={<CalendarDays className="h-4 w-4" />} text={`Early‑bird ends Nov 15 (Toronto time)`} />
+                <InfoPill icon={<Clock className="h-4 w-4" />} text="2–3 hours • Live" />
+                <InfoPill icon={<MapPin className="h-4 w-4" />} text="Toronto, Canada • In‑Person" />
               </div>
 
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Button asChild className="rounded-full px-6 transition-transform hover:scale-[1.02]"
+              {/* Price + countdown */}
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1"
+                     style={{ borderColor: 'rgba(232,180,168,0.35)', backgroundColor: 'rgba(232,180,168,0.10)', color: pastel.text }}>
+                  <span className="text-sm"><s>$45</s> <strong>{displayPrice}</strong></span>
+                  {saleActive && (
+                    <span className="text-xs opacity-80">• {d}d {String(h).padStart(2,'0')}:{String(m).padStart(2,'0')}:{String(s).padStart(2,'0')}</span>
+                  )}
+                </div>
+
+                <Button asChild className="rounded-full px-6 h-11 transition-transform hover:scale-[1.02]"
                         style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}>
-                  <Link href="/events/golden-pearl">Explore Golden Pearl</Link>
+                  <Link href="/products/soulmate-workshop-tickets">Buy Now — {displayPrice}</Link>
                 </Button>
-                <Button variant="outline" className="rounded-full px-6 border-2"
-                        style={{ borderColor: pastel.accent, color: pastel.text }}
-                        onClick={() => { setLeadType('waitlist'); setLeadOpen(true); }}>
-                  Join the Waitlist
+
+                <Button asChild variant="outline" className="rounded-full px-6 h-11 border-2"
+                        style={{ borderColor: pastel.accent, color: pastel.text }}>
+                  <Link href="/events/soulmate-workshop">See Full Details</Link>
                 </Button>
               </div>
             </div>
@@ -223,103 +234,43 @@ export default function EventsPage() {
                 Be first to know about new dates
               </h4>
               <p className="font-lato opacity-90 mb-6" style={{ color: pastel.text }}>
-                Join the events list and get priority access when Golden Pearl and workshops open.
+                Join the events list and get priority access when Soulmate and other workshops open.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Button asChild className="rounded-full px-6 transition-transform hover:scale-[1.02]"
-                        style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}>
+                <Button
+                  asChild
+                  className="rounded-full px-6 transition-transform hover:scale-[1.02]"
+                  style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}
+                >
                   <Link href="/waitlist">Join the Events List →</Link>
                 </Button>
-                <Button asChild variant="outline" className="rounded-full px-6 border-2"
-                        style={{ borderColor: pastel.accent, color: pastel.text }}>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="rounded-full px-6 border-2"
+                  style={{ borderColor: pastel.accent, color: pastel.text }}
+                >
                   <Link href="/services">See Coaching & Tiers</Link>
                 </Button>
               </div>
             </div>
             <div className="relative p-8" style={{ background: 'linear-gradient(160deg,#fde2e4,#fad2e1)' }}>
-              <div className="absolute -inset-5 -z-10 blur-3xl opacity-50"
-                   style={{ background: `radial-gradient(60% 60% at 50% 50%, ${pastel.subtle}, transparent)` }} />
-              <div className="h-full w-full rounded-2xl bg-white/70 backdrop-blur grid place-items-center text-center p-6 ring-1"
-                   style={{ borderColor: 'rgba(232,180,168,0.28)' }}>
+              <div
+                className="absolute -inset-5 -z-10 blur-3xl opacity-50"
+                style={{ background: `radial-gradient(60% 60% at 50% 50%, ${pastel.subtle}, transparent)` }}
+              />
+              <div
+                className="h-full w-full rounded-2xl bg-white/70 backdrop-blur grid place-items-center text-center p-6 ring-1"
+                style={{ borderColor: 'rgba(232,180,168,0.28)' }}
+              >
                 <div className="font-playfair text-2xl" style={{ color: pastel.text }}>
                   “Clarity, community, and consistency.”
                 </div>
-                {/* <div className="mt-4 w-full"><ImagePlaceholder ratio="16/9" /></div> */}
               </div>
             </div>
           </div>
         </Card>
       </section>
-
-      {/* Lead modal */}
-      {leadOpen && (
-        <div className="fixed inset-0 z-[100] grid place-items-center">
-          <div className="absolute inset-0 bg-black/40" onClick={() => { setLeadOpen(false); setLeadType(null); setLeadDone(false); }} />
-          <div className="relative w-[92vw] max-w-md rounded-2xl bg-white/90 backdrop-blur ring-1 shadow-xl p-5"
-               style={{ borderColor: 'rgba(232,180,168,0.35)' }}>
-            {!leadDone ? (
-              <form
-                className="grid gap-3"
-                onSubmit={async (e) => {
-                  e.preventDefault();
-                  if (!leadName.trim() || !/\S+@\S+\.\S+/.test(leadEmail) || !leadConsent || !leadType) return;
-                  setLeadSubmitting(true);
-                  try {
-                    await fetch('/api/lead', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({
-                        name: leadName,
-                        email: leadEmail,
-                        meta: { entry_point: leadType, source: 'events_page', newsletter_consent: leadConsent },
-                      }),
-                    });
-                    setLeadDone(true);
-                  } finally {
-                    setLeadSubmitting(false);
-                  }
-                }}
-              >
-                <h3 className="font-playfair text-2xl" style={{ color: pastel.text }}>
-                  {leadType === 'waitlist' ? 'Join the Waitlist' : 'Join the Events List'}
-                </h3>
-                <p className="text-sm opacity-80" style={{ color: pastel.text }}>
-                  Enter your details to receive updates. You consent to receive event newsletters.
-                </p>
-                <input className="rounded-xl border px-3 py-2" style={{ borderColor: 'rgba(0,0,0,0.15)' }}
-                       value={leadName} onChange={(e) => setLeadName(e.target.value)} placeholder="Your name" required />
-                <input className="rounded-xl border px-3 py-2" style={{ borderColor: 'rgba(0,0,0,0.15)' }}
-                       value={leadEmail} onChange={(e) => setLeadEmail(e.target.value)} placeholder="Your email" type="email" required />
-                <label className="flex items-start gap-2 text-sm" style={{ color: pastel.text }}>
-                  <input type="checkbox" checked={leadConsent} onChange={(e) => setLeadConsent(e.target.checked)} />
-                  <span>I consent to receive email updates and newsletters about events and workshops.</span>
-                </label>
-                <div className="flex gap-2 justify-end mt-2">
-                  <Button type="button" variant="outline" className="rounded-full px-5"
-                          style={{ borderColor: pastel.accent, color: pastel.text }}
-                          onClick={() => { setLeadOpen(false); setLeadType(null); setLeadDone(false); }}>
-                    Cancel
-                  </Button>
-                  <Button type="submit" disabled={leadSubmitting || !leadConsent || !/\S+@\S+\.\S+/.test(leadEmail) || !leadName.trim()} className="rounded-full px-5"
-                          style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}>
-                    {leadSubmitting ? 'Joining…' : 'Join'}
-                  </Button>
-                </div>
-              </form>
-            ) : (
-              <div className="grid gap-3 text-center">
-                <h3 className="font-playfair text-2xl" style={{ color: pastel.text }}>You’re on the list!</h3>
-                <p className="text-sm opacity-80" style={{ color: pastel.text }}>We’ll email you when new dates go live.</p>
-                <Button className="rounded-full px-6 mx-auto"
-                        onClick={() => { setLeadOpen(false); setLeadType(null); setLeadDone(false); }}
-                        style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}>
-                  Close
-                </Button>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
 
       <Separator className="opacity-0" />
       <Footer />
@@ -328,7 +279,6 @@ export default function EventsPage() {
 }
 
 /* ——— components ——— */
-
 function Badge({ children }: { children: React.ReactNode }) {
   return (
     <div
@@ -342,8 +292,10 @@ function Badge({ children }: { children: React.ReactNode }) {
 
 function InfoPill({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
-    <div className="flex items-center gap-2 rounded-full px-3 py-2 text-xs ring-1 bg-white/70 backdrop-blur"
-         style={{ borderColor: 'rgba(232,180,168,0.28)', color: pastel.text }}>
+    <div
+      className="flex items-center gap-2 rounded-full px-3 py-2 text-xs ring-1 bg-white/70 backdrop-blur"
+      style={{ borderColor: 'rgba(232,180,168,0.28)', color: pastel.text }}
+    >
       {icon} <span>{text}</span>
     </div>
   );
@@ -358,17 +310,26 @@ function EventCard({ ev }: { ev: EventItem }) {
       >
         <div className="h-1.5 w-full bg-gradient-to-r from-[#fde2e4] to-white" />
         <CardHeader className="pb-2">
-          <CardTitle className="font-playfair text-xl" style={{ color: pastel.text }}>{ev.title}</CardTitle>
+          <CardTitle className="font-playfair text-xl" style={{ color: pastel.text }}>
+            {ev.title}
+          </CardTitle>
           <div className="mt-2 flex flex-wrap items-center gap-3 text-sm font-lato opacity-90" style={{ color: pastel.text }}>
-            <span className="inline-flex items-center gap-1"><CalendarDays className="h-4 w-4" /> {ev.date}</span>
-            <span className="inline-flex items-center gap-1"><Clock className="h-4 w-4" /> {ev.time}</span>
-            <span className="inline-flex items-center gap-1"><MapPin className="h-4 w-4" /> {ev.city}</span>
+            <span className="inline-flex items-center gap-1">
+              <CalendarDays className="h-4 w-4" /> {ev.date}
+            </span>
+            <span className="inline-flex items-center gap-1">
+              <Clock className="h-4 w-4" /> {ev.time}
+            </span>
+            <span className="inline-flex items-center gap-1">
+              <MapPin className="h-4 w-4" /> {ev.city}
+            </span>
           </div>
         </CardHeader>
         <CardContent className="space-y-4">
           {/* <ImagePlaceholder ratio="16/9" /> */}
-          <p className="font-lato text-sm opacity-90" style={{ color: pastel.text }}>{ev.short}</p>
-          {/* Buttons removed per request for upcoming cards */}
+          <p className="font-lato text-sm opacity-90" style={{ color: pastel.text }}>
+            {ev.short}
+          </p>
         </CardContent>
       </Card>
     </motion.div>
@@ -390,17 +351,12 @@ function ImagePlaceholder({ ratio = '4/3' }: { ratio?: '1/1' | '4/3' | '16/9' })
       }}
     >
       <div className="absolute inset-0 grid place-items-center text-sm opacity-80" style={{ color: pastel.text }}>
-       <img src="/assets/8.webp" alt="Hirah Safi, life and success coach" className="w-full h-full object-cover" />
+        <img src="/assets/8.webp" alt="Hirah Safi, life and success coach" className="w-full h-full object-cover" />
       </div>
       <div
         className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
-        style={{
-          background: 'radial-gradient(160px 160px at var(--x,50%) var(--y,50%), rgba(232,180,168,0.25), transparent 70%)'
-        }}
+        style={{ background: 'radial-gradient(160px 160px at var(--x,50%) var(--y,50%), rgba(232,180,168,0.25), transparent 70%)' }}
       />
     </div>
   );
 }
-
-
-
