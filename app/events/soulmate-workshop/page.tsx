@@ -193,7 +193,7 @@ export default function SoulmateWorkshopPage() {
                   className="rounded-full px-6 h-11 transition-transform hover:scale-[1.02]"
                   style={{ backgroundColor: theme.highlight, color: '#fff' }}
                 >
-                  <Link href="shop.hirahsaficoach.com/products/soulmate-workshop-tickets">Buy Now — {displayPrice}</Link>
+                  <Link href="https://shop.hirahsaficoach.com/products/soulmate-workshop-tickets">Buy Now — {displayPrice}</Link>
                 </Button>
                 <Button
                   asChild
@@ -458,7 +458,7 @@ export default function SoulmateWorkshopPage() {
                     className="rounded-full px-6 h-12 text-base shadow-md transition-transform hover:scale-[1.02]"
                     style={{ backgroundColor: theme.highlight, color: '#fff' }}
                   >
-                    <Link href="shop.hirahsaficoach.com/products/soulmate-workshop-tickets">Buy Now — {displayPrice}</Link>
+                    <Link href="https://shop.hirahsaficoach.com/products/soulmate-workshop-tickets">Buy Now — {displayPrice}</Link>
                   </Button>
                   <span className="text-xs font-lato opacity-70" style={{ color: theme.text }}>
                     Early-bird ends Nov 15, 11:59pm Toronto time.
@@ -536,7 +536,7 @@ export default function SoulmateWorkshopPage() {
                   className="rounded-full px-6 h-11 transition-transform hover:scale-[1.02]"
                   style={{ backgroundColor: theme.highlight, color: '#fff' }}
                 >
-                  <Link href="shop.hirahsaficoach.com/products/soulmate-workshop-tickets">Buy Now — {displayPrice}</Link>
+                  <Link href="https://shop.hirahsaficoach.com/products/soulmate-workshop-tickets">Buy Now — {displayPrice}</Link>
                 </Button>
                 <Button
                   asChild

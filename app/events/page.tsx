@@ -169,7 +169,7 @@ export default function EventsPage() {
                 <Sparkles className="h-4 w-4" /> Soulmate — Featured Workshop
               </div>
               <h2 className="font-playfair text-3xl md:text-4xl" style={{ color: pastel.text }}>
-                The “Soulmate” Workshop (Toronto)
+              Soulmate Workshop 
               </h2>
               <p className="font-lato mt-3 opacity-90" style={{ color: pastel.text }}>
                 Not a dating class — a self‑rescue mission to stop outsourcing happiness and build unshakeable inner strength.
@@ -193,7 +193,7 @@ export default function EventsPage() {
 
                 <Button asChild className="rounded-full px-6 h-11 transition-transform hover:scale-[1.02]"
                         style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}>
-                  <Link href="/products/soulmate-workshop-tickets">Buy Now — {displayPrice}</Link>
+                  <Link href="https:/shop.hirahsaficoach.com/products/soulmate-workshop-tickets">Buy Now — {displayPrice}</Link>
                 </Button>
 
                 <Button asChild variant="outline" className="rounded-full px-6 h-11 border-2"
