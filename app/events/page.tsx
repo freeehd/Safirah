@@ -193,7 +193,7 @@ export default function EventsPage() {
 
                 <Button asChild className="rounded-full px-6 h-11 transition-transform hover:scale-[1.02]"
                         style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}>
-                  <Link href="https:/shop.hirahsaficoach.com/products/soulmate-workshop-tickets">Buy Now — {displayPrice}</Link>
+                  <Link href="https://shop.hirahsaficoach.com/products/soulmate-workshop-tickets">Buy Now — {displayPrice}</Link>
                 </Button>
 
                 <Button asChild variant="outline" className="rounded-full px-6 h-11 border-2"
