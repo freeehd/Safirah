@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { CalendarDays, Compass, Sparkles, Users, Crown, ListChecks, Target, Camera, CheckCircle2, Star } from 'lucide-react';
 import BrushStrokeHighlight from '@/components/BrushStrokeHighlight';
+import { useEffect, useState } from 'react';
 
 /**
  * Services page — Polished v2 (matched styling)
@@ -65,7 +66,30 @@ function ImagePlaceholder({ ratio = '4/3' }: { ratio?: '1/1' | '4/3' | '16/9' })
 
 export default function ServicesPage() {
   const fadeUp = useFadeUp();
+  // Waitlist modal state (Tier 3)
+  const [waitlistOpen, setWaitlistOpen] = useState(false);
+  const [wlName, setWlName] = useState("");
+  const [wlEmail, setWlEmail] = useState("");
+  const [wlSubmitting, setWlSubmitting] = useState(false);
+  const [wlSuccess, setWlSuccess] = useState<string | null>(null);
+  const [wlError, setWlError] = useState<string | null>(null);
+// Early-bird logic — deadline Nov 15, 11:59pm Toronto time (ET)
+const [nowMs, setNowMs] = useState<number>(Date.now());
+useEffect(() => {
+  const id = setInterval(() => setNowMs(Date.now()), 1000);
+  return () => clearInterval(id);
+}, []);
 
+const deadline = new Date('2025-11-15T23:59:59-05:00').getTime(); // ET (post-DST)
+const saleActive = nowMs < deadline;
+
+const fullPrice = 45;
+const salePrice = 35;
+
+const displayPrice = saleActive ? `$${salePrice}` : `$${fullPrice}`;
+const ctaTextTier1 = saleActive
+  ? `Buy Tickets — $${salePrice} Early-Bird`
+  : `Buy Tickets — $${fullPrice}`;
   const menuItems = [
     { label: 'Home', href: '/', rotation: -8, hoverStyles: { bgColor: '#FFB5A7', textColor: '#FFFFFF' } },
     { label: 'About', href: '/about', rotation: 8, hoverStyles: { bgColor: '#FCD5CE', textColor: '#57534E' } },
@@ -138,20 +162,24 @@ export default function ServicesPage() {
       {/* TIERS — elevated card design */}
       <section className={`${container} ${sectionY}`}>
         <div className="grid gap-6 md:gap-7 lg:gap-8 md:grid-cols-3">
-          <TierCard
-            icon={<Compass className="h-6 w-6" />}
-            label="Tier 1"
-            title="Clarity & Strategy Session"
-            blurb="A single, high-impact 1:1 to dissolve an urgent block, get laser clarity, and leave with a micro-plan."
-            bullets={[
-              'Pin-point the real problem (not the loudest symptom)',
-              'Resources + 7-day micro-plan',
-              'Faith-conscious, compassionate guidance'
-            ]}
-            ctaText="Book a Session"
-            ctaIcon={<ArrowRightIcon />}
-            accent="from-[#fde2e4] to-white"
-          />
+   <TierCard
+  icon={<Star className="h-6 w-6" />}
+  label={saleActive ? 'Tier 1 • Early-bird' : 'Tier 1'}
+  title="Soulmate Workshop — Toronto (In-Person)"
+  blurb="Girls-only, faith-aligned live workshop (2–3 hours). Not a dating class — a self-rescue mission to expose the “rescue relationship” myth and build your inner anchor."
+  bullets={[
+    'In-person • Toronto, Canada',
+    'Gentle-paced, women-first environment',
+    'Printed workbook to take home',
+    'Beginner-friendly; no force, no shame',
+    'Leave with a 30-day roadmap',
+    saleActive ? 'Early-bird ends Nov 15, 11:59pm ET ($35)' : 'Standard price $45'
+  ]}
+  ctaText="Learn More"
+  ctaIcon={<ArrowRightIcon />}
+  ctaHref="/events/soulmate-workshop"
+  accent="from-[#fde2e4] to-white"
+/>
 
           {/* Tier 2 — EXACT styling, just renamed + linked */}
           <TierCard
@@ -183,6 +211,11 @@ export default function ServicesPage() {
             ctaText="Join Waitlist"
             ctaIcon={<ArrowRightIcon />}
             accent="from-[#fde2e4] to-white"
+            onCtaClick={() => {
+              setWlSuccess(null);
+              setWlError(null);
+              setWaitlistOpen(true);
+            }}
           />
         </div>
       </section>
@@ -261,7 +294,7 @@ export default function ServicesPage() {
               </p>
               <div className="flex flex-wrap gap-3">
                 <Button asChild className="rounded-full px-6 transition-transform hover:scale-[1.02]" style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}>
-                <Link href="/waitlist">Join the Waitlist <ArrowRightIcon /></Link>
+                <Link href="/contact">Join the Waitlist <ArrowRightIcon /></Link>
               </Button>
               <Button asChild variant="outline" className="rounded-full px-6 border-2" style={{ borderColor: pastel.accent, color: pastel.text }}>
                 <Link href="/events">See Upcoming Events</Link>
@@ -281,6 +314,95 @@ export default function ServicesPage() {
           </div>
         </Card>
       </section>
+
+      {/* Waitlist Modal */}
+      {waitlistOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div
+            className="absolute inset-0 bg-black/40"
+            onClick={() => { if (!wlSubmitting) setWaitlistOpen(false); }}
+          />
+          <div className="relative z-10 w-full max-w-md rounded-2xl bg-white p-6 shadow-xl ring-1" style={{ borderColor: 'rgba(232,180,168,0.28)' }}>
+            <h3 className="font-playfair text-2xl mb-2" style={{ color: pastel.text }}>Join the Waitlist</h3>
+            <p className="font-lato text-sm opacity-90 mb-4" style={{ color: pastel.text }}>
+              Enter your details to get priority access to the next cohort.
+            </p>
+            <form
+              onSubmit={async (e) => {
+                e.preventDefault();
+                setWlError(null);
+                setWlSuccess(null);
+                if (!wlEmail.trim()) { setWlError('Email is required'); return; }
+                setWlSubmitting(true);
+                try {
+                  const res = await fetch('/api/lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      email: wlEmail.trim(),
+                      name: wlName.trim() || undefined,
+                      meta: { entry_point: 'tier3_waitlist' }
+                    })
+                  });
+                  const data = await res.json().catch(() => ({}));
+                  if (!res.ok || (data && data.error)) throw new Error(data?.error || 'Failed to join waitlist');
+                  setWlSuccess("Thanks! You're on the waitlist.");
+                  setWlName('');
+                  setWlEmail('');
+                } catch (err: any) {
+                  setWlError(err?.message || 'Something went wrong');
+                } finally {
+                  setWlSubmitting(false);
+                }
+              }}
+              className="space-y-3"
+            >
+              <div>
+                <label className="block text-sm mb-1" style={{ color: pastel.text }}>Name (optional)</label>
+                <input
+                  type="text"
+                  value={wlName}
+                  onChange={(e) => setWlName(e.target.value)}
+                  className="w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2"
+                  style={{ borderColor: 'rgba(232,180,168,0.35)' }}
+                  placeholder="Your name"
+                />
+              </div>
+              <div>
+                <label className="block text-sm mb-1" style={{ color: pastel.text }}>Email</label>
+                <input
+                  required
+                  type="email"
+                  value={wlEmail}
+                  onChange={(e) => setWlEmail(e.target.value)}
+                  className="w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2"
+                  style={{ borderColor: 'rgba(232,180,168,0.35)' }}
+                  placeholder="you@example.com"
+                />
+              </div>
+              {wlError && (<div className="text-sm text-red-600">{wlError}</div>)}
+              {wlSuccess && (<div className="text-sm text-green-700">{wlSuccess}</div>)}
+              <div className="flex items-center justify-end gap-2 pt-2">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => { if (!wlSubmitting) setWaitlistOpen(false); }}
+                  style={{ borderColor: pastel.accent, color: pastel.text }}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  disabled={wlSubmitting}
+                  style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}
+                >
+                  {wlSubmitting ? 'Submitting…' : 'Join Waitlist'}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       <Separator className="opacity-0" />
       <Footer />
@@ -314,7 +436,8 @@ function TierCard({
   ctaIcon,
   ctaVariant = 'solid',
   ctaHref,
-  accent
+  accent,
+  onCtaClick
 }: {
   icon: React.ReactNode;
   label: string;
@@ -326,6 +449,7 @@ function TierCard({
   ctaVariant?: 'solid' | 'outline';
   ctaHref?: string;
   accent: string; // e.g. 'from-[#fde2e4] to-white'
+  onCtaClick?: () => void;
 }) {
   const ButtonInner = (
     <>
@@ -370,6 +494,15 @@ function TierCard({
                         ? { borderColor: pastel.accent, color: pastel.text }
                         : { backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}>
                 <Link href={ctaHref}>{ButtonInner}</Link>
+              </Button>
+            ) : onCtaClick ? (
+              <Button className="rounded-full px-6 transition-transform hover:scale-[1.02]"
+                      onClick={onCtaClick}
+                      variant={ctaVariant === 'outline' ? 'outline' : undefined}
+                      style={ctaVariant === 'outline'
+                        ? { borderColor: pastel.accent, color: pastel.text }
+                        : { backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}>
+                {ButtonInner}
               </Button>
             ) : (
               <Button asChild className="rounded-full px-6 transition-transform hover:scale-[1.02]"
