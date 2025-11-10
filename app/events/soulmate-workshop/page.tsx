@@ -45,6 +45,12 @@ const ONLINE = {
   learnUrl: 'https://www.hirahsaficoach.com/events/soulmate-workshop',
 };
 
+// Purchase links
+const LINKS = {
+  inPerson: 'https://shop.hirahsaficoach.com/products/soulmate-workshop-tickets',
+  online: 'https://shop.hirahsaficoach.com/products/soulmate-workshop-online-pass',
+};
+
 /* ---------- utils ---------- */
 function hexToRgba(hex: string, alpha: number) {
   const h = hex.replace('#', '');
@@ -258,6 +264,29 @@ function TimeBox({ label, value }: { label: string; value: number }) {
   );
 }
 
+function WhichPassHelper() {
+  return (
+    <details
+      className="mt-2 text-xs font-lato"
+      style={{ color: theme.text }}
+    >
+      <summary className="underline cursor-pointer inline-flex items-center">
+        Which should I choose?
+      </summary>
+      <div
+        className="mt-2 rounded-xl ring-1 p-3 bg-white/70 backdrop-blur"
+        style={{ borderColor: hexToRgba(theme.accent2, 0.35) }}
+      >
+        <p>
+          <strong>In-Person (Toronto)</strong>: Includes the full live experience, printed workbook, treats, and gifts. Limited seats.
+          <br />
+          <strong>Online (Live)</strong>: Join from anywhere via a secure link. Same curriculum and early-bird pricing.
+        </p>
+      </div>
+    </details>
+  );
+}
+
 /* ---------- small composed bits ---------- */
 function EarlyBirdChip({
   saleActive,
@@ -353,13 +382,22 @@ function EventDetailsBand() {
               <MapPin className="h-4 w-4 mt-0.5" /> {ONLINE.placeLabel}
             </div>
             <div className="pt-1">
-              
+              <a
+                href={LINKS.online}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs underline"
+                style={{ color: theme.text }}
+                aria-label="Get the Online Pass"
+              >
+                Get the Online Pass →
+              </a>
             </div>
           </div>
         </div>
       </div>
       <p className="text-xs opacity-80 mt-3 text-center" style={{ color: theme.text }}>
-        Choose <strong>In-Person</strong> (Toronto) or <strong>Online</strong> at checkout.
+        Choose <strong>In-Person</strong> (Toronto) or <strong>Online</strong> when purchasing.
       </p>
     </div>
   );
@@ -475,12 +513,27 @@ export default function SoulmateWorkshopPage() {
                   style={{ backgroundColor: theme.highlight, color: '#fff' }}
                 >
                   <a
-                    href="https://shop.hirahsaficoach.com/products/soulmate-workshop-tickets"
+                    href={LINKS.inPerson}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`Buy ticket for the Soulmate Workshop at ${displayPrice}`}
+                    aria-label={`Buy In-Person Pass at ${displayPrice}`}
                   >
-                    Buy Now — {displayPrice}
+                    In-Person Pass — {displayPrice}
+                  </a>
+                </Button>
+                <Button
+                  variant="outline"
+                  asChild
+                  className="rounded-full px-6 h-11 border-2"
+                  style={{ borderColor: theme.accent2, color: theme.text }}
+                >
+                  <a
+                    href={LINKS.online}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Buy Online Pass at ${displayPrice}`}
+                  >
+                    Online Pass — {displayPrice}
                   </a>
                 </Button>
                 <Button
@@ -495,6 +548,7 @@ export default function SoulmateWorkshopPage() {
                   See Tickets
                 </Button>
               </div>
+              <WhichPassHelper />
             </motion.div>
 
             <motion.div {...fadeUp} className="relative">
@@ -690,10 +744,10 @@ export default function SoulmateWorkshopPage() {
                   className="inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1 mb-3"
                   style={{ borderColor: hexToRgba(theme.accent2, 0.45), backgroundColor: hexToRgba(theme.accent2, 0.18), color: theme.text }}
                 >
-                  💗 Choose In-Person (Toronto) or Online at checkout
+                  💗 Two ticket types: In-Person (Toronto) or Online (Live)
                 </div>
                 <h3 className="font-playfair text-4xl md:text-5xl leading-tight" style={{ color: theme.text }}>
-                  General Admission
+                  Choose Your Pass
                 </h3>
                 <p className="font-lato mt-2 opacity-90 text-center mx-auto" style={{ color: theme.text }}>
                   In-Person: <strong>{IN_PERSON.dateLabel}</strong> • {IN_PERSON.timeLabel} • {IN_PERSON.placeLabel}
@@ -752,18 +806,34 @@ export default function SoulmateWorkshopPage() {
                     style={{ backgroundColor: theme.highlight, color: '#fff' }}
                   >
                     <a
-                      href="https://shop.hirahsaficoach.com/products/soulmate-workshop-tickets"
+                      href={LINKS.inPerson}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={`Buy ticket for the Soulmate Workshop at ${displayPrice}`}
+                      aria-label={`Buy In-Person Pass at ${displayPrice}`}
                     >
-                      Buy Now — {displayPrice}
+                      In-Person Pass — {displayPrice}
+                    </a>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    asChild
+                    className="rounded-full px-6 h-12 text-base transition-transform hover:scale-[1.02] border-2"
+                    style={{ borderColor: theme.accent2, color: theme.text }}
+                  >
+                    <a
+                      href={LINKS.online}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Buy Online Pass at ${displayPrice}`}
+                    >
+                      Online Pass — {displayPrice}
                     </a>
                   </Button>
                   <span className="text-xs font-lato opacity-70" style={{ color: theme.text }}>
                     Early-bird ends Nov 15, 11:59pm Toronto time.
                   </span>
                 </div>
+                <WhichPassHelper />
               </div>
             </div>
 
@@ -909,12 +979,27 @@ export default function SoulmateWorkshopPage() {
                   style={{ backgroundColor: theme.highlight, color: '#fff' }}
                 >
                   <a
-                    href="https://shop.hirahsaficoach.com/products/soulmate-workshop-tickets"
+                    href={LINKS.inPerson}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`Buy ticket for the Soulmate Workshop at ${displayPrice}`}
+                    aria-label={`Buy In-Person Pass at ${displayPrice}`}
                   >
-                    Buy Now — {displayPrice}
+                    In-Person Pass — {displayPrice}
+                  </a>
+                </Button>
+                <Button
+                  variant="outline"
+                  asChild
+                  className="rounded-full px-6 h-11 transition-transform hover:scale-[1.02] border-2"
+                  style={{ borderColor: theme.accent2, color: theme.text }}
+                >
+                  <a
+                    href={LINKS.online}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Buy Online Pass at ${displayPrice}`}
+                  >
+                    Online Pass — {displayPrice}
                   </a>
                 </Button>
                 <Button
