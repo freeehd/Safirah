@@ -15,7 +15,7 @@ import {
   Anchor,
   KeyRound,
   AlertTriangle,
-  Camera
+  Camera,
 } from 'lucide-react';
 
 const theme = {
@@ -23,11 +23,27 @@ const theme = {
   accent1: '#ecd9d2',
   accent2: '#E0c5bb',
   highlight: '#d29a89',
-  text: '#57534E'
+  text: '#57534E',
 };
 
 const container = 'mx-auto max-w-7xl px-5 sm:px-8';
 const sectionY = 'py-14 md:py-20';
+
+/* ---------- canonical event info (single source of truth) ---------- */
+const IN_PERSON = {
+  dateLabel: 'Saturday, Nov 29, 2025',
+  timeLabel: '11:00 AM – 3:00 PM (ET)',
+  placeLabel: '200 King St E, Toronto, Ontario, Canada',
+  mapUrl:
+    'https://www.google.com/maps/search/?api=1&query=200%20King%20St%20E%2C%20Toronto%2C%20Ontario%2C%20Canada',
+};
+
+const ONLINE = {
+  dateLabel: 'Sunday, Nov 30, 2025',
+  timeLabel: '11:00 AM – 3:00 PM (ET)',
+  placeLabel: 'Online • Join link emailed 24h before',
+  learnUrl: 'https://www.hirahsaficoach.com/events/soulmate-workshop',
+};
 
 /* ---------- utils ---------- */
 function hexToRgba(hex: string, alpha: number) {
@@ -46,7 +62,7 @@ function useFadeUp() {
     initial: { opacity: 0, y: prefersReduced ? 0 : 24 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, amount: 0.25 },
-    transition: { duration: prefersReduced ? 0 : 0.6, ease: 'easeOut' }
+    transition: { duration: prefersReduced ? 0 : 0.6, ease: 'easeOut' },
   } as const;
 }
 
@@ -58,7 +74,7 @@ function Badge({ children }: { children: React.ReactNode }) {
       style={{
         color: theme.text,
         backgroundColor: hexToRgba(theme.accent2, 0.15),
-        borderColor: hexToRgba(theme.accent2, 0.4)
+        borderColor: hexToRgba(theme.accent2, 0.4),
       }}
     >
       {children}
@@ -68,7 +84,7 @@ function Badge({ children }: { children: React.ReactNode }) {
 
 function ImagePlaceholder({
   ratio = '16/9',
-  src
+  src,
 }: {
   ratio?: '1/1' | '4/3' | '16/9';
   src?: string;
@@ -76,7 +92,7 @@ function ImagePlaceholder({
   const paddingMap: Record<string, string> = {
     '1/1': 'pb-[100%]',
     '4/3': 'pb-[75%]',
-    '16/9': 'pb-[56.25%]'
+    '16/9': 'pb-[56.25%]',
   };
   return (
     <div
@@ -117,7 +133,7 @@ function InfoPill({ icon, text }: { icon: React.ReactNode; text: string }) {
 function VisionCard({
   icon,
   title,
-  children
+  children,
 }: {
   icon: React.ReactNode;
   title: string;
@@ -140,10 +156,7 @@ function VisionCard({
             {title}
           </div>
         </div>
-        <div
-          className="font-lato text-sm opacity-90 leading-relaxed"
-          style={{ color: theme.text }}
-        >
+        <div className="font-lato text-sm opacity-90 leading-relaxed" style={{ color: theme.text }}>
           {children}
         </div>
       </div>
@@ -154,7 +167,7 @@ function VisionCard({
 function CostCard({
   icon,
   title,
-  description
+  description,
 }: {
   icon: React.ReactNode;
   title: string;
@@ -178,10 +191,7 @@ function CostCard({
             {title}
           </div>
         </div>
-        <div
-          className="font-lato text-sm opacity-90 leading-relaxed"
-          style={{ color: theme.text }}
-        >
+        <div className="font-lato text-sm opacity-90 leading-relaxed" style={{ color: theme.text }}>
           {description}
         </div>
       </div>
@@ -192,7 +202,7 @@ function CostCard({
 function TransformationStep({
   number,
   title,
-  description
+  description,
 }: {
   number: string;
   title: string;
@@ -216,10 +226,7 @@ function TransformationStep({
             {title}
           </div>
         </div>
-        <div
-          className="font-lato text-sm opacity-90 leading-relaxed"
-          style={{ color: theme.text }}
-        >
+        <div className="font-lato text-sm opacity-90 leading-relaxed" style={{ color: theme.text }}>
           {description}
         </div>
       </div>
@@ -246,9 +253,7 @@ function TimeBox({ label, value }: { label: string; value: number }) {
       <div className="text-lg font-playfair leading-none text-center">
         {String(value).padStart(2, '0')}
       </div>
-      <div className="text-[10px] uppercase tracking-wider opacity-70 text-center">
-        {label}
-      </div>
+      <div className="text-[10px] uppercase tracking-wider opacity-70 text-center">{label}</div>
     </div>
   );
 }
@@ -261,7 +266,7 @@ function EarlyBirdChip({
   d,
   h,
   m,
-  s
+  s,
 }: {
   saleActive: boolean;
   fullPrice: number;
@@ -277,7 +282,7 @@ function EarlyBirdChip({
       style={{
         borderColor: hexToRgba(theme.accent2, 0.45),
         backgroundColor: hexToRgba(theme.accent1, 0.15),
-        color: theme.text
+        color: theme.text,
       }}
     >
       <span className="text-sm font-medium">Early-bird:</span>
@@ -289,10 +294,73 @@ function EarlyBirdChip({
           • {d}d {String(h).padStart(2, '0')}:{String(m).padStart(2, '0')}:{String(s).padStart(2, '0')}
         </span>
       )}
-      {/* Screen-reader friendly static note to avoid tick-by-tick announcements */}
-      <span className="sr-only">
-        Early-bird price ends on November 15 at 11:59 pm Eastern Time.
-      </span>
+      <span className="sr-only">Early-bird price ends on November 15 at 11:59 pm Eastern Time.</span>
+    </div>
+  );
+}
+
+/* ---------- NEW: event details band (very prominent) ---------- */
+function EventDetailsBand() {
+  return (
+    <div
+      className="rounded-2xl ring-1 p-4 md:p-5 bg-white/85 backdrop-blur"
+      style={{ borderColor: hexToRgba(theme.accent2, 0.35) }}
+      aria-label="Event Details"
+    >
+      <div className="grid md:grid-cols-2 gap-4">
+        {/* In-Person block */}
+        <div className="rounded-xl p-4 ring-1 bg-white/80" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
+          <div className="flex items-center gap-2 text-sm font-semibold" style={{ color: theme.text }}>
+            <Star className="h-4 w-4" /> In-Person (Toronto)
+          </div>
+          <div className="mt-2 grid gap-2 text-sm font-lato" style={{ color: theme.text }}>
+            <div className="flex items-center gap-2">
+              <CalendarDays className="h-4 w-4" /> {IN_PERSON.dateLabel}
+            </div>
+            <div className="flex items-center gap-2">
+              <Clock className="h-4 w-4" /> {IN_PERSON.timeLabel}
+            </div>
+            <div className="flex items-start gap-2">
+              <MapPin className="h-4 w-4 mt-0.5" /> {IN_PERSON.placeLabel}
+            </div>
+            <div className="pt-1">
+              <a
+                href={IN_PERSON.mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs underline"
+                style={{ color: theme.text }}
+              >
+                Open in Google Maps →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Online block */}
+        <div className="rounded-xl p-4 ring-1 bg-white/80" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
+          <div className="flex items-center gap-2 text-sm font-semibold" style={{ color: theme.text }}>
+            <Star className="h-4 w-4" /> Online (Live)
+          </div>
+          <div className="mt-2 grid gap-2 text-sm font-lato" style={{ color: theme.text }}>
+            <div className="flex items-center gap-2">
+              <CalendarDays className="h-4 w-4" /> {ONLINE.dateLabel}
+            </div>
+            <div className="flex items-center gap-2">
+              <Clock className="h-4 w-4" /> {ONLINE.timeLabel}
+            </div>
+            <div className="flex items-start gap-2">
+              <MapPin className="h-4 w-4 mt-0.5" /> {ONLINE.placeLabel}
+            </div>
+            <div className="pt-1">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <p className="text-xs opacity-80 mt-3 text-center" style={{ color: theme.text }}>
+        Choose <strong>In-Person</strong> (Toronto) or <strong>Online</strong> at checkout.
+      </p>
     </div>
   );
 }
@@ -307,7 +375,6 @@ export default function SoulmateWorkshopPage() {
   const [nowMs, setNowMs] = useState<number>(Date.now());
 
   useEffect(() => {
-    // Respect reduced motion: update once per minute instead of per second
     const interval = prefersReduced ? 60_000 : 1_000;
     const id = setInterval(() => setNowMs(Date.now()), interval);
     return () => clearInterval(id);
@@ -351,14 +418,10 @@ export default function SoulmateWorkshopPage() {
                 style={{
                   borderColor: hexToRgba(theme.accent2, 0.45),
                   backgroundColor: hexToRgba(theme.accent2, 0.15),
-                  color: theme.text
+                  color: theme.text,
                 }}
               >
-                <span
-                  className="h-2 w-2 rounded-full"
-                  style={{ backgroundColor: theme.highlight }}
-                  aria-hidden
-                />
+                <span className="h-2 w-2 rounded-full" style={{ backgroundColor: theme.highlight }} aria-hidden />
                 <span>VIP Workshop • Girls-Only Vibe</span>
               </div>
 
@@ -372,8 +435,8 @@ export default function SoulmateWorkshopPage() {
                   style={{
                     background: `linear-gradient(120deg, ${hexToRgba(theme.accent2, 0.4)} 0%, ${hexToRgba(
                       theme.accent1,
-                      0.4
-                    )} 100%)`
+                      0.4,
+                    )} 100%)`,
                   }}
                 >
                   Soulmate
@@ -381,20 +444,19 @@ export default function SoulmateWorkshopPage() {
                 Workshop
               </h1>
 
-              <p
-                className="font-lato text-lg leading-relaxed opacity-90 max-w-prose"
-                style={{ color: theme.text }}
-              >
-                This is <strong>not</strong> a dating class. It’s a <em>self-rescue mission</em> for ambitious women
-                who are tired of feeling vulnerable and overwhelmed. We’ll expose the myth of the “rescue relationship,”
-                end the habit of outsourcing happiness, and build the inner strength to become your own anchor.
+              <p className="font-lato text-lg leading-relaxed opacity-90 max-w-prose text-center mx-auto" style={{ color: theme.text }}>
+                Two attendance options — <strong>In-Person (Toronto)</strong> and <strong>Online (Live)</strong> — so you can join the way that fits your season.
               </p>
 
+              {/* Quick tags */}
               <div className="grid sm:grid-cols-3 gap-3 text-sm font-lato">
-                <InfoPill icon={<CalendarDays className="h-4 w-4" />} text="Early-bird ends Nov 15" />
-                <InfoPill icon={<Clock className="h-4 w-4" />} text="2–3 hours • Live" />
-                <InfoPill icon={<MapPin className="h-4 w-4" />} text="Toronto, Canada" />
+                <InfoPill icon={<CalendarDays className="h-4 w-4" />} text="In-Person: Sat, Nov 29 • Online: Sun, Nov 30" />
+                <InfoPill icon={<Clock className="h-4 w-4" />} text="Time: 11:00 AM – 3:00 PM (ET) both days" />
+                <InfoPill icon={<MapPin className="h-4 w-4" />} text="Toronto venue: 200 King St E" />
               </div>
+
+              {/* Very prominent event details band */}
+              <EventDetailsBand />
 
               <EarlyBirdChip
                 saleActive={saleActive}
@@ -438,9 +500,7 @@ export default function SoulmateWorkshopPage() {
             <motion.div {...fadeUp} className="relative">
               <div
                 className="absolute -inset-6 -z-10 rounded-3xl blur-3xl opacity-50"
-                style={{
-                  background: `radial-gradient(60% 60% at 50% 50%, ${hexToRgba(theme.accent1, 0.6)}, transparent)`
-                }}
+                style={{ background: `radial-gradient(60% 60% at 50% 50%, ${hexToRgba(theme.accent1, 0.6)}, transparent)` }}
                 aria-hidden
               />
               <Card
@@ -471,17 +531,11 @@ export default function SoulmateWorkshopPage() {
             style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
           >
             <CardHeader className="pb-2">
-              <CardTitle
-                className="font-playfair text-3xl text-center"
-                style={{ color: theme.text }}
-              >
+              <CardTitle className="font-playfair text-3xl text-center" style={{ color: theme.text }}>
                 The Real Problem Isn’t Being Single
               </CardTitle>
             </CardHeader>
-            <CardContent
-              className="max-w-3xl mx-auto space-y-4 font-lato text-center"
-              style={{ color: theme.text }}
-            >
+            <CardContent className="max-w-3xl mx-auto space-y-4 font-lato text-center" style={{ color: theme.text }}>
               <p className="text-lg">
                 The problem is feeling <strong>vulnerable, exhausted, and overwhelmed</strong> — secretly terrified you
                 can’t handle your own life.
@@ -492,19 +546,19 @@ export default function SoulmateWorkshopPage() {
               </p>
               <div
                 className="mt-6 p-6 rounded-2xl ring-1"
-                style={{
-                  backgroundColor: hexToRgba(theme.accent1, 0.15),
-                  borderColor: hexToRgba(theme.accent2, 0.35)
-                }}
+                style={{ backgroundColor: hexToRgba(theme.accent1, 0.15), borderColor: hexToRgba(theme.accent2, 0.35) }}
               >
                 <p className="font-medium text-lg">
                   But here’s the truth: If you build your life on <em>rented land</em> (external approval), it collapses
                   the day the landlord leaves.
                 </p>
               </div>
-              <p className="text-lg pt-2">
-                This workshop isn’t about chasing <strong>rescue</strong>. It’s about building <strong>power</strong>.
-              </p>
+              <p className="text-lg pt-2">This workshop isn’t about chasing <strong>rescue</strong>. It’s about building <strong>power</strong>.</p>
+              {/* Repeat the key logistics right here for clarity */}
+              <div className="mt-6 grid sm:grid-cols-2 gap-3 text-sm">
+                <InfoPill icon={<CalendarDays className="h-4 w-4" />} text={`In-Person: ${IN_PERSON.dateLabel} • ${IN_PERSON.timeLabel}`} />
+                <InfoPill icon={<CalendarDays className="h-4 w-4" />} text={`Online: ${ONLINE.dateLabel} • ${ONLINE.timeLabel}`} />
+              </div>
             </CardContent>
           </Card>
         </motion.div>
@@ -517,10 +571,7 @@ export default function SoulmateWorkshopPage() {
             <h2 className="font-playfair text-3xl md:text-4xl mb-3" style={{ color: theme.text }}>
               The High Cost of the “Rescue Fantasy”
             </h2>
-            <p
-              className="font-lato text-lg opacity-90 max-w-2xl mx-auto text-center"
-              style={{ color: theme.text }}
-            >
+            <p className="font-lato text-lg opacity-90 max-w-2xl mx-auto text-center" style={{ color: theme.text }}>
               Waiting for someone to fix your life comes at a price you can’t afford to keep paying.
             </p>
           </div>
@@ -551,10 +602,7 @@ export default function SoulmateWorkshopPage() {
             <h2 className="font-playfair text-3xl md:text-4xl mb-3" style={{ color: theme.text }}>
               Imagine a Life Where You’re the Source
             </h2>
-            <p
-              className="font-lato text-lg opacity-90 max-w-2xl mx-auto text-center"
-              style={{ color: theme.text }}
-            >
+            <p className="font-lato text-lg opacity-90 max-w-2xl mx-auto text-center" style={{ color: theme.text }}>
               Not waiting. Not hoping. Not outsourcing. Just <strong>whole</strong>.
             </p>
           </div>
@@ -576,10 +624,7 @@ export default function SoulmateWorkshopPage() {
       {/* WHAT WE'LL DO */}
       <section className={`${container} ${sectionY} pt-0`}>
         <motion.div {...fadeUp}>
-          <Card
-            className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl"
-            style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
-          >
+          <Card className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
             <CardHeader className="pb-4 text-center">
               <CardTitle className="font-playfair text-3xl md:text-4xl" style={{ color: theme.text }}>
                 Your Path to Inner Strength
@@ -604,6 +649,16 @@ export default function SoulmateWorkshopPage() {
                 title="Build Your Inner Home"
                 description="Learn high-impact practices to become your own anchor, protector, and the selector of your own life."
               />
+              {/* Repeat logistics below steps for scrollers */}
+              <div className="md:col-span-3 mt-2">
+                <div className="grid sm:grid-cols-2 gap-3 text-sm">
+                  <InfoPill icon={<CalendarDays className="h-4 w-4" />} text={`In-Person: ${IN_PERSON.dateLabel} • ${IN_PERSON.timeLabel}`} />
+                  <InfoPill icon={<MapPin className="h-4 w-4" />} text={`Venue: ${IN_PERSON.placeLabel}`} />
+                </div>
+                <div className="mt-2">
+                  <InfoPill icon={<CalendarDays className="h-4 w-4" />} text={`Online: ${ONLINE.dateLabel} • ${ONLINE.timeLabel}`} />
+                </div>
+              </div>
             </CardContent>
           </Card>
         </motion.div>
@@ -611,17 +666,10 @@ export default function SoulmateWorkshopPage() {
 
       {/* TICKETS */}
       <section id="tickets" className={`${container} ${sectionY} pt-0`}>
-        <Card
-          className="border-0 rounded-3xl overflow-hidden shadow-xl bg-white/90 relative"
-          style={{ boxShadow: `0 12px 40px -8px ${hexToRgba('#000', 0.12)}` }}
-        >
+        <Card className="border-0 rounded-3xl overflow-hidden shadow-xl bg-white/90 relative" style={{ boxShadow: `0 12px 40px -8px ${hexToRgba('#000', 0.12)}` }}>
           <div
             className="absolute top-4 left-[-30px] rotate-[-15deg] text-xs font-semibold tracking-wide px-4 py-1 rounded-full shadow-sm z-10"
-            style={{
-              backgroundColor: theme.highlight,
-              color: '#fff',
-              boxShadow: `0 6px 20px -6px ${hexToRgba(theme.highlight, 0.6)}`
-            }}
+            style={{ backgroundColor: theme.highlight, color: '#fff', boxShadow: `0 6px 20px -6px ${hexToRgba(theme.highlight, 0.6)}` }}
           >
             EARLY-BIRD
           </div>
@@ -630,12 +678,7 @@ export default function SoulmateWorkshopPage() {
             {/* Left */}
             <div
               className="md:col-span-2 p-8 relative"
-              style={{
-                background: `linear-gradient(160deg, ${hexToRgba(theme.accent1, 0.55)}, ${hexToRgba(
-                  theme.accent2,
-                  0.55
-                )})`
-              }}
+              style={{ background: `linear-gradient(160deg, ${hexToRgba(theme.accent1, 0.55)}, ${hexToRgba(theme.accent2, 0.55)})` }}
             >
               <div
                 className="absolute -inset-6 -z-10 blur-3xl opacity-50"
@@ -645,30 +688,23 @@ export default function SoulmateWorkshopPage() {
               <div className="max-w-xl">
                 <div
                   className="inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1 mb-3"
-                  style={{
-                    borderColor: hexToRgba(theme.accent2, 0.45),
-                    backgroundColor: hexToRgba(theme.accent2, 0.18),
-                    color: theme.text
-                  }}
+                  style={{ borderColor: hexToRgba(theme.accent2, 0.45), backgroundColor: hexToRgba(theme.accent2, 0.18), color: theme.text }}
                 >
-                  💗 Early-bird — Toronto only
+                  💗 Choose In-Person (Toronto) or Online at checkout
                 </div>
                 <h3 className="font-playfair text-4xl md:text-5xl leading-tight" style={{ color: theme.text }}>
                   General Admission
                 </h3>
                 <p className="font-lato mt-2 opacity-90 text-center mx-auto" style={{ color: theme.text }}>
-                  Girls-only, faith-aligned space • Printed workbook • 2–3 hour live experience in Toronto, Canada.
+                  In-Person: <strong>{IN_PERSON.dateLabel}</strong> • {IN_PERSON.timeLabel} • {IN_PERSON.placeLabel}
+                  <br />
+                  Online: <strong>{ONLINE.dateLabel}</strong> • {ONLINE.timeLabel} • Live via secure link
                 </p>
 
+                {/* Timer + price */}
                 <div className="mt-5 grid gap-4 sm:grid-cols-2 items-end">
-                  <div
-                    className="rounded-2xl bg-white/80 backdrop-blur ring-1 p-4 text-center"
-                    style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
-                  >
-                    <div
-                      className="text-xs uppercase tracking-wider font-lato opacity-70"
-                      style={{ color: theme.text }}
-                    >
+                  <div className="rounded-2xl bg-white/80 backdrop-blur ring-1 p-4 text-center" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
+                    <div className="text-xs uppercase tracking-wider font-lato opacity-70" style={{ color: theme.text }}>
                       Sale ends in
                     </div>
                     {saleActive ? (
@@ -684,26 +720,18 @@ export default function SoulmateWorkshopPage() {
                       </div>
                     )}
                   </div>
-                  <div
-                    className="rounded-2xl bg-white/80 backdrop-blur ring-1 p-4 text-center"
-                    style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
-                  >
-                    <div
-                      className="text-xs uppercase tracking-wider font-lato opacity-70"
-                      style={{ color: theme.text }}
-                    >
+                  <div className="rounded-2xl bg-white/80 backdrop-blur ring-1 p-4 text-center" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
+                    <div className="text-xs uppercase tracking-wider font-lato opacity-70" style={{ color: theme.text }}>
                       Today
                     </div>
-                    <div
-                      className="mt-1 font-playfair text-3xl md:text-4xl flex items-center justify-center gap-2"
-                      style={{ color: theme.text }}
-                    >
+                    <div className="mt-1 font-playfair text-3xl md:text-4xl flex items-center justify-center gap-2" style={{ color: theme.text }}>
                       <s className="text-xl opacity-60">$45</s>
                       <span className="leading-none">{displayPrice}</span>
                     </div>
                   </div>
                 </div>
 
+                {/* Benefits */}
                 <ul className="mt-5 grid gap-2 text-sm font-lato" style={{ color: theme.text }}>
                   <li className="flex items-start gap-2">
                     <Dot /> Kind, gentle-paced facilitation
@@ -716,6 +744,7 @@ export default function SoulmateWorkshopPage() {
                   </li>
                 </ul>
 
+                {/* CTA */}
                 <div className="mt-6 flex flex-wrap items-center gap-3">
                   <Button
                     asChild
@@ -738,10 +767,18 @@ export default function SoulmateWorkshopPage() {
               </div>
             </div>
 
-            {/* Right */}
+            {/* Right visual */}
             <div className="p-8 bg-white grid place-items-center">
               <div className="w-full max-w-md">
                 <ImagePlaceholder ratio="4/3" src="/assets/soulmate.webp" />
+                <div className="mt-4 grid gap-2 text-xs font-lato">
+                  <a href={IN_PERSON.mapUrl} target="_blank" rel="noopener noreferrer" className="underline" style={{ color: theme.text }}>
+                    📍 Open the Toronto venue in Google Maps
+                  </a>
+                  <a href={ONLINE.learnUrl} target="_blank" rel="noopener noreferrer" className="underline" style={{ color: theme.text }}>
+                    💻 Learn about the online experience
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -755,18 +792,18 @@ export default function SoulmateWorkshopPage() {
             <h2 className="font-playfair text-3xl md:text-4xl mb-3" style={{ color: theme.text }}>
               A Safe Space for Real Transformation
             </h2>
-            <p
-              className="font-lato text-lg opacity-90 max-w-2xl mx-auto text-center"
-              style={{ color: theme.text }}
-            >
+            <p className="font-lato text-lg opacity-90 max-w-2xl mx-auto text-center" style={{ color: theme.text }}>
               Everything you need for a comfortable, empowering experience
             </p>
           </div>
+
+          {/* NEW: snapshot card right here again for clarity */}
+          <div className="mb-6">
+            <EventDetailsBand />
+          </div>
+
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            <Card
-              className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl"
-              style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
-            >
+            <Card className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
               <CardHeader className="pb-2">
                 <CardTitle className="font-playfair text-xl" style={{ color: theme.text }}>
                   What’s Included
@@ -787,10 +824,7 @@ export default function SoulmateWorkshopPage() {
 
             <Card className="border-0 rounded-3xl shadow-sm" style={{ backgroundColor: '#f4fff7' }}>
               <CardHeader className="pb-2">
-                <CardTitle
-                  className="font-playfair text-xl flex items-center gap-2"
-                  style={{ color: theme.text }}
-                >
+                <CardTitle className="font-playfair text-xl flex items-center gap-2" style={{ color: theme.text }}>
                   <Shield className="h-5 w-5" /> Safe Space
                 </CardTitle>
               </CardHeader>
@@ -807,10 +841,7 @@ export default function SoulmateWorkshopPage() {
               </CardContent>
             </Card>
 
-            <Card
-              className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl"
-              style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
-            >
+            <Card className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
               <CardHeader className="pb-2">
                 <CardTitle className="font-playfair text-xl" style={{ color: theme.text }}>
                   Perfect For You If
@@ -832,10 +863,7 @@ export default function SoulmateWorkshopPage() {
               </CardContent>
             </Card>
 
-            <Card
-              className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl"
-              style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
-            >
+            <Card className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
               <CardHeader className="pb-2">
                 <CardTitle className="font-playfair text-xl" style={{ color: theme.text }}>
                   You’ll Leave With
@@ -865,9 +893,14 @@ export default function SoulmateWorkshopPage() {
               <h4 className="font-playfair text-3xl mb-3" style={{ color: theme.text }}>
                 Don’t miss the moment to save your future
               </h4>
+              <p className="font-lato opacity-90 mb-3 text-center mx-auto max-w-2xl" style={{ color: theme.text }}>
+                Join us <strong>In-Person (Toronto)</strong> on <strong>{IN_PERSON.dateLabel}</strong> or{' '}
+                <strong>Online</strong> on <strong>{ONLINE.dateLabel}</strong> — both from{' '}
+                <strong>11:00 AM – 3:00 PM (ET)</strong>.
+              </p>
               <p className="font-lato opacity-90 mb-6 text-center mx-auto max-w-2xl" style={{ color: theme.text }}>
-                Every day you delay this inner work increases the risk of choosing from fear. This isn’t self-help —
-                it’s <strong>self-rescue</strong>. Limited seats for this intensive session in Toronto.
+                Every day you delay this inner work increases the risk of choosing from fear. This isn’t self-help — it’s{' '}
+                <strong>self-rescue</strong>. Limited seats for the Toronto session.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Button
@@ -899,9 +932,7 @@ export default function SoulmateWorkshopPage() {
             </div>
             <div
               className="relative p-8"
-              style={{
-                background: `linear-gradient(160deg, ${hexToRgba(theme.accent1, 0.6)}, ${hexToRgba(theme.accent2, 0.6)})`
-              }}
+              style={{ background: `linear-gradient(160deg, ${hexToRgba(theme.accent1, 0.6)}, ${hexToRgba(theme.accent2, 0.6)})` }}
             >
               <div
                 className="absolute -inset-5 -z-10 blur-3xl opacity-50"
@@ -914,6 +945,13 @@ export default function SoulmateWorkshopPage() {
               >
                 <div className="font-playfair text-2xl" style={{ color: theme.text }}>
                   “Trade the temporary fantasy for permanent, limitless power.”
+                </div>
+                <div className="mt-3 text-xs font-lato opacity-80" style={{ color: theme.text }}>
+                  In-Person: {IN_PERSON.dateLabel} • {IN_PERSON.timeLabel}
+                  <br />
+                  {IN_PERSON.placeLabel}
+                  <br />
+                  Online: {ONLINE.dateLabel} • {ONLINE.timeLabel}
                 </div>
               </div>
             </div>
