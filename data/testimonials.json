@@ -1,0 +1,47 @@
+[
+  {
+    "type": "quote",
+    "quote": "The experience was truly transformative. Mashallah, I was able to find myself and gain clarity on exactly what I want. You are professional, supportive, and incredibly inspiring. Your way of explaining complex concepts is simple yet powerful, and you provide practical tools that really make a difference in everyday life. I felt motivated, understood, and guided in the best possible way throughout the entire process. I highly recommend you to anyone who is seeking real transformation and positive change.",
+    "name": "Rehab Marzouk Mahmoud",
+    "role": "Client",
+    "rating": 5,
+    "priority": 12,
+    "visible": true
+  },
+  {
+    "type": "quote",
+    "quote": "I have to share my powerful experience working with Hirah Safi. In just a few sessions, Hirah has profoundly impacted the way I perceive the world and, most importantly, how I perceive myself. Her unique approach skillfully unveiled the untapped potential within me— a potential I had been overlooking my entire life! Hirah’s coaching style is both empowering and insightful, and it has been instrumental in shifting my mindset and unlocking a new level of self-awareness. If you are serious about seeking profound personal and professional growth, I wholeheartedly recommend her. Thank you, Hirah, for helping me uncover my true potential!",
+    "name": "Miss Ali",
+    "role": "Client",
+    "rating": 5,
+    "priority": 11,
+    "visible": true
+  },
+  {
+    "type": "quote",
+    "quote": "Every time the Muslim Girl Club hosts an event, it’s the highlight of my week.\n\nYes, there’s the fun, the laughter, the sisterhood, the real connections. But what I love most is that we open with a session from the best Muslimah coach out there: Hirah. She breaks big topics down through a Deen lens, asks the questions that make you reflect, and gives practical steps so you actually apply what you learn. We leave lighter in the heart, sharper in the mind, and closer to Allah.\n\nAnd the vibe? We hype each other’s wins, hold each other accountable, and make space for growth—personally, professionally, and spiritually.\n\nIf you’re a Muslimah who goes hard in your personal and professional life, or who is looking to chill, have a good time and meet more sisters, this is your sign. Come sit with us—your sisterhood awaits.",
+    "name": "Sister",
+    "role": "Client",
+    "avatar": "/assets/testimonials/monial1.webp",
+    "rating": 5,
+    "priority": 11,
+    "visible": true
+  },
+    {
+  "type": "photo",
+  "src": "/assets/testimonials/monial2.1.jpg",
+  "alt": "5-star testimonial card from Rehab Marzouk Mahmoud on a soft floral notebook background",
+  "caption": "“Transformative—found clarity pt.1.” — A. Kaneza Busra",
+  "priority": 6,
+  "visible": true
+},
+  {
+  "type": "photo",
+  "src": "/assets/testimonials/monial2.jpg",
+  "alt": "5-star testimonial card from Rehab Marzouk Mahmoud on a soft floral notebook background",
+  "caption": "“Transformative—found clarity pt.2.” — A. Kaneza Busra",
+  "priority": 6,
+  "visible": true
+}
+
+]

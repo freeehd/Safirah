@@ -26,10 +26,10 @@ const theme = {
   text: '#57534E',
 };
 
-const container = 'mx-auto max-w-7xl px-5 sm:px-8';
-const sectionY = 'py-14 md:py-20';
+const container = 'mx-auto max-w-7xl px-4 sm:px-6 md:px-8';
+const sectionY = 'py-10 sm:py-14 md:py-20';
 
-/* ---------- canonical event info (single source of truth) ---------- */
+/* ---------- canonical event info ---------- */
 const IN_PERSON = {
   dateLabel: 'Saturday, Nov 29, 2025',
   timeLabel: '11:00 AM – 3:00 PM (ET)',
@@ -131,7 +131,7 @@ function InfoPill({ icon, text }: { icon: React.ReactNode; text: string }) {
       className="flex items-center gap-2 rounded-full px-3 py-2 text-xs ring-1 bg-white/70 backdrop-blur"
       style={{ borderColor: hexToRgba(theme.accent2, 0.28), color: theme.text }}
     >
-      {icon} <span>{text}</span>
+      {icon} <span className="break-words">{text}</span>
     </div>
   );
 }
@@ -148,17 +148,17 @@ function VisionCard({
   return (
     <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.2 }}>
       <div
-        className="rounded-2xl bg-white/90 backdrop-blur p-6 shadow-sm ring-1 h-full"
+        className="rounded-2xl bg-white/90 backdrop-blur p-5 sm:p-6 shadow-sm ring-1 h-full"
         style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
       >
-        <div className="flex items-center gap-3 mb-3">
+        <div className="flex items-center gap-3 mb-2">
           <span
             className="inline-flex h-10 w-10 items-center justify-center rounded-full"
             style={{ backgroundColor: hexToRgba(theme.accent2, 0.2), color: theme.text }}
           >
             {icon}
           </span>
-          <div className="font-playfair text-xl" style={{ color: theme.text }}>
+          <div className="font-playfair text-lg sm:text-xl" style={{ color: theme.text }}>
             {title}
           </div>
         </div>
@@ -182,10 +182,10 @@ function CostCard({
   return (
     <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.2 }}>
       <div
-        className="rounded-2xl bg-white/90 backdrop-blur p-6 shadow-sm ring-1 h-full"
+        className="rounded-2xl bg-white/90 backdrop-blur p-5 sm:p-6 shadow-sm ring-1 h-full"
         style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
       >
-        <div className="flex items-start gap-3 mb-3">
+        <div className="flex items-start gap-3 mb-2">
           <span
             className="inline-flex h-10 w-10 items-center justify-center rounded-full flex-shrink-0"
             style={{ backgroundColor: hexToRgba('#ff6b6b', 0.15), color: '#d63031' }}
@@ -193,7 +193,7 @@ function CostCard({
           >
             {icon}
           </span>
-          <div className="font-playfair text-xl" style={{ color: theme.text }}>
+          <div className="font-playfair text-lg sm:text-xl" style={{ color: theme.text }}>
             {title}
           </div>
         </div>
@@ -217,18 +217,18 @@ function TransformationStep({
   return (
     <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.2 }}>
       <div
-        className="rounded-2xl bg-white/75 backdrop-blur p-6 shadow-sm ring-1 h-full"
+        className="rounded-2xl bg-white/75 backdrop-blur p-5 sm:p-6 shadow-sm ring-1 h-full"
         style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
       >
-        <div className="flex items-start gap-3 mb-3">
+        <div className="flex items-start gap-3 mb-2">
           <span
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full flex-shrink-0 font-playfair text-lg font-semibold"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full flex-shrink-0 font-playfair text-base sm:text-lg font-semibold"
             style={{ backgroundColor: hexToRgba(theme.highlight, 0.2), color: theme.highlight }}
             aria-hidden
           >
             {number}
           </span>
-          <div className="font-playfair text-xl" style={{ color: theme.text }}>
+          <div className="font-playfair text-lg sm:text-xl" style={{ color: theme.text }}>
             {title}
           </div>
         </div>
@@ -266,10 +266,7 @@ function TimeBox({ label, value }: { label: string; value: number }) {
 
 function WhichPassHelper() {
   return (
-    <details
-      className="mt-2 text-xs font-lato"
-      style={{ color: theme.text }}
-    >
+    <details className="mt-2 text-xs font-lato" style={{ color: theme.text }}>
       <summary className="underline cursor-pointer inline-flex items-center">
         Which should I choose?
       </summary>
@@ -307,7 +304,7 @@ function EarlyBirdChip({
 }) {
   return (
     <div
-      className="inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1 mt-2"
+      className="inline-flex flex-wrap items-center gap-2 rounded-full px-3 py-1 ring-1 mt-2"
       style={{
         borderColor: hexToRgba(theme.accent2, 0.45),
         backgroundColor: hexToRgba(theme.accent1, 0.15),
@@ -328,7 +325,7 @@ function EarlyBirdChip({
   );
 }
 
-/* ---------- NEW: event details band (very prominent) ---------- */
+/* ---------- event details band (responsive) ---------- */
 function EventDetailsBand() {
   return (
     <div
@@ -336,7 +333,7 @@ function EventDetailsBand() {
       style={{ borderColor: hexToRgba(theme.accent2, 0.35) }}
       aria-label="Event Details"
     >
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* In-Person block */}
         <div className="rounded-xl p-4 ring-1 bg-white/80" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
           <div className="flex items-center gap-2 text-sm font-semibold" style={{ color: theme.text }}>
@@ -403,6 +400,51 @@ function EventDetailsBand() {
   );
 }
 
+/* ---------- sticky mobile buy bar ---------- */
+function MobileBuyBar({
+  displayPrice,
+}: {
+  displayPrice: string;
+}) {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 320);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  if (!visible) return null;
+
+  return (
+    <div className="md:hidden fixed bottom-3 left-3 right-3 z-50">
+      <div
+        className="rounded-2xl ring-1 bg-white/90 backdrop-blur p-2 shadow-lg"
+        style={{ borderColor: hexToRgba(theme.accent2, 0.35) }}
+      >
+        <div className="flex gap-2">
+          <Button
+            asChild
+            className="w-1/2 rounded-xl h-11"
+            style={{ backgroundColor: theme.highlight, color: '#fff' }}
+          >
+            <a href={LINKS.inPerson} target="_blank" rel="noopener noreferrer">In-Person — {displayPrice}</a>
+          </Button>
+          <Button
+            asChild
+            variant="outline"
+            className="w-1/2 rounded-xl h-11 border-2"
+            style={{ borderColor: theme.accent2, color: theme.text }}
+          >
+            <a href={LINKS.online} target="_blank" rel="noopener noreferrer">Online — {displayPrice}</a>
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ---------- page ---------- */
 export default function SoulmateWorkshopPage() {
   const fadeUp = useFadeUp();
@@ -434,25 +476,26 @@ export default function SoulmateWorkshopPage() {
     <div className="page-wrapper" style={{ backgroundColor: theme.bg }}>
       {/* HERO */}
       <section className={`relative isolate overflow-hidden ${sectionY}`}>
-        {/* backdrop blobs */}
+        {/* backdrop blobs (hide on xs to prevent overlap) */}
         <motion.div
-          className="pointer-events-none absolute -top-24 -right-16 h-72 w-72 rounded-full blur-3xl -z-10"
+          className="pointer-events-none absolute -top-24 -right-16 h-72 w-72 rounded-full blur-3xl -z-10 hidden sm:block"
           style={{ background: `radial-gradient(circle, ${hexToRgba(theme.accent2, 0.45)}, transparent 60%)` }}
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="pointer-events-none absolute -bottom-28 -left-10 h-80 w-80 rounded-3xl blur-3xl -z-10"
+          className="pointer-events-none absolute -bottom-28 -left-10 h-80 w-80 rounded-3xl blur-3xl -z-10 hidden sm:block"
           style={{ background: `radial-gradient(circle, ${hexToRgba(theme.accent1, 0.45)}, transparent 65%)` }}
           animate={{ y: [0, -10, 0] }}
           transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
         />
 
         <div className={container}>
-          <div className="grid gap-10 md:grid-cols-2 md:items-center">
-            <motion.div {...fadeUp} className="space-y-6">
+          <div className="grid gap-8 md:gap-10 md:grid-cols-2 md:items-center">
+            {/* Text first on mobile */}
+            <motion.div {...fadeUp} className="space-y-5 md:space-y-6 order-2 md:order-1">
               <div
-                className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs sm:text-sm"
+                className="inline-flex items-center gap-2 rounded-full border px-3 sm:px-4 py-1.5 text-xs sm:text-sm"
                 style={{
                   borderColor: hexToRgba(theme.accent2, 0.45),
                   backgroundColor: hexToRgba(theme.accent2, 0.15),
@@ -464,7 +507,7 @@ export default function SoulmateWorkshopPage() {
               </div>
 
               <h1
-                className="font-playfair text-4xl sm:text-5xl md:text-6xl leading-tight tracking-tight"
+                className="font-playfair text-[32px] leading-tight sm:text-5xl md:text-6xl tracking-tight"
                 style={{ color: theme.text }}
               >
                 The{' '}
@@ -482,18 +525,21 @@ export default function SoulmateWorkshopPage() {
                 Workshop
               </h1>
 
-              <p className="font-lato text-lg leading-relaxed opacity-90 max-w-prose text-center mx-auto" style={{ color: theme.text }}>
+              <p
+                className="font-lato text-base sm:text-lg leading-relaxed opacity-90 max-w-prose text-center mx-auto"
+                style={{ color: theme.text }}
+              >
                 Two attendance options — <strong>In-Person (Toronto)</strong> and <strong>Online (Live)</strong> — so you can join the way that fits your season.
               </p>
 
               {/* Quick tags */}
-              <div className="grid sm:grid-cols-3 gap-3 text-sm font-lato">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 text-xs sm:text-sm font-lato">
                 <InfoPill icon={<CalendarDays className="h-4 w-4" />} text="In-Person: Sat, Nov 29 • Online: Sun, Nov 30" />
                 <InfoPill icon={<Clock className="h-4 w-4" />} text="Time: 11:00 AM – 3:00 PM (ET) both days" />
                 <InfoPill icon={<MapPin className="h-4 w-4" />} text="Toronto venue: 200 King St E" />
               </div>
 
-              {/* Very prominent event details band */}
+              {/* Details band */}
               <EventDetailsBand />
 
               <EarlyBirdChip
@@ -506,10 +552,10 @@ export default function SoulmateWorkshopPage() {
                 s={s}
               />
 
-              <div className="flex gap-3 pt-2">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-2">
                 <Button
                   asChild
-                  className="rounded-full px-6 h-11 transition-transform hover:scale-[1.02]"
+                  className="rounded-full px-6 h-11 w-full sm:w-auto transition-transform hover:scale-[1.02]"
                   style={{ backgroundColor: theme.highlight, color: '#fff' }}
                 >
                   <a
@@ -524,7 +570,7 @@ export default function SoulmateWorkshopPage() {
                 <Button
                   variant="outline"
                   asChild
-                  className="rounded-full px-6 h-11 border-2"
+                  className="rounded-full px-6 h-11 w-full sm:w-auto border-2"
                   style={{ borderColor: theme.accent2, color: theme.text }}
                 >
                   <a
@@ -538,7 +584,7 @@ export default function SoulmateWorkshopPage() {
                 </Button>
                 <Button
                   variant="outline"
-                  className="rounded-full px-6 h-11 border-2"
+                  className="rounded-full px-6 h-11 w-full sm:w-auto border-2"
                   style={{ borderColor: theme.accent2, color: theme.text }}
                   onClick={() =>
                     document.getElementById('tickets')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -551,9 +597,10 @@ export default function SoulmateWorkshopPage() {
               <WhichPassHelper />
             </motion.div>
 
-            <motion.div {...fadeUp} className="relative">
+            {/* Visual second on mobile */}
+            <motion.div {...fadeUp} className="relative order-1 md:order-2">
               <div
-                className="absolute -inset-6 -z-10 rounded-3xl blur-3xl opacity-50"
+                className="absolute -inset-6 -z-10 rounded-3xl blur-3xl opacity-40 sm:opacity-50"
                 style={{ background: `radial-gradient(60% 60% at 50% 50%, ${hexToRgba(theme.accent1, 0.6)}, transparent)` }}
                 aria-hidden
               />
@@ -561,11 +608,11 @@ export default function SoulmateWorkshopPage() {
                 className="border-0 shadow-xl rounded-3xl overflow-hidden bg-white/70 backdrop-blur"
                 style={{ boxShadow: `0 10px 40px -8px ${hexToRgba('#000', 0.12)}` }}
               >
-                <CardContent className="p-3">
+                <CardContent className="p-2 sm:p-3">
                   <ImagePlaceholder src="/assets/soulmate.webp" />
                 </CardContent>
               </Card>
-              <div className="mt-3 flex items-center gap-2">
+              <div className="mt-3 flex flex-wrap items-center gap-2">
                 <Badge>
                   <Star className="h-3.5 w-3.5" /> Women-First
                 </Badge>
@@ -585,31 +632,31 @@ export default function SoulmateWorkshopPage() {
             style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
           >
             <CardHeader className="pb-2">
-              <CardTitle className="font-playfair text-3xl text-center" style={{ color: theme.text }}>
+              <CardTitle className="font-playfair text-2xl sm:text-3xl text-center" style={{ color: theme.text }}>
                 The Real Problem Isn’t Being Single
               </CardTitle>
             </CardHeader>
             <CardContent className="max-w-3xl mx-auto space-y-4 font-lato text-center" style={{ color: theme.text }}>
-              <p className="text-lg">
+              <p className="text-base sm:text-lg">
                 The problem is feeling <strong>vulnerable, exhausted, and overwhelmed</strong> — secretly terrified you
                 can’t handle your own life.
               </p>
-              <p>
+              <p className="text-sm sm:text-base">
                 When loneliness hits or pressure mounts, it’s tempting to chase the <em>Escape Ticket</em>: the fantasy
                 of a soulmate who will validate your worth and fix what feels heavy.
               </p>
               <div
-                className="mt-6 p-6 rounded-2xl ring-1"
+                className="mt-6 p-4 sm:p-6 rounded-2xl ring-1"
                 style={{ backgroundColor: hexToRgba(theme.accent1, 0.15), borderColor: hexToRgba(theme.accent2, 0.35) }}
               >
-                <p className="font-medium text-lg">
+                <p className="font-medium text-base sm:text-lg">
                   But here’s the truth: If you build your life on <em>rented land</em> (external approval), it collapses
                   the day the landlord leaves.
                 </p>
               </div>
-              <p className="text-lg pt-2">This workshop isn’t about chasing <strong>rescue</strong>. It’s about building <strong>power</strong>.</p>
-              {/* Repeat the key logistics right here for clarity */}
-              <div className="mt-6 grid sm:grid-cols-2 gap-3 text-sm">
+              <p className="text-base sm:text-lg pt-2">This workshop isn’t about chasing <strong>rescue</strong>. It’s about building <strong>power</strong>.</p>
+              {/* Repeat logistics for scrollers */}
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 text-xs sm:text-sm">
                 <InfoPill icon={<CalendarDays className="h-4 w-4" />} text={`In-Person: ${IN_PERSON.dateLabel} • ${IN_PERSON.timeLabel}`} />
                 <InfoPill icon={<CalendarDays className="h-4 w-4" />} text={`Online: ${ONLINE.dateLabel} • ${ONLINE.timeLabel}`} />
               </div>
@@ -621,15 +668,15 @@ export default function SoulmateWorkshopPage() {
       {/* THE COST OF STAYING STUCK */}
       <section className={`${container} ${sectionY} pt-0`}>
         <motion.div {...fadeUp}>
-          <div className="text-center mb-8 flex flex-col items-center">
-            <h2 className="font-playfair text-3xl md:text-4xl mb-3" style={{ color: theme.text }}>
+          <div className="text-center mb-6 sm:mb-8 flex flex-col items-center">
+            <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl mb-2 sm:mb-3" style={{ color: theme.text }}>
               The High Cost of the “Rescue Fantasy”
             </h2>
-            <p className="font-lato text-lg opacity-90 max-w-2xl mx-auto text-center" style={{ color: theme.text }}>
+            <p className="font-lato text-base sm:text-lg opacity-90 max-w-2xl mx-auto text-center" style={{ color: theme.text }}>
               Waiting for someone to fix your life comes at a price you can’t afford to keep paying.
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             <CostCard
               icon={<AlertTriangle className="h-6 w-6" />}
               title="Vulnerable & Exhausted"
@@ -652,15 +699,15 @@ export default function SoulmateWorkshopPage() {
       {/* THE TRANSFORMATION */}
       <section className={`${container} ${sectionY} pt-0`}>
         <motion.div {...fadeUp}>
-          <div className="text-center mb-8 flex flex-col items-center">
-            <h2 className="font-playfair text-3xl md:text-4xl mb-3" style={{ color: theme.text }}>
+          <div className="text-center mb-6 sm:mb-8 flex flex-col items-center">
+            <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl mb-2 sm:mb-3" style={{ color: theme.text }}>
               Imagine a Life Where You’re the Source
             </h2>
-            <p className="font-lato text-lg opacity-90 max-w-2xl mx-auto text-center" style={{ color: theme.text }}>
+            <p className="font-lato text-base sm:text-lg opacity-90 max-w-2xl mx-auto text-center" style={{ color: theme.text }}>
               Not waiting. Not hoping. Not outsourcing. Just <strong>whole</strong>.
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             <VisionCard icon={<KeyRound className="h-5 w-5" />} title="You Hold the Keys">
               Your happiness is generated <em>internally</em>. You’re the source of your own fulfillment, not a
               customer waiting for delivery.
@@ -679,15 +726,15 @@ export default function SoulmateWorkshopPage() {
       <section className={`${container} ${sectionY} pt-0`}>
         <motion.div {...fadeUp}>
           <Card className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
-            <CardHeader className="pb-4 text-center">
-              <CardTitle className="font-playfair text-3xl md:text-4xl" style={{ color: theme.text }}>
+            <CardHeader className="pb-3 sm:pb-4 text-center">
+              <CardTitle className="font-playfair text-2xl sm:text-3xl md:text-4xl" style={{ color: theme.text }}>
                 Your Path to Inner Strength
               </CardTitle>
-              <p className="font-lato text-lg opacity-90 mt-2" style={{ color: theme.text }}>
+              <p className="font-lato text-base sm:text-lg opacity-90 mt-2" style={{ color: theme.text }}>
                 Three powerful shifts that will transform how you show up in your life
               </p>
             </CardHeader>
-            <CardContent className="grid md:grid-cols-3 gap-6">
+            <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
               <TransformationStep
                 number="1"
                 title="Expose the Myth"
@@ -705,7 +752,7 @@ export default function SoulmateWorkshopPage() {
               />
               {/* Repeat logistics below steps for scrollers */}
               <div className="md:col-span-3 mt-2">
-                <div className="grid sm:grid-cols-2 gap-3 text-sm">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 text-xs sm:text-sm">
                   <InfoPill icon={<CalendarDays className="h-4 w-4" />} text={`In-Person: ${IN_PERSON.dateLabel} • ${IN_PERSON.timeLabel}`} />
                   <InfoPill icon={<MapPin className="h-4 w-4" />} text={`Venue: ${IN_PERSON.placeLabel}`} />
                 </div>
@@ -719,23 +766,23 @@ export default function SoulmateWorkshopPage() {
       </section>
 
       {/* TICKETS */}
-      <section id="tickets" className={`${container} ${sectionY} pt-0`}>
+      <section id="tickets" className={`${container} ${sectionY} pt-0 scroll-mt-24`}>
         <Card className="border-0 rounded-3xl overflow-hidden shadow-xl bg-white/90 relative" style={{ boxShadow: `0 12px 40px -8px ${hexToRgba('#000', 0.12)}` }}>
           <div
-            className="absolute top-4 left-[-30px] rotate-[-15deg] text-xs font-semibold tracking-wide px-4 py-1 rounded-full shadow-sm z-10"
+            className="absolute top-3 sm:top-4 left-3 sm:left-[-30px] sm:rotate-[-15deg] text-[10px] sm:text-xs font-semibold tracking-wide px-3 sm:px-4 py-1 rounded-full shadow-sm z-10"
             style={{ backgroundColor: theme.highlight, color: '#fff', boxShadow: `0 6px 20px -6px ${hexToRgba(theme.highlight, 0.6)}` }}
           >
             EARLY-BIRD
           </div>
 
-          <div className="grid md:grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-3">
             {/* Left */}
             <div
-              className="md:col-span-2 p-8 relative"
+              className="md:col-span-2 p-6 sm:p-8 relative"
               style={{ background: `linear-gradient(160deg, ${hexToRgba(theme.accent1, 0.55)}, ${hexToRgba(theme.accent2, 0.55)})` }}
             >
               <div
-                className="absolute -inset-6 -z-10 blur-3xl opacity-50"
+                className="absolute -inset-6 -z-10 blur-3xl opacity-40 sm:opacity-50"
                 style={{ background: `radial-gradient(60% 60% at 50% 50%, ${hexToRgba(theme.accent1, 0.6)}, transparent)` }}
                 aria-hidden
               />
@@ -746,10 +793,10 @@ export default function SoulmateWorkshopPage() {
                 >
                   💗 Two ticket types: In-Person (Toronto) or Online (Live)
                 </div>
-                <h3 className="font-playfair text-4xl md:text-5xl leading-tight" style={{ color: theme.text }}>
+                <h3 className="font-playfair text-3xl sm:text-4xl md:text-5xl leading-tight" style={{ color: theme.text }}>
                   Choose Your Pass
                 </h3>
-                <p className="font-lato mt-2 opacity-90 text-center mx-auto" style={{ color: theme.text }}>
+                <p className="font-lato mt-2 opacity-90 text-center sm:text-left" style={{ color: theme.text }}>
                   In-Person: <strong>{IN_PERSON.dateLabel}</strong> • {IN_PERSON.timeLabel} • {IN_PERSON.placeLabel}
                   <br />
                   Online: <strong>{ONLINE.dateLabel}</strong> • {ONLINE.timeLabel} • Live via secure link
@@ -758,7 +805,7 @@ export default function SoulmateWorkshopPage() {
                 {/* Timer + price */}
                 <div className="mt-5 grid gap-4 sm:grid-cols-2 items-end">
                   <div className="rounded-2xl bg-white/80 backdrop-blur ring-1 p-4 text-center" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
-                    <div className="text-xs uppercase tracking-wider font-lato opacity-70" style={{ color: theme.text }}>
+                    <div className="text-[11px] sm:text-xs uppercase tracking-wider font-lato opacity-70" style={{ color: theme.text }}>
                       Sale ends in
                     </div>
                     {saleActive ? (
@@ -775,11 +822,11 @@ export default function SoulmateWorkshopPage() {
                     )}
                   </div>
                   <div className="rounded-2xl bg-white/80 backdrop-blur ring-1 p-4 text-center" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
-                    <div className="text-xs uppercase tracking-wider font-lato opacity-70" style={{ color: theme.text }}>
+                    <div className="text-[11px] sm:text-xs uppercase tracking-wider font-lato opacity-70" style={{ color: theme.text }}>
                       Today
                     </div>
-                    <div className="mt-1 font-playfair text-3xl md:text-4xl flex items-center justify-center gap-2" style={{ color: theme.text }}>
-                      <s className="text-xl opacity-60">$45</s>
+                    <div className="mt-1 font-playfair text-2xl sm:text-3xl md:text-4xl flex items-center justify-center gap-2" style={{ color: theme.text }}>
+                      <s className="text-base sm:text-xl opacity-60">$45</s>
                       <span className="leading-none">{displayPrice}</span>
                     </div>
                   </div>
@@ -799,10 +846,10 @@ export default function SoulmateWorkshopPage() {
                 </ul>
 
                 {/* CTA */}
-                <div className="mt-6 flex flex-wrap items-center gap-3">
+                <div className="mt-6 flex flex-col sm:flex-row flex-wrap items-center gap-2 sm:gap-3">
                   <Button
                     asChild
-                    className="rounded-full px-6 h-12 text-base shadow-md transition-transform hover:scale-[1.02]"
+                    className="rounded-full px-6 h-12 text-base shadow-md transition-transform hover:scale-[1.02] w-full sm:w-auto"
                     style={{ backgroundColor: theme.highlight, color: '#fff' }}
                   >
                     <a
@@ -817,7 +864,7 @@ export default function SoulmateWorkshopPage() {
                   <Button
                     variant="outline"
                     asChild
-                    className="rounded-full px-6 h-12 text-base transition-transform hover:scale-[1.02] border-2"
+                    className="rounded-full px-6 h-12 text-base transition-transform hover:scale-[1.02] border-2 w-full sm:w-auto"
                     style={{ borderColor: theme.accent2, color: theme.text }}
                   >
                     <a
@@ -829,7 +876,7 @@ export default function SoulmateWorkshopPage() {
                       Online Pass — {displayPrice}
                     </a>
                   </Button>
-                  <span className="text-xs font-lato opacity-70" style={{ color: theme.text }}>
+                  <span className="text-xs font-lato opacity-70 text-center sm:text-left" style={{ color: theme.text }}>
                     Early-bird ends Nov 15, 11:59pm Toronto time.
                   </span>
                 </div>
@@ -838,14 +885,14 @@ export default function SoulmateWorkshopPage() {
             </div>
 
             {/* Right visual */}
-            <div className="p-8 bg-white grid place-items-center">
+            <div className="p-6 sm:p-8 bg-white grid place-items-center">
               <div className="w-full max-w-md">
                 <ImagePlaceholder ratio="4/3" src="/assets/soulmate.webp" />
                 <div className="mt-4 grid gap-2 text-xs font-lato">
-                  <a href={IN_PERSON.mapUrl} target="_blank" rel="noopener noreferrer" className="underline" style={{ color: theme.text }}>
+                  <a href={IN_PERSON.mapUrl} target="_blank" rel="noopener noreferrer" className="underline text-center sm:text-left" style={{ color: theme.text }}>
                     📍 Open the Toronto venue in Google Maps
                   </a>
-                  <a href={ONLINE.learnUrl} target="_blank" rel="noopener noreferrer" className="underline" style={{ color: theme.text }}>
+                  <a href={ONLINE.learnUrl} target="_blank" rel="noopener noreferrer" className="underline text-center sm:text-left" style={{ color: theme.text }}>
                     💻 Learn about the online experience
                   </a>
                 </div>
@@ -858,24 +905,24 @@ export default function SoulmateWorkshopPage() {
       {/* EXPERIENCE DETAILS */}
       <section className={`${container} ${sectionY} pt-0`}>
         <motion.div {...fadeUp}>
-          <div className="text-center mb-8 flex flex-col items-center">
-            <h2 className="font-playfair text-3xl md:text-4xl mb-3" style={{ color: theme.text }}>
+          <div className="text-center mb-6 sm:mb-8 flex flex-col items-center">
+            <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl mb-2 sm:mb-3" style={{ color: theme.text }}>
               A Safe Space for Real Transformation
             </h2>
-            <p className="font-lato text-lg opacity-90 max-w-2xl mx-auto text-center" style={{ color: theme.text }}>
+            <p className="font-lato text-base sm:text-lg opacity-90 max-w-2xl mx-auto text-center" style={{ color: theme.text }}>
               Everything you need for a comfortable, empowering experience
             </p>
           </div>
 
-          {/* NEW: snapshot card right here again for clarity */}
+          {/* Snapshot again for clarity */}
           <div className="mb-6">
             <EventDetailsBand />
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             <Card className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
               <CardHeader className="pb-2">
-                <CardTitle className="font-playfair text-xl" style={{ color: theme.text }}>
+                <CardTitle className="font-playfair text-lg sm:text-xl" style={{ color: theme.text }}>
                   What’s Included
                 </CardTitle>
               </CardHeader>
@@ -894,7 +941,7 @@ export default function SoulmateWorkshopPage() {
 
             <Card className="border-0 rounded-3xl shadow-sm" style={{ backgroundColor: '#f4fff7' }}>
               <CardHeader className="pb-2">
-                <CardTitle className="font-playfair text-xl flex items-center gap-2" style={{ color: theme.text }}>
+                <CardTitle className="font-playfair text-lg sm:text-xl flex items-center gap-2" style={{ color: theme.text }}>
                   <Shield className="h-5 w-5" /> Safe Space
                 </CardTitle>
               </CardHeader>
@@ -913,7 +960,7 @@ export default function SoulmateWorkshopPage() {
 
             <Card className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
               <CardHeader className="pb-2">
-                <CardTitle className="font-playfair text-xl" style={{ color: theme.text }}>
+                <CardTitle className="font-playfair text-lg sm:text-xl" style={{ color: theme.text }}>
                   Perfect For You If
                 </CardTitle>
               </CardHeader>
@@ -935,7 +982,7 @@ export default function SoulmateWorkshopPage() {
 
             <Card className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
               <CardHeader className="pb-2">
-                <CardTitle className="font-playfair text-xl" style={{ color: theme.text }}>
+                <CardTitle className="font-playfair text-lg sm:text-xl" style={{ color: theme.text }}>
                   You’ll Leave With
                 </CardTitle>
               </CardHeader>
@@ -958,24 +1005,24 @@ export default function SoulmateWorkshopPage() {
       {/* FINAL CTA BANNER */}
       <section className={`${container} ${sectionY} pt-0`}>
         <Card className="border-0 rounded-3xl overflow-hidden shadow-lg">
-          <div className="grid md:grid-cols-3">
-            <div className="md:col-span-2 p-8" style={{ backgroundColor: '#fff' }}>
-              <h4 className="font-playfair text-3xl mb-3" style={{ color: theme.text }}>
+          <div className="grid grid-cols-1 md:grid-cols-3">
+            <div className="md:col-span-2 p-6 sm:p-8" style={{ backgroundColor: '#fff' }}>
+              <h4 className="font-playfair text-2xl sm:text-3xl md:text-4xl mb-2 sm:mb-3" style={{ color: theme.text }}>
                 Don’t miss the moment to save your future
               </h4>
-              <p className="font-lato opacity-90 mb-3 text-center mx-auto max-w-2xl" style={{ color: theme.text }}>
+              <p className="font-lato opacity-90 mb-2 sm:mb-3 text-center mx-auto max-w-2xl" style={{ color: theme.text }}>
                 Join us <strong>In-Person (Toronto)</strong> on <strong>{IN_PERSON.dateLabel}</strong> or{' '}
                 <strong>Online</strong> on <strong>{ONLINE.dateLabel}</strong> — both from{' '}
                 <strong>11:00 AM – 3:00 PM (ET)</strong>.
               </p>
-              <p className="font-lato opacity-90 mb-6 text-center mx-auto max-w-2xl" style={{ color: theme.text }}>
+              <p className="font-lato opacity-90 mb-5 sm:mb-6 text-center mx-auto max-w-2xl" style={{ color: theme.text }}>
                 Every day you delay this inner work increases the risk of choosing from fear. This isn’t self-help — it’s{' '}
                 <strong>self-rescue</strong>. Limited seats for the Toronto session.
               </p>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3">
                 <Button
                   asChild
-                  className="rounded-full px-6 h-11 transition-transform hover:scale-[1.02]"
+                  className="rounded-full px-6 h-11 transition-transform hover:scale-[1.02] w-full sm:w-auto"
                   style={{ backgroundColor: theme.highlight, color: '#fff' }}
                 >
                   <a
@@ -990,7 +1037,7 @@ export default function SoulmateWorkshopPage() {
                 <Button
                   variant="outline"
                   asChild
-                  className="rounded-full px-6 h-11 transition-transform hover:scale-[1.02] border-2"
+                  className="rounded-full px-6 h-11 transition-transform hover:scale-[1.02] border-2 w-full sm:w-auto"
                   style={{ borderColor: theme.accent2, color: theme.text }}
                 >
                   <a
@@ -1004,7 +1051,7 @@ export default function SoulmateWorkshopPage() {
                 </Button>
                 <Button
                   variant="outline"
-                  className="rounded-full px-6 border-2"
+                  className="rounded-full px-6 border-2 w-full sm:w-auto"
                   style={{ borderColor: theme.accent2, color: theme.text }}
                   onClick={() =>
                     document.getElementById('tickets')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -1016,19 +1063,19 @@ export default function SoulmateWorkshopPage() {
               </div>
             </div>
             <div
-              className="relative p-8"
+              className="relative p-6 sm:p-8"
               style={{ background: `linear-gradient(160deg, ${hexToRgba(theme.accent1, 0.6)}, ${hexToRgba(theme.accent2, 0.6)})` }}
             >
               <div
-                className="absolute -inset-5 -z-10 blur-3xl opacity-50"
+                className="absolute -inset-5 -z-10 blur-3xl opacity-40 sm:opacity-50"
                 style={{ background: `radial-gradient(60% 60% at 50% 50%, ${hexToRgba(theme.accent1, 0.6)}, transparent)` }}
                 aria-hidden
               />
               <div
-                className="h-full w-full rounded-2xl bg-white/70 backdrop-blur grid place-items-center text-center p-6 ring-1"
+                className="h-full w-full rounded-2xl bg-white/70 backdrop-blur grid place-items-center text-center p-5 sm:p-6 ring-1"
                 style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
               >
-                <div className="font-playfair text-2xl" style={{ color: theme.text }}>
+                <div className="font-playfair text-xl sm:text-2xl" style={{ color: theme.text }}>
                   “Trade the temporary fantasy for permanent, limitless power.”
                 </div>
                 <div className="mt-3 text-xs font-lato opacity-80" style={{ color: theme.text }}>
@@ -1045,6 +1092,9 @@ export default function SoulmateWorkshopPage() {
       </section>
 
       <Separator className="opacity-0" />
+
+      {/* Sticky mobile buy bar */}
+      <MobileBuyBar displayPrice={displayPrice} />
     </div>
   );
 }

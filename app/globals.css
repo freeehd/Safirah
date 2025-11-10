@@ -487,3 +487,19 @@ p {
     @apply bg-background text-foreground;
   }
 }
+/* Ensure text-center works inside Typography (.prose) and against any base p alignment */
+@layer utilities {
+  /* Force center on elements explicitly marked with text-center */
+  p.text-center {
+    text-align: center !important;
+  }
+  :is(h1,h2,h3,h4,h5,h6).text-center {
+    text-align: center !important;
+  }
+  .prose p.text-center,
+  .prose :is(h1,h2,h3,h4,h5,h6).text-center,
+  .prose ul.text-center,
+  .prose ol.text-center {
+    text-align: center !important;
+  }
+}

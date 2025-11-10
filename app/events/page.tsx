@@ -9,7 +9,8 @@ import BrushStrokeHighlight from '@/components/BrushStrokeHighlight';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { CalendarDays, MapPin, Clock, Sparkles, Star } from 'lucide-react';
+
+import { CalendarDays, MapPin, Clock, Sparkles, Star ,Monitor} from 'lucide-react';
 
 const pastel = {
   accent: 'var(--highlight-color, #e8b4a8)',
@@ -33,9 +34,9 @@ function useFadeUp() {
 type EventItem = {
   slug: string;
   title: string;
-  date: string; // human string
-  time: string; // e.g. "10:00–13:00 PKT"
-  city: string; // e.g. "Islamabad • In-Person"
+  date: string;
+  time: string;
+  city: string;
   mode: 'Online' | 'In-Person' | 'Hybrid';
   short: string;
 };
@@ -74,6 +75,8 @@ export default function EventsPage() {
   const fadeUp = useFadeUp();
 
   // Early-bird logic (Toronto time)
+const [selectedPass, setSelectedPass] = useState<'inPerson' | 'online'>('inPerson');
+
   const deadline = new Date('2025-11-15T23:59:59-05:00').getTime();
   const [nowMs, setNowMs] = useState<number>(Date.now());
   useEffect(() => {
@@ -85,10 +88,10 @@ export default function EventsPage() {
   const salePrice = 35;
   const displayPrice = saleActive ? `$${salePrice}` : `$${fullPrice}`;
   const msRemaining = Math.max(0, deadline - nowMs);
-  const d = Math.floor(msRemaining / (24*60*60*1000));
-  const h = Math.floor((msRemaining % (24*60*60*1000)) / (60*60*1000));
-  const m = Math.floor((msRemaining % (60*60*1000)) / (60*1000));
-  const s = Math.floor((msRemaining % (60*1000)) / 1000);
+  const d = Math.floor(msRemaining / (24 * 60 * 60 * 1000));
+  const h = Math.floor((msRemaining % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+  const m = Math.floor((msRemaining % (60 * 60 * 1000)) / (60 * 1000));
+  const s = Math.floor((msRemaining % (60 * 1000)) / 1000);
 
   return (
     <div className="page-wrapper">
@@ -133,78 +136,123 @@ export default function EventsPage() {
         </div>
       </section>
 
-      {/* FEATURED: Soulmate Workshop */}
-      <section className={`${container} ${sectionY} pt-0`}>
-        <motion.div
-          {...fadeUp}
-          className="rounded-3xl overflow-hidden shadow-lg ring-1 bg-white/80 backdrop-blur"
-          style={{ borderColor: 'rgba(232,180,168,0.35)' }}
+   {/* FEATURED: Soulmate Workshop */}
+<section className={`${container} ${sectionY} pt-0`}>
+  <motion.div
+    {...fadeUp}
+    className="rounded-3xl overflow-hidden shadow-lg ring-1 bg-white/80 backdrop-blur"
+    style={{ borderColor: 'rgba(232,180,168,0.35)' }}
+  >
+    <div className="grid md:grid-cols-2">
+      {/* Visual */}
+      <div className="relative p-6 md:p-8" style={{ background: 'linear-gradient(160deg,#fde2e4,#fad2e1)' }}>
+        <div
+          className="absolute -inset-5 -z-10 blur-3xl opacity-50"
+          style={{ background: `radial-gradient(60% 60% at 50% 50%, ${pastel.subtle}, transparent)` }}
+        />
+        <div
+          className="h-full w-full rounded-2xl bg-white/70 backdrop-blur ring-1 p-4 sm:p-6 grid gap-4"
+          style={{ borderColor: 'rgba(232,180,168,0.28)' }}
         >
-          <div className="grid md:grid-cols-2">
-            {/* Visual */}
-            <div className="relative p-6 md:p-8" style={{ background: 'linear-gradient(160deg,#fde2e4,#fad2e1)' }}>
-              <div
-                className="absolute -inset-5 -z-10 blur-3xl opacity-50"
-                style={{ background: `radial-gradient(60% 60% at 50% 50%, ${pastel.subtle}, transparent)` }}
-              />
-              <div
-                className="h-full w-full rounded-2xl bg-white/70 backdrop-blur ring-1 p-4 sm:p-6 grid gap-4"
-                style={{ borderColor: 'rgba(232,180,168,0.28)' }}
-              >
-                <ImagePlaceholder ratio="16/9" />
-                <div className="flex items-center gap-2">
-                  <Badge><Star className="h-3.5 w-3.5" /> New</Badge>
-                  <Badge>Women-First</Badge>
-                  <Badge>Faith-Aligned</Badge>
-                </div>
-              </div>
-            </div>
-
-            {/* Copy */}
-            <div className="p-6 md:p-10">
-              <div
-                className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs sm:text-sm mb-3"
-                style={{ borderColor: 'rgba(232,180,168,0.35)', color: pastel.text }}
-              >
-                <Sparkles className="h-4 w-4" /> Soulmate — Featured Workshop
-              </div>
-              <h2 className="font-playfair text-3xl md:text-4xl" style={{ color: pastel.text }}>
-              Soulmate Workshop 
-              </h2>
-              <p className="font-lato mt-3 opacity-90" style={{ color: pastel.text }}>
-                Not a dating class — a self‑rescue mission to stop outsourcing happiness and build unshakeable inner strength.
-              </p>
-
-              <div className="mt-5 grid sm:grid-cols-3 gap-3 text-sm font-lato">
-                <InfoPill icon={<CalendarDays className="h-4 w-4" />} text={`Early‑bird ends Nov 15 (Toronto time)`} />
-                <InfoPill icon={<Clock className="h-4 w-4" />} text="2–3 hours • Live" />
-                <InfoPill icon={<MapPin className="h-4 w-4" />} text="Toronto, Canada • In‑Person" />
-              </div>
-
-              {/* Price + countdown */}
-              <div className="mt-5 flex flex-wrap items-center gap-3">
-                <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1"
-                     style={{ borderColor: 'rgba(232,180,168,0.35)', backgroundColor: 'rgba(232,180,168,0.10)', color: pastel.text }}>
-                  <span className="text-sm"><s>$45</s> <strong>{displayPrice}</strong></span>
-                  {saleActive && (
-                    <span className="text-xs opacity-80">• {d}d {String(h).padStart(2,'0')}:{String(m).padStart(2,'0')}:{String(s).padStart(2,'0')}</span>
-                  )}
-                </div>
-
-                <Button asChild className="rounded-full px-6 h-11 transition-transform hover:scale-[1.02]"
-                        style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}>
-                  <Link href="https://shop.hirahsaficoach.com/products/soulmate-workshop-tickets">Buy Now — {displayPrice}</Link>
-                </Button>
-
-                <Button asChild variant="outline" className="rounded-full px-6 h-11 border-2"
-                        style={{ borderColor: pastel.accent, color: pastel.text }}>
-                  <Link href="/events/soulmate-workshop">See Full Details</Link>
-                </Button>
-              </div>
-            </div>
+          <ImagePlaceholder ratio="16/9" />
+          <div className="flex items-center gap-2">
+            <Badge><Star className="h-3.5 w-3.5" /> Featured</Badge>
+            <Badge>Women-First</Badge>
+            <Badge>Faith-Aligned</Badge>
           </div>
-        </motion.div>
-      </section>
+        </div>
+      </div>
+
+      {/* Copy */}
+      <div className="p-6 md:p-10">
+        <div
+          className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs sm:text-sm mb-3"
+          style={{ borderColor: 'rgba(232,180,168,0.35)', color: pastel.text }}
+        >
+          <Sparkles className="h-4 w-4" /> Soulmate — Featured Workshop
+        </div>
+
+        <h2 className="font-playfair text-3xl md:text-4xl" style={{ color: pastel.text }}>
+          Soulmate Workshop
+        </h2>
+        <p className="font-lato mt-3 opacity-90" style={{ color: pastel.text }}>
+          Not a dating class — a self-rescue mission to stop outsourcing happiness and build unshakeable inner strength.
+        </p>
+
+        {/* Clear label */}
+        <div className="mt-5 mb-2 text-sm font-lato opacity-80" style={{ color: pastel.text }}>
+          Choose your pass to see the right details & Buy button:
+        </div>
+
+        {/* Big, clear Pass Selector */}
+        <PassSelector selected={selectedPass} onChange={setSelectedPass} />
+
+        {/* Price + countdown (compact) */}
+        <div className="mt-5 flex flex-wrap items-center gap-3">
+          <div
+            className="inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1"
+            style={{
+              borderColor: 'rgba(232,180,168,0.35)',
+              backgroundColor: 'rgba(232,180,168,0.10)',
+              color: pastel.text
+            }}
+          >
+            <span className="text-sm">
+              <s>$45</s> <strong>{displayPrice}</strong>
+            </span>
+            {saleActive && (
+              <span className="text-xs opacity-80">
+                • {d}d {String(h).padStart(2, '0')}:{String(m).padStart(2, '0')}:{String(s).padStart(2, '0')}
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* CTAs — Learn More (primary) + Buy (depends on selected pass) */}
+        <div className="mt-4 flex flex-wrap items-center gap-3">
+          <Button
+            asChild
+            className="rounded-full px-6 h-11 transition-transform hover:scale-[1.02]"
+            style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}
+          >
+            <Link href="/events/soulmate-workshop">Learn More</Link>
+          </Button>
+
+          <Button
+            asChild
+            variant="outline"
+            className="rounded-full px-6 h-11 border-2"
+            style={{ borderColor: pastel.accent, color: pastel.text }}
+          >
+            <Link
+              href={
+                selectedPass === 'inPerson'
+                  ? 'https://shop.hirahsaficoach.com/products/soulmate-workshop-tickets'
+                  : 'https://shop.hirahsaficoach.com/products/soulmate-workshop-online-pass'
+              }
+            >
+              Buy {selectedPass === 'inPerson' ? 'In-Person' : 'Online'} Pass — {displayPrice}
+            </Link>
+          </Button>
+        </div>
+
+        {/* Tiny note */}
+        <div
+          className="mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1"
+          style={{
+            borderColor: 'rgba(232,180,168,0.35)',
+            backgroundColor: 'rgba(232,180,168,0.10)',
+            color: pastel.text
+          }}
+        >
+          Early-bird ends Nov 15 (Toronto time)
+        </div>
+      </div>
+    </div>
+  </motion.div>
+</section>
+
+
 
       {/* UPCOMING WORKSHOPS */}
       <section className={`${container} ${sectionY} pt-0`}>
@@ -313,7 +361,10 @@ function EventCard({ ev }: { ev: EventItem }) {
           <CardTitle className="font-playfair text-xl" style={{ color: pastel.text }}>
             {ev.title}
           </CardTitle>
-          <div className="mt-2 flex flex-wrap items-center gap-3 text-sm font-lato opacity-90" style={{ color: pastel.text }}>
+          <div
+            className="mt-2 flex flex-wrap items-center gap-3 text-sm font-lato opacity-90"
+            style={{ color: pastel.text }}
+          >
             <span className="inline-flex items-center gap-1">
               <CalendarDays className="h-4 w-4" /> {ev.date}
             </span>
@@ -326,7 +377,6 @@ function EventCard({ ev }: { ev: EventItem }) {
           </div>
         </CardHeader>
         <CardContent className="space-y-4">
-          {/* <ImagePlaceholder ratio="16/9" /> */}
           <p className="font-lato text-sm opacity-90" style={{ color: pastel.text }}>
             {ev.short}
           </p>
@@ -355,8 +405,83 @@ function ImagePlaceholder({ ratio = '4/3' }: { ratio?: '1/1' | '4/3' | '16/9' })
       </div>
       <div
         className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
-        style={{ background: 'radial-gradient(160px 160px at var(--x,50%) var(--y,50%), rgba(232,180,168,0.25), transparent 70%)' }}
+        style={{
+          background:
+            'radial-gradient(160px 160px at var(--x,50%) var(--y,50%), rgba(232,180,168,0.25), transparent 70%)'
+        }}
       />
+    </div>
+  );
+}
+function PassSelector({
+  selected,
+  onChange
+}: {
+  selected: 'inPerson' | 'online';
+  onChange: (v: 'inPerson' | 'online') => void;
+}) {
+  const cards = [
+    {
+      key: 'inPerson' as const,
+      title: 'In-Person (Toronto)',
+      emoji: '🏢',
+      date: 'Sat, Nov 29, 2025',
+      time: '11:00 AM–3:00 PM ET',
+      detailIcon: <MapPin className="h-4 w-4" />,
+      detail: '200 King St E, Toronto'
+    },
+    {
+      key: 'online' as const,
+      title: 'Online (Zoom)',
+      emoji: '💻',
+      date: 'Sun, Nov 30, 2025',
+      time: '11:00 AM–3:00 PM ET',
+      detailIcon: <Monitor className="h-4 w-4" />,
+      detail: 'Link arrives 24h before'
+    }
+  ];
+
+  return (
+    <div role="radiogroup" aria-label="Pass type" className="grid sm:grid-cols-2 gap-3">
+      {cards.map(c => {
+        const active = selected === c.key;
+        return (
+          <button
+            key={c.key}
+            role="radio"
+            aria-checked={active}
+            onClick={() => onChange(c.key)}
+            className={`text-left rounded-2xl transition-all ring-1 p-4 bg-white/85 backdrop-blur hover:shadow-sm ${
+              active ? 'ring-2' : ''
+            }`}
+            style={{
+              borderColor: active ? 'rgba(232,180,168,0.6)' : 'rgba(232,180,168,0.28)',
+              boxShadow: active ? '0 8px 24px rgba(0,0,0,0.06)' : 'none',
+              color: pastel.text
+            }}
+          >
+            <div className="flex items-center justify-between gap-2">
+              <div className="font-playfair text-lg">{c.emoji} {c.title}</div>
+              {active && (
+                <span
+                  className="text-[11px] px-2 py-0.5 rounded-full"
+                  style={{
+                    border: '1px solid rgba(232,180,168,0.5)',
+                    background: 'rgba(232,180,168,0.18)'
+                  }}
+                >
+                  Selected
+                </span>
+              )}
+            </div>
+            <div className="mt-2 grid grid-cols-[auto,1fr] gap-x-2 gap-y-1 text-sm font-lato opacity-90">
+              <span className="inline-flex items-center gap-1"><CalendarDays className="h-4 w-4" /> {c.date}</span>
+              <span className="inline-flex items-center gap-1"><Clock className="h-4 w-4" /> {c.time}</span>
+              <span className="inline-flex items-center gap-1">{c.detailIcon} {c.detail}</span>
+            </div>
+          </button>
+        );
+      })}
     </div>
   );
 }

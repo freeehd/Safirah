@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import QuizCTA from '@/components/QuizCTA';
 import Services from '@/components/Services';
 import Script from 'next/script';
+import TestimonialSection from '@/components/TestimonialSection';
 
 const HomePage = () => {
   const router = useRouter();
@@ -27,6 +28,7 @@ const HomePage = () => {
       <Services />
          <QuizCTA onStartQuiz={() => router.push('/quiz')} />
             <Benefits />
+<TestimonialSection />
       <ShiftToSuccess />
    
     
