@@ -1,5 +1,6 @@
 import path from 'path';
 import { promises as fs } from 'fs';
+import type { MetadataRoute } from 'next';
 import { SITE_URL, STATIC_ROUTES } from '@/lib/site';
 
 async function exists(p: string) {
@@ -72,14 +73,13 @@ export async function getAllRoutePaths(): Promise<string[]> {
   return Array.from(set);
 }
 
-export async function getSitemapXmlEntries() {
+export async function getSitemapXmlEntries(): Promise<MetadataRoute.Sitemap> {
   const paths = await getAllRoutePaths();
   const now = new Date();
-  return paths.map((p) => ({
+  return paths.map<MetadataRoute.Sitemap[number]>((p) => ({
     url: p.startsWith('http') ? p : `${SITE_URL}${p}`,
     lastModified: now,
-    changeFrequency: p === '/' ? 'daily' : 'weekly' as const,
+    changeFrequency: p === '/' ? 'daily' : 'weekly',
     priority: p === '/' ? 1 : 0.7,
   }));
 }
-

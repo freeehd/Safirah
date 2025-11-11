@@ -31,45 +31,6 @@ type Item = QuoteItem | PhotoItem;
 // Items from data/testimonials.json
 const TESTIMONIAL_ITEMS: Item[] = (testimonialsData as unknown as Item[]);
 
-// Real data from testimonials.json
-const SAMPLE_ITEMS: Item[] = [
-  {
-    type: 'quote',
-    quote: 'I walked in anxious and walked out anchored. The softness + structure combo is everything.',
-    name: 'Ayesha K.',
-    role: 'Toronto (In-Person)',
-    avatar: '/assets/testimonials/ayesha.webp',
-    rating: 5,
-    priority: 10,
-    visible: true
-  },
-  {
-    type: 'photo',
-    src: '/assets/testimonials/group1.webp',
-    alt: 'Smiling group after workshop',
-    caption: 'After-session glow ✨',
-    priority: 9,
-    visible: true
-  },
-  {
-    type: 'quote',
-    quote: 'Not a dating thing—a self-rescue moment. The tools are gentle and they stick.',
-    name: 'Sara B.',
-    role: 'Online (Zoom)',
-    avatar: '/assets/testimonials/sara.webp',
-    rating: 5,
-    priority: 8,
-    visible: true
-  },
-  {
-    type: 'photo',
-    src: '/assets/testimonials/journal.webp',
-    alt: 'Workbook and journal on table',
-    caption: 'Printed workbook included',
-    priority: 7,
-    visible: true
-  }
-];
 
 const theme = {
   text: '#2D2D2D',
@@ -353,7 +314,9 @@ function CuteLightbox({
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    return () => (document.body.style.overflow = prev);
+    return () => {
+      document.body.style.overflow = prev;
+    };
   }, []);
 
   useEffect(() => {
