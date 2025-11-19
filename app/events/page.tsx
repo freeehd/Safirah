@@ -74,24 +74,30 @@ const upcoming: EventItem[] = [
 export default function EventsPage() {
   const fadeUp = useFadeUp();
 
-  // Early-bird logic (Toronto time)
+//   // Early-bird logic (Toronto time)
+// const [selectedPass, setSelectedPass] = useState<'inPerson' | 'online'>('inPerson');
+
+//   const deadline = new Date('2025-11-15T23:59:59-05:00').getTime();
+//   const [nowMs, setNowMs] = useState<number>(Date.now());
+//   useEffect(() => {
+//     const id = setInterval(() => setNowMs(Date.now()), 1000);
+//     return () => clearInterval(id);
+//   }, []);
+//   const saleActive = nowMs < deadline;
+//   const fullPrice = 45;
+//   const salePrice = 35;
+//   const displayPrice = saleActive ? `$${salePrice}` : `$${fullPrice}`;
+//   const msRemaining = Math.max(0, deadline - nowMs);
+//   const d = Math.floor(msRemaining / (24 * 60 * 60 * 1000));
+//   const h = Math.floor((msRemaining % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+//   const m = Math.floor((msRemaining % (60 * 60 * 1000)) / (60 * 1000));
+//   const s = Math.floor((msRemaining % (60 * 1000)) / 1000);
+// Pass selection
 const [selectedPass, setSelectedPass] = useState<'inPerson' | 'online'>('inPerson');
 
-  const deadline = new Date('2025-11-15T23:59:59-05:00').getTime();
-  const [nowMs, setNowMs] = useState<number>(Date.now());
-  useEffect(() => {
-    const id = setInterval(() => setNowMs(Date.now()), 1000);
-    return () => clearInterval(id);
-  }, []);
-  const saleActive = nowMs < deadline;
-  const fullPrice = 45;
-  const salePrice = 35;
-  const displayPrice = saleActive ? `$${salePrice}` : `$${fullPrice}`;
-  const msRemaining = Math.max(0, deadline - nowMs);
-  const d = Math.floor(msRemaining / (24 * 60 * 60 * 1000));
-  const h = Math.floor((msRemaining % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
-  const m = Math.floor((msRemaining % (60 * 60 * 1000)) / (60 * 1000));
-  const s = Math.floor((msRemaining % (60 * 1000)) / 1000);
+// Single full price
+const price = 38;
+
 
   return (
     <div className="page-wrapper">
@@ -187,7 +193,7 @@ const [selectedPass, setSelectedPass] = useState<'inPerson' | 'online'>('inPerso
         {/* Big, clear Pass Selector */}
         <PassSelector selected={selectedPass} onChange={setSelectedPass} />
 
-        {/* Price + countdown (compact) */}
+        {/* Price + countdown (compact)
         <div className="mt-5 flex flex-wrap items-center gap-3">
           <div
             className="inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1"
@@ -206,7 +212,23 @@ const [selectedPass, setSelectedPass] = useState<'inPerson' | 'online'>('inPerso
               </span>
             )}
           </div>
-        </div>
+        </div> */}
+
+{/* Price (full) */}
+<div className="mt-5 flex flex-wrap items-center gap-3">
+  <div
+    className="inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1"
+    style={{
+      borderColor: 'rgba(232,180,168,0.35)',
+      backgroundColor: 'rgba(232,180,168,0.10)',
+      color: pastel.text
+    }}
+  >
+    <span className="text-sm">
+      <strong>${price}</strong> CAD
+    </span>
+  </div>
+</div>
 
         {/* CTAs — Learn More (primary) + Buy (depends on selected pass) */}
         <div className="mt-4 flex flex-wrap items-center gap-3">
@@ -218,7 +240,7 @@ const [selectedPass, setSelectedPass] = useState<'inPerson' | 'online'>('inPerso
             <Link href="/events/soulmate-workshop">Learn More</Link>
           </Button>
 
-          <Button
+          {/* <Button
             asChild
             variant="outline"
             className="rounded-full px-6 h-11 border-2"
@@ -233,20 +255,36 @@ const [selectedPass, setSelectedPass] = useState<'inPerson' | 'online'>('inPerso
             >
               Buy {selectedPass === 'inPerson' ? 'In-Person' : 'Online'} Pass — {displayPrice}
             </Link>
-          </Button>
+          </Button> */}
+          <Button
+  asChild
+  variant="outline"
+  className="rounded-full px-6 h-11 border-2"
+  style={{ borderColor: pastel.accent, color: pastel.text }}
+>
+  <Link
+    href={
+      selectedPass === 'inPerson'
+        ? 'https://shop.hirahsaficoach.com/products/soulmate-workshop-tickets'
+        : 'https://shop.hirahsaficoach.com/products/soulmate-workshop-online-pass'
+    }
+  >
+    Buy {selectedPass === 'inPerson' ? 'In-Person' : 'Online'} Pass — ${price}
+  </Link>
+</Button>
+
         </div>
 
-        {/* Tiny note */}
-        <div
-          className="mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1"
-          style={{
-            borderColor: 'rgba(232,180,168,0.35)',
-            backgroundColor: 'rgba(232,180,168,0.10)',
-            color: pastel.text
-          }}
-        >
-          Early-bird ends Nov 15 (Toronto time)
-        </div>
+     <div
+  className="mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1"
+  style={{
+    borderColor: 'rgba(232,180,168,0.35)',
+    backgroundColor: 'rgba(232,180,168,0.10)',
+    color: pastel.text
+  }}
+>
+  Tickets are limited — in-person seats are first come, first served.
+</div>
       </div>
     </div>
   </motion.div>

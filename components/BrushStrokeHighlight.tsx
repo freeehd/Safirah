@@ -64,7 +64,6 @@ const BrushStrokeHighlight: React.FC<BrushStrokeHighlightProps> = ({
       style={{
         position: 'relative',
         display: 'inline-block',
-        isolation: 'isolate',
         width,
       }}
     >

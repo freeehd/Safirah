@@ -1,7 +1,6 @@
 .quiz-container {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     display: flex;
@@ -15,14 +14,15 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.5s ease, visibility 0.5s ease;
+    overflow-y: auto;              /* ⬅ allow scroll if content is tall */
+    max-height: 100dvh;            /* ⬅ handle mobile browser UI nicely */
 }
-
-.progress-fixed { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); width: calc(100% - 4rem); max-width: 640px; z-index: 9; }
 
 .quiz-container.active {
     opacity: 1;
     visibility: visible;
 }
+
 
 .quiz-container.phase-intro .lottie-container-wrapper { opacity: 0.15; transition: opacity 0.4s ease; }
 .quiz-container.phase-quiz .lottie-container-wrapper { opacity: 0.35; }
@@ -65,21 +65,25 @@
     transition: opacity var(--q-dur, 360ms) ease, transform var(--q-dur, 360ms) ease;
 }
 
-.intro-screen { opacity: 1; transform: translateY(0); }
+.intro-screen .quiz-question {
+  margin-bottom: 1.5rem;
+}
+
 .intro-screen.leaving { opacity: 0; transform: translateY(-10px); }
 
-.start-area { position: relative; display: inline-block; }
+.start-area { position: relative; display: inline-block; margin-bottom: 2rem; margin-top:2rem}
 .start-bloom { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -52%); pointer-events: none; z-index: 0; }
 .start-bloom-svg { filter: drop-shadow(0 0 14px rgba(210,154,137,0.4)); }
 .start-button { position: relative; z-index: 1; }
 
 .quiz-question {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
     color: var(--text-color);
-    margin-bottom: 3rem;
-    line-height: 1.4;
+    margin-bottom: 2.2rem;
+    line-height: 1.35;
 }
+
 
 .quiz-questions { opacity: 0; transform: translateY(12px); will-change: opacity, transform; }
 .quiz-questions.entered { opacity: 1; transform: translateY(0); }
@@ -101,16 +105,17 @@
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+
 .quiz-answers {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 0.9rem;
 }
 
 @media (min-width: 768px) {
     .quiz-answers {
         grid-template-columns: 1fr 1fr;
-        gap: 1.5rem;
+        gap: 1.25rem;
     }
 }
 
@@ -319,3 +324,88 @@
   margin-top: 1rem;
 }
 .results-actions .cta-button { text-decoration: none; display: inline-block; }
+@media (max-width: 640px) {
+  .quiz-container {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: calc(1.5rem + env(safe-area-inset-top, 0px)) 1rem 1.5rem;
+    overflow-y: auto;
+  }
+.progress-fixed {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 4rem);
+    max-width: 640px;
+    z-index: 9;
+}
+
+.close-quiz-button {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: rgba(255,255,255,0.85);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    z-index: 10;
+}
+
+
+ .quiz-content {
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+    position: relative;
+    z-index: 5;
+    transition: opacity var(--q-dur, 360ms) ease, transform var(--q-dur, 360ms) ease;
+    padding: 1.5rem 1.5rem 1.75rem;
+    background: rgba(255,255,255,0.9);
+    border-radius: 18px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+    margin-top: 4rem;   /* clears progress + close button */
+    margin-bottom: 2rem;
+}
+
+
+  .quiz-question {
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
+    margin-bottom: 1.6rem;
+  }
+
+  .answer-button {
+    padding: 1.1rem 1rem;
+    font-size: 1rem;
+  }
+  /* Slightly smaller intro flower / results bloom if needed */
+  .start-bloom {
+    transform: translate(-50%, -48%) scale(0.85);
+  }
+
+  .results-bloom {
+    top: 32px;
+    transform: translateX(-50%) scale(0.85);
+  }
+
+  .quiz-results p {
+    font-size: 1rem;
+    margin-bottom: 1.8rem;
+  }
+}
+/* Extra small devices: 360px wide-ish */
+@media (max-width: 380px) {
+  .quiz-question {
+    font-size: 1.3rem;
+  }
+
+  .answer-button {
+    padding: 0.95rem 0.85rem;
+  }
+}

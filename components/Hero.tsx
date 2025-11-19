@@ -167,7 +167,7 @@ const Hero = () => {
               >
                 Building the{' '}
                 <span className="relative inline-block">
-                  <span style={{ color: highlightColor }} className="font-semibold">
+                  <span style={{ color: highlightColor }} className="font-semibold z-[-10]">
                     <BrushStrokeHighlight
                       colorStart="#bbe0c5"  // was #f8bdda
                       colorEnd="#fff8ee"   // was #ffdce2

@@ -250,20 +250,6 @@ function Dot() {
   );
 }
 
-function TimeBox({ label, value }: { label: string; value: number }) {
-  return (
-    <div
-      className="min-w-[54px] px-2 py-2 rounded-xl ring-1 bg-white/85 backdrop-blur"
-      style={{ borderColor: hexToRgba(theme.accent2, 0.35), color: theme.text }}
-    >
-      <div className="text-lg font-playfair leading-none text-center">
-        {String(value).padStart(2, '0')}
-      </div>
-      <div className="text-[10px] uppercase tracking-wider opacity-70 text-center">{label}</div>
-    </div>
-  );
-}
-
 function WhichPassHelper() {
   return (
     <details className="mt-2 text-xs font-lato" style={{ color: theme.text }}>
@@ -277,51 +263,10 @@ function WhichPassHelper() {
         <p>
           <strong>In-Person (Toronto)</strong>: Includes the full live experience, printed workbook, treats, and gifts. Limited seats.
           <br />
-          <strong>Online (Live)</strong>: Join from anywhere via a secure link. Same curriculum and early-bird pricing.
+          <strong>Online (Live)</strong>: Join from anywhere via a secure link. Same curriculum and same price as in-person.
         </p>
       </div>
     </details>
-  );
-}
-
-/* ---------- small composed bits ---------- */
-function EarlyBirdChip({
-  saleActive,
-  fullPrice,
-  displayPrice,
-  d,
-  h,
-  m,
-  s,
-}: {
-  saleActive: boolean;
-  fullPrice: number;
-  displayPrice: string;
-  d: number;
-  h: number;
-  m: number;
-  s: number;
-}) {
-  return (
-    <div
-      className="inline-flex flex-wrap items-center gap-2 rounded-full px-3 py-1 ring-1 mt-2"
-      style={{
-        borderColor: hexToRgba(theme.accent2, 0.45),
-        backgroundColor: hexToRgba(theme.accent1, 0.15),
-        color: theme.text,
-      }}
-    >
-      <span className="text-sm font-medium">Early-bird:</span>
-      <span className="text-sm">
-        <s>${fullPrice}</s> <strong>{displayPrice}</strong> until Nov 15, 11:59pm ET
-      </span>
-      {saleActive && (
-        <span className="text-xs opacity-80" aria-hidden>
-          • {d}d {String(h).padStart(2, '0')}:{String(m).padStart(2, '0')}:{String(s).padStart(2, '0')}
-        </span>
-      )}
-      <span className="sr-only">Early-bird price ends on November 15 at 11:59 pm Eastern Time.</span>
-    </div>
   );
 }
 
@@ -401,11 +346,7 @@ function EventDetailsBand() {
 }
 
 /* ---------- sticky mobile buy bar ---------- */
-function MobileBuyBar({
-  displayPrice,
-}: {
-  displayPrice: string;
-}) {
+function MobileBuyBar({ displayPrice }: { displayPrice: string }) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -429,7 +370,9 @@ function MobileBuyBar({
             className="w-1/2 rounded-xl h-11"
             style={{ backgroundColor: theme.highlight, color: '#fff' }}
           >
-            <a href={LINKS.inPerson} target="_blank" rel="noopener noreferrer">In-Person — {displayPrice}</a>
+            <a href={LINKS.inPerson} target="_blank" rel="noopener noreferrer">
+              In-Person — {displayPrice}
+            </a>
           </Button>
           <Button
             asChild
@@ -437,7 +380,9 @@ function MobileBuyBar({
             className="w-1/2 rounded-xl h-11 border-2"
             style={{ borderColor: theme.accent2, color: theme.text }}
           >
-            <a href={LINKS.online} target="_blank" rel="noopener noreferrer">Online — {displayPrice}</a>
+            <a href={LINKS.online} target="_blank" rel="noopener noreferrer">
+              Online — {displayPrice}
+            </a>
           </Button>
         </div>
       </div>
@@ -448,29 +393,11 @@ function MobileBuyBar({
 /* ---------- page ---------- */
 export default function SoulmateWorkshopPage() {
   const fadeUp = useFadeUp();
-  const prefersReduced = useReducedMotion();
+  useReducedMotion(); // still used above via hook
 
-  // Early-bird logic
-  const deadline = new Date('2025-11-15T23:59:59-05:00').getTime(); // ET
-  const [nowMs, setNowMs] = useState<number>(Date.now());
-
-  useEffect(() => {
-    const interval = prefersReduced ? 60_000 : 1_000;
-    const id = setInterval(() => setNowMs(Date.now()), interval);
-    return () => clearInterval(id);
-  }, [prefersReduced]);
-
-  const saleActive = nowMs < deadline;
-  const fullPrice = 45;
-  const salePrice = 35;
-  const displayPrice = saleActive ? `$${salePrice}` : `$${fullPrice}`;
-
-  // Countdown helper
-  const msRemaining = Math.max(0, deadline - nowMs);
-  const d = Math.floor(msRemaining / (24 * 60 * 60 * 1000));
-  const h = Math.floor((msRemaining % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
-  const m = Math.floor((msRemaining % (60 * 60 * 1000)) / (60 * 1000));
-  const s = Math.floor((msRemaining % (60 * 1000)) / 1000);
+  // Single full price (no early-bird)
+  const price = 38;
+  const displayPrice = `$${price}`;
 
   return (
     <div className="page-wrapper" style={{ backgroundColor: theme.bg }}>
@@ -542,15 +469,19 @@ export default function SoulmateWorkshopPage() {
               {/* Details band */}
               <EventDetailsBand />
 
-              <EarlyBirdChip
-                saleActive={saleActive}
-                fullPrice={fullPrice}
-                displayPrice={displayPrice}
-                d={d}
-                h={h}
-                m={m}
-                s={s}
-              />
+              {/* Simple price chip */}
+              <div
+                className="inline-flex flex-wrap items-center gap-2 rounded-full px-3 py-1 ring-1 mt-2"
+                style={{
+                  borderColor: hexToRgba(theme.accent2, 0.45),
+                  backgroundColor: hexToRgba(theme.accent1, 0.15),
+                  color: theme.text,
+                }}
+              >
+                <span className="text-sm">
+                  <strong>{displayPrice}</strong> CAD per person — same price for In-Person & Online.
+                </span>
+              </div>
 
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-2">
                 <Button
@@ -654,11 +585,19 @@ export default function SoulmateWorkshopPage() {
                   the day the landlord leaves.
                 </p>
               </div>
-              <p className="text-base sm:text-lg pt-2">This workshop isn’t about chasing <strong>rescue</strong>. It’s about building <strong>power</strong>.</p>
+              <p className="text-base sm:text-lg pt-2">
+                This workshop isn’t about chasing <strong>rescue</strong>. It’s about building <strong>power</strong>.
+              </p>
               {/* Repeat logistics for scrollers */}
               <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 text-xs sm:text-sm">
-                <InfoPill icon={<CalendarDays className="h-4 w-4" />} text={`In-Person: ${IN_PERSON.dateLabel} • ${IN_PERSON.timeLabel}`} />
-                <InfoPill icon={<CalendarDays className="h-4 w-4" />} text={`Online: ${ONLINE.dateLabel} • ${ONLINE.timeLabel}`} />
+                <InfoPill
+                  icon={<CalendarDays className="h-4 w-4" />}
+                  text={`In-Person: ${IN_PERSON.dateLabel} • ${IN_PERSON.timeLabel}`}
+                />
+                <InfoPill
+                  icon={<CalendarDays className="h-4 w-4" />}
+                  text={`Online: ${ONLINE.dateLabel} • ${ONLINE.timeLabel}`}
+                />
               </div>
             </CardContent>
           </Card>
@@ -672,7 +611,10 @@ export default function SoulmateWorkshopPage() {
             <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl mb-2 sm:mb-3" style={{ color: theme.text }}>
               The High Cost of the “Rescue Fantasy”
             </h2>
-            <p className="font-lato text-base sm:text-lg opacity-90 max-w-2xl mx-auto text-center" style={{ color: theme.text }}>
+            <p
+              className="font-lato text-base sm:text-lg opacity-90 max-w-2xl mx-auto text-center"
+              style={{ color: theme.text }}
+            >
               Waiting for someone to fix your life comes at a price you can’t afford to keep paying.
             </p>
           </div>
@@ -703,7 +645,10 @@ export default function SoulmateWorkshopPage() {
             <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl mb-2 sm:mb-3" style={{ color: theme.text }}>
               Imagine a Life Where You’re the Source
             </h2>
-            <p className="font-lato text-base sm:text-lg opacity-90 max-w-2xl mx-auto text-center" style={{ color: theme.text }}>
+            <p
+              className="font-lato text-base sm:text-lg opacity-90 max-w-2xl mx-auto text-center"
+              style={{ color: theme.text }}
+            >
               Not waiting. Not hoping. Not outsourcing. Just <strong>whole</strong>.
             </p>
           </div>
@@ -725,12 +670,21 @@ export default function SoulmateWorkshopPage() {
       {/* WHAT WE'LL DO */}
       <section className={`${container} ${sectionY} pt-0`}>
         <motion.div {...fadeUp}>
-          <Card className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
+          <Card
+            className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl"
+            style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
+          >
             <CardHeader className="pb-3 sm:pb-4 text-center">
-              <CardTitle className="font-playfair text-2xl sm:text-3xl md:text-4xl" style={{ color: theme.text }}>
+              <CardTitle
+                className="font-playfair text-2xl sm:text-3xl md:text-4xl"
+                style={{ color: theme.text }}
+              >
                 Your Path to Inner Strength
               </CardTitle>
-              <p className="font-lato text-base sm:text-lg opacity-90 mt-2" style={{ color: theme.text }}>
+              <p
+                className="font-lato text-base sm:text-lg opacity-90 mt-2"
+                style={{ color: theme.text }}
+              >
                 Three powerful shifts that will transform how you show up in your life
               </p>
             </CardHeader>
@@ -753,11 +707,20 @@ export default function SoulmateWorkshopPage() {
               {/* Repeat logistics below steps for scrollers */}
               <div className="md:col-span-3 mt-2">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 text-xs sm:text-sm">
-                  <InfoPill icon={<CalendarDays className="h-4 w-4" />} text={`In-Person: ${IN_PERSON.dateLabel} • ${IN_PERSON.timeLabel}`} />
-                  <InfoPill icon={<MapPin className="h-4 w-4" />} text={`Venue: ${IN_PERSON.placeLabel}`} />
+                  <InfoPill
+                    icon={<CalendarDays className="h-4 w-4" />}
+                    text={`In-Person: ${IN_PERSON.dateLabel} • ${IN_PERSON.timeLabel}`}
+                  />
+                  <InfoPill
+                    icon={<MapPin className="h-4 w-4" />}
+                    text={`Venue: ${IN_PERSON.placeLabel}`}
+                  />
                 </div>
                 <div className="mt-2">
-                  <InfoPill icon={<CalendarDays className="h-4 w-4" />} text={`Online: ${ONLINE.dateLabel} • ${ONLINE.timeLabel}`} />
+                  <InfoPill
+                    icon={<CalendarDays className="h-4 w-4" />}
+                    text={`Online: ${ONLINE.dateLabel} • ${ONLINE.timeLabel}`}
+                  />
                 </div>
               </div>
             </CardContent>
@@ -767,19 +730,31 @@ export default function SoulmateWorkshopPage() {
 
       {/* TICKETS */}
       <section id="tickets" className={`${container} ${sectionY} pt-0 scroll-mt-24`}>
-        <Card className="border-0 rounded-3xl overflow-hidden shadow-xl bg-white/90 relative" style={{ boxShadow: `0 12px 40px -8px ${hexToRgba('#000', 0.12)}` }}>
+        <Card
+          className="border-0 rounded-3xl overflow-hidden shadow-xl bg-white/90 relative"
+          style={{ boxShadow: `0 12px 40px -8px ${hexToRgba('#000', 0.12)}` }}
+        >
           <div
             className="absolute top-3 sm:top-4 left-3 sm:left-[-30px] sm:rotate-[-15deg] text-[10px] sm:text-xs font-semibold tracking-wide px-3 sm:px-4 py-1 rounded-full shadow-sm z-10"
-            style={{ backgroundColor: theme.highlight, color: '#fff', boxShadow: `0 6px 20px -6px ${hexToRgba(theme.highlight, 0.6)}` }}
+            style={{
+              backgroundColor: theme.highlight,
+              color: '#fff',
+              boxShadow: `0 6px 20px -6px ${hexToRgba(theme.highlight, 0.6)}`,
+            }}
           >
-            EARLY-BIRD
+            WORKSHOP TICKETS
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3">
             {/* Left */}
             <div
               className="md:col-span-2 p-6 sm:p-8 relative"
-              style={{ background: `linear-gradient(160deg, ${hexToRgba(theme.accent1, 0.55)}, ${hexToRgba(theme.accent2, 0.55)})` }}
+              style={{
+                background: `linear-gradient(160deg, ${hexToRgba(
+                  theme.accent1,
+                  0.55,
+                )}, ${hexToRgba(theme.accent2, 0.55)})`,
+              }}
             >
               <div
                 className="absolute -inset-6 -z-10 blur-3xl opacity-40 sm:opacity-50"
@@ -789,45 +764,68 @@ export default function SoulmateWorkshopPage() {
               <div className="max-w-xl">
                 <div
                   className="inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1 mb-3"
-                  style={{ borderColor: hexToRgba(theme.accent2, 0.45), backgroundColor: hexToRgba(theme.accent2, 0.18), color: theme.text }}
+                  style={{
+                    borderColor: hexToRgba(theme.accent2, 0.45),
+                    backgroundColor: hexToRgba(theme.accent2, 0.18),
+                    color: theme.text,
+                  }}
                 >
                   💗 Two ticket types: In-Person (Toronto) or Online (Live)
                 </div>
-                <h3 className="font-playfair text-3xl sm:text-4xl md:text-5xl leading-tight" style={{ color: theme.text }}>
+                <h3
+                  className="font-playfair text-3xl sm:text-4xl md:text-5xl leading-tight"
+                  style={{ color: theme.text }}
+                >
                   Choose Your Pass
                 </h3>
-                <p className="font-lato mt-2 opacity-90 text-center sm:text-left" style={{ color: theme.text }}>
+                <p
+                  className="font-lato mt-2 opacity-90 text-center sm:text-left"
+                  style={{ color: theme.text }}
+                >
                   In-Person: <strong>{IN_PERSON.dateLabel}</strong> • {IN_PERSON.timeLabel} • {IN_PERSON.placeLabel}
                   <br />
                   Online: <strong>{ONLINE.dateLabel}</strong> • {ONLINE.timeLabel} • Live via secure link
                 </p>
 
-                {/* Timer + price */}
-                <div className="mt-5 grid gap-4 sm:grid-cols-2 items-end">
-                  <div className="rounded-2xl bg-white/80 backdrop-blur ring-1 p-4 text-center" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
-                    <div className="text-[11px] sm:text-xs uppercase tracking-wider font-lato opacity-70" style={{ color: theme.text }}>
-                      Sale ends in
+                {/* Price + options */}
+                <div className="mt-5 grid gap-4 sm:grid-cols-2 items-stretch">
+                  <div
+                    className="rounded-2xl bg-white/80 backdrop-blur ring-1 p-4 text-center"
+                    style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
+                  >
+                    <div
+                      className="text-[11px] sm:text-xs uppercase tracking-wider font-lato opacity-70"
+                      style={{ color: theme.text }}
+                    >
+                      Your Ticket
                     </div>
-                    {saleActive ? (
-                      <div className="mt-2 flex items-stretch justify-center gap-2" role="timer" aria-live="off">
-                        <TimeBox label="Days" value={d} />
-                        <TimeBox label="Hrs" value={h} />
-                        <TimeBox label="Min" value={m} />
-                        <TimeBox label="Sec" value={s} />
-                      </div>
-                    ) : (
-                      <div className="mt-1 font-playfair text-lg" style={{ color: theme.text }}>
-                        Sale ended
-                      </div>
-                    )}
-                  </div>
-                  <div className="rounded-2xl bg-white/80 backdrop-blur ring-1 p-4 text-center" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
-                    <div className="text-[11px] sm:text-xs uppercase tracking-wider font-lato opacity-70" style={{ color: theme.text }}>
-                      Today
-                    </div>
-                    <div className="mt-1 font-playfair text-2xl sm:text-3xl md:text-4xl flex items-center justify-center gap-2" style={{ color: theme.text }}>
-                      <s className="text-base sm:text-xl opacity-60">$45</s>
+                    <div
+                      className="mt-1 font-playfair text-2xl sm:text-3xl md:text-4xl flex items-center justify-center gap-2"
+                      style={{ color: theme.text }}
+                    >
                       <span className="leading-none">{displayPrice}</span>
+                    </div>
+                    <div className="mt-1 text-xs font-lato opacity-80" style={{ color: theme.text }}>
+                      Per person, per pass (CAD).
+                    </div>
+                  </div>
+                  <div
+                    className="rounded-2xl bg-white/80 backdrop-blur ring-1 p-4 text-center"
+                    style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
+                  >
+                    <div
+                      className="text-[11px] sm:text-xs uppercase tracking-wider font-lato opacity-70"
+                      style={{ color: theme.text }}
+                    >
+                      Attendance Options
+                    </div>
+                    <div className="mt-2 text-xs sm:text-sm font-lato space-y-1" style={{ color: theme.text }}>
+                      <div>
+                        <strong>In-Person (Toronto)</strong> — full live experience, workbook, treats & gifts.
+                      </div>
+                      <div>
+                        <strong>Online (Live)</strong> — join via Zoom, same curriculum and price.
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -876,8 +874,11 @@ export default function SoulmateWorkshopPage() {
                       Online Pass — {displayPrice}
                     </a>
                   </Button>
-                  <span className="text-xs font-lato opacity-70 text-center sm:text-left" style={{ color: theme.text }}>
-                    Early-bird ends Nov 15, 11:59pm Toronto time.
+                  <span
+                    className="text-xs font-lato opacity-70 text-center sm:text-left"
+                    style={{ color: theme.text }}
+                  >
+                    Tickets are limited — in-person seats are first come, first served.
                   </span>
                 </div>
                 <WhichPassHelper />
@@ -889,10 +890,22 @@ export default function SoulmateWorkshopPage() {
               <div className="w-full max-w-md">
                 <ImagePlaceholder ratio="4/3" src="/assets/soulmate.webp" />
                 <div className="mt-4 grid gap-2 text-xs font-lato">
-                  <a href={IN_PERSON.mapUrl} target="_blank" rel="noopener noreferrer" className="underline text-center sm:text-left" style={{ color: theme.text }}>
+                  <a
+                    href={IN_PERSON.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline text-center sm:text-left"
+                    style={{ color: theme.text }}
+                  >
                     📍 Open the Toronto venue in Google Maps
                   </a>
-                  <a href={ONLINE.learnUrl} target="_blank" rel="noopener noreferrer" className="underline text-center sm:text-left" style={{ color: theme.text }}>
+                  <a
+                    href={ONLINE.learnUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline text-center sm:text-left"
+                    style={{ color: theme.text }}
+                  >
                     💻 Learn about the online experience
                   </a>
                 </div>
@@ -909,7 +922,10 @@ export default function SoulmateWorkshopPage() {
             <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl mb-2 sm:mb-3" style={{ color: theme.text }}>
               A Safe Space for Real Transformation
             </h2>
-            <p className="font-lato text-base sm:text-lg opacity-90 max-w-2xl mx-auto text-center" style={{ color: theme.text }}>
+            <p
+              className="font-lato text-base sm:text-lg opacity-90 max-w-2xl mx-auto text-center"
+              style={{ color: theme.text }}
+            >
               Everything you need for a comfortable, empowering experience
             </p>
           </div>
@@ -920,9 +936,15 @@ export default function SoulmateWorkshopPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            <Card className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
+            <Card
+              className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl"
+              style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
+            >
               <CardHeader className="pb-2">
-                <CardTitle className="font-playfair text-lg sm:text-xl" style={{ color: theme.text }}>
+                <CardTitle
+                  className="font-playfair text-lg sm:text-xl"
+                  style={{ color: theme.text }}
+                >
                   What’s Included
                 </CardTitle>
               </CardHeader>
@@ -939,9 +961,15 @@ export default function SoulmateWorkshopPage() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 rounded-3xl shadow-sm" style={{ backgroundColor: '#f4fff7' }}>
+            <Card
+              className="border-0 rounded-3xl shadow-sm"
+              style={{ backgroundColor: '#f4fff7' }}
+            >
               <CardHeader className="pb-2">
-                <CardTitle className="font-playfair text-lg sm:text-xl flex items-center gap-2" style={{ color: theme.text }}>
+                <CardTitle
+                  className="font-playfair text-lg sm:text-xl flex items-center gap-2"
+                  style={{ color: theme.text }}
+                >
                   <Shield className="h-5 w-5" /> Safe Space
                 </CardTitle>
               </CardHeader>
@@ -958,9 +986,15 @@ export default function SoulmateWorkshopPage() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
+            <Card
+              className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl"
+              style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
+            >
               <CardHeader className="pb-2">
-                <CardTitle className="font-playfair text-lg sm:text-xl" style={{ color: theme.text }}>
+                <CardTitle
+                  className="font-playfair text-lg sm:text-xl"
+                  style={{ color: theme.text }}
+                >
                   Perfect For You If
                 </CardTitle>
               </CardHeader>
@@ -980,9 +1014,15 @@ export default function SoulmateWorkshopPage() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl" style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}>
+            <Card
+              className="border-0 bg-white/85 backdrop-blur ring-1 rounded-3xl"
+              style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
+            >
               <CardHeader className="pb-2">
-                <CardTitle className="font-playfair text-lg sm:text-xl" style={{ color: theme.text }}>
+                <CardTitle
+                  className="font-playfair text-lg sm:text-xl"
+                  style={{ color: theme.text }}
+                >
                   You’ll Leave With
                 </CardTitle>
               </CardHeader>
@@ -1007,15 +1047,24 @@ export default function SoulmateWorkshopPage() {
         <Card className="border-0 rounded-3xl overflow-hidden shadow-lg">
           <div className="grid grid-cols-1 md:grid-cols-3">
             <div className="md:col-span-2 p-6 sm:p-8" style={{ backgroundColor: '#fff' }}>
-              <h4 className="font-playfair text-2xl sm:text-3xl md:text-4xl mb-2 sm:mb-3" style={{ color: theme.text }}>
+              <h4
+                className="font-playfair text-2xl sm:text-3xl md:text-4xl mb-2 sm:mb-3"
+                style={{ color: theme.text }}
+              >
                 Don’t miss the moment to save your future
               </h4>
-              <p className="font-lato opacity-90 mb-2 sm:mb-3 text-center mx-auto max-w-2xl" style={{ color: theme.text }}>
+              <p
+                className="font-lato opacity-90 mb-2 sm:mb-3 text-center mx-auto max-w-2xl"
+                style={{ color: theme.text }}
+              >
                 Join us <strong>In-Person (Toronto)</strong> on <strong>{IN_PERSON.dateLabel}</strong> or{' '}
                 <strong>Online</strong> on <strong>{ONLINE.dateLabel}</strong> — both from{' '}
                 <strong>11:00 AM – 3:00 PM (ET)</strong>.
               </p>
-              <p className="font-lato opacity-90 mb-5 sm:mb-6 text-center mx-auto max-w-2xl" style={{ color: theme.text }}>
+              <p
+                className="font-lato opacity-90 mb-5 sm:mb-6 text-center mx-auto max-w-2xl"
+                style={{ color: theme.text }}
+              >
                 Every day you delay this inner work increases the risk of choosing from fear. This isn’t self-help — it’s{' '}
                 <strong>self-rescue</strong>. Limited seats for the Toronto session.
               </p>
@@ -1064,7 +1113,12 @@ export default function SoulmateWorkshopPage() {
             </div>
             <div
               className="relative p-6 sm:p-8"
-              style={{ background: `linear-gradient(160deg, ${hexToRgba(theme.accent1, 0.6)}, ${hexToRgba(theme.accent2, 0.6)})` }}
+              style={{
+                background: `linear-gradient(160deg, ${hexToRgba(
+                  theme.accent1,
+                  0.6,
+                )}, ${hexToRgba(theme.accent2, 0.6)})`,
+              }}
             >
               <div
                 className="absolute -inset-5 -z-10 blur-3xl opacity-40 sm:opacity-50"
@@ -1075,10 +1129,16 @@ export default function SoulmateWorkshopPage() {
                 className="h-full w-full rounded-2xl bg-white/70 backdrop-blur grid place-items-center text-center p-5 sm:p-6 ring-1"
                 style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
               >
-                <div className="font-playfair text-xl sm:text-2xl" style={{ color: theme.text }}>
+                <div
+                  className="font-playfair text-xl sm:text-2xl"
+                  style={{ color: theme.text }}
+                >
                   “Trade the temporary fantasy for permanent, limitless power.”
                 </div>
-                <div className="mt-3 text-xs font-lato opacity-80" style={{ color: theme.text }}>
+                <div
+                  className="mt-3 text-xs font-lato opacity-80"
+                  style={{ color: theme.text }}
+                >
                   In-Person: {IN_PERSON.dateLabel} • {IN_PERSON.timeLabel}
                   <br />
                   {IN_PERSON.placeLabel}
