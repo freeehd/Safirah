@@ -33,7 +33,7 @@ const sectionY = 'py-10 sm:py-14 md:py-20';
 const IN_PERSON = {
   dateLabel: 'Saturday, Nov 29, 2025',
   timeLabel: '11:00 AM – 3:00 PM (ET)',
-  placeLabel: '200 King St E, Toronto, Ontario, Canada',
+  placeLabel: '560 E, 200 King St E, Toronto, Ontario, Canada',
   mapUrl:
     'https://www.google.com/maps/search/?api=1&query=200%20King%20St%20E%2C%20Toronto%2C%20Ontario%2C%20Canada',
 };
@@ -463,7 +463,7 @@ export default function SoulmateWorkshopPage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 text-xs sm:text-sm font-lato">
                 <InfoPill icon={<CalendarDays className="h-4 w-4" />} text="In-Person: Sat, Nov 29 • Online: Sun, Nov 30" />
                 <InfoPill icon={<Clock className="h-4 w-4" />} text="Time: 11:00 AM – 3:00 PM (ET) both days" />
-                <InfoPill icon={<MapPin className="h-4 w-4" />} text="Toronto venue: 200 King St E" />
+                <InfoPill icon={<MapPin className="h-4 w-4" />} text="Toronto venue: 560 E, 200 King St E" />
               </div>
 
               {/* Details band */}

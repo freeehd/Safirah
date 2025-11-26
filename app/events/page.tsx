@@ -466,7 +466,7 @@ function PassSelector({
       date: 'Sat, Nov 29, 2025',
       time: '11:00 AM–3:00 PM ET',
       detailIcon: <MapPin className="h-4 w-4" />,
-      detail: '200 King St E, Toronto'
+      detail: '560 E ,200 King St E, Toronto'
     },
     {
       key: 'online' as const,
