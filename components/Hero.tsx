@@ -219,7 +219,8 @@ const Hero = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <button
+                <a
+                  href="/contact"
                   className="group relative overflow-hidden rounded-full px-8 py-4 font-semibold transition-all hover:scale-105"
                   style={{
                     backgroundImage:
@@ -227,13 +228,14 @@ const Hero = () => {
                     color: textOnAccent
                   }}
                 >
+
                   <span className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-30"
                     style={{
                       background:
                         'radial-gradient(circle at 20% 20%, rgba(255,255,255,0.7), transparent 60%)'
                     }} />
-                  <span className="relative z-10">Start Your Transformation</span>
-                </button>
+                  <span className="relative z-10">1:1 Consultation Session</span>
+                </a>
 
                 <a
                   href="/about"

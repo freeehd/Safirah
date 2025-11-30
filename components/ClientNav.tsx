@@ -17,18 +17,18 @@ export default function ClientNav() {
     { label: 'Services', href: '/services' },
     { label: 'Events', href: '/events' },
     { label: 'Lifestyle Quiz', href: '/quiz' },
-    { label: 'Contact', href: '/contact' },
+    { label: '1:1 Consultation Session', href: '/contact' },
   ];
 
   return (
-  <PillNav
-  logo={logo}
-  items={items}
-  activeHref={pathname}
-  baseColor="#FDD4E8"          // rail (soft pink)
-  pillColor="#F8BaaA"          // pill background
-  hoveredPillTextColor="#f8bdda"
-  pillTextColor="grey"      // pill text
-/>
+    <PillNav
+      logo={logo}
+      items={items}
+      activeHref={pathname}
+      baseColor="#FDD4E8"          // rail (soft pink)
+      pillColor="#F8BaaA"          // pill background
+      hoveredPillTextColor="#f8bdda"
+      pillTextColor="grey"      // pill text
+    />
   );
 }
