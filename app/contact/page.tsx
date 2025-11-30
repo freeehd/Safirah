@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Calendar, CheckCircle2, Globe2, Shield, Star, ChevronDown, ArrowRight, CreditCard } from "lucide-react";
+import { Calendar, CheckCircle2, Globe2, Shield, Star, ChevronDown, ArrowRight, CreditCard, Mail } from "lucide-react";
 
 /**
  * ConsultationsPage — Purchase Page for 1:1 Session
@@ -145,6 +145,26 @@ export default function ConsultationsPage() {
                   </li>
                 ))}
               </ul>
+
+              <div className="mt-6 pt-6 border-t" style={{ borderColor: hexToRgba(COLORS.text, 0.1) }}>
+                <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: hexToRgba(COLORS.text, 0.6) }}>
+                  Questions?
+                </p>
+                <a
+                  href="mailto:hirahsafi@gmail.com"
+                  className="flex items-center gap-3 rounded-xl p-3 transition-colors hover:bg-white/50 group"
+                  style={{ backgroundColor: hexToRgba(COLORS.accent1, 0.15) }}
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-sm transition-transform group-hover:scale-110" style={{ color: COLORS.highlight }}>
+                    <Mail size={20} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold" style={{ color: COLORS.text }}>Email Me</p>
+                    <p className="text-sm" style={{ color: hexToRgba(COLORS.text, 0.8) }}>hirahsafi@gmail.com</p>
+                  </div>
+                </a>
+              </div>
+
               <div className="mt-6 rounded-2xl p-4" style={{ backgroundColor: hexToRgba(COLORS.accent1, 0.25) }}>
                 <p className="text-sm" style={{ color: hexToRgba(COLORS.text, 0.9) }}>
                   “I walked in overwhelmed; I left with a plan and my spark back.”
