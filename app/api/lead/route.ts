@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { sendEmail } from '../../../lib/email';
+import { getQuizResultEmailHtml } from '../../../lib/email-templates';
+import { OptionKey } from '../../../lib/quiz-data';
 
 const KIT_API_BASE = (process.env.KIT_API_BASE || 'https://api.kit.com').replace(/\/$/, '');
 const KIT_API_KEY = process.env.KIT_API_KEY as string;
@@ -48,7 +51,7 @@ async function ensureCustomFieldsExist(fieldKeys: string[]) {
       method: 'POST',
       body: JSON.stringify({ label: labelFromKey(key) })
     });
-    customFieldsCache = [ ...(customFieldsCache || []), created.custom_field ];
+    customFieldsCache = [...(customFieldsCache || []), created.custom_field];
     have.add(created.custom_field.key.toLowerCase());
   }
 }
@@ -80,7 +83,7 @@ async function ensureTagId(input: string | number): Promise<number> {
     method: 'POST',
     body: JSON.stringify({ name })
   });
-  tagsCache = [ ...(tagsCache || []), created.tag ];
+  tagsCache = [...(tagsCache || []), created.tag];
   return created.tag.id;
 }
 
@@ -158,6 +161,22 @@ export async function POST(req: NextRequest) {
       } catch (e) {
         // Skip invalid numeric IDs; name path will auto-create or throw meaningfully
         if (!isNumericLike(t)) throw e;
+      }
+    }
+
+    // 3) Send result email (fire and forget or await, depending on preference)
+    // We'll await it to ensure it's sent, but catch errors so we don't fail the request
+    if (meta.result) {
+      try {
+        const emailHtml = getQuizResultEmailHtml(name || 'Friend', meta.result as OptionKey);
+        await sendEmail({
+          to: email,
+          subject: 'Your Safirah Coaching Quiz Results',
+          html: emailHtml
+        });
+      } catch (emailErr) {
+        console.error('Failed to send quiz result email:', emailErr);
+        // Don't fail the request, just log it
       }
     }
 
