@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 
-import { CalendarDays, MapPin, Clock, Sparkles, Star ,Monitor} from 'lucide-react';
+import { CalendarDays, MapPin, Clock, Sparkles, Star, Monitor } from 'lucide-react';
 
 const pastel = {
   accent: 'var(--highlight-color, #e8b4a8)',
@@ -71,32 +71,44 @@ const upcoming: EventItem[] = [
   }
 ];
 
+const past: EventItem[] = [
+  {
+    slug: 'soulmate-workshop',
+    title: 'Soulmate Workshop',
+    date: 'Nov 29 & 30, 2025',
+    time: 'Ended',
+    city: 'Toronto & Online',
+    mode: 'Hybrid',
+    short: 'Not a dating class — a self-rescue mission to stop outsourcing happiness and build unshakeable inner strength.'
+  }
+];
+
 export default function EventsPage() {
   const fadeUp = useFadeUp();
 
-//   // Early-bird logic (Toronto time)
-// const [selectedPass, setSelectedPass] = useState<'inPerson' | 'online'>('inPerson');
+  //   // Early-bird logic (Toronto time)
+  // const [selectedPass, setSelectedPass] = useState<'inPerson' | 'online'>('inPerson');
 
-//   const deadline = new Date('2025-11-15T23:59:59-05:00').getTime();
-//   const [nowMs, setNowMs] = useState<number>(Date.now());
-//   useEffect(() => {
-//     const id = setInterval(() => setNowMs(Date.now()), 1000);
-//     return () => clearInterval(id);
-//   }, []);
-//   const saleActive = nowMs < deadline;
-//   const fullPrice = 45;
-//   const salePrice = 35;
-//   const displayPrice = saleActive ? `$${salePrice}` : `$${fullPrice}`;
-//   const msRemaining = Math.max(0, deadline - nowMs);
-//   const d = Math.floor(msRemaining / (24 * 60 * 60 * 1000));
-//   const h = Math.floor((msRemaining % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
-//   const m = Math.floor((msRemaining % (60 * 60 * 1000)) / (60 * 1000));
-//   const s = Math.floor((msRemaining % (60 * 1000)) / 1000);
-// Pass selection
-const [selectedPass, setSelectedPass] = useState<'inPerson' | 'online'>('inPerson');
+  //   const deadline = new Date('2025-11-15T23:59:59-05:00').getTime();
+  //   const [nowMs, setNowMs] = useState<number>(Date.now());
+  //   useEffect(() => {
+  //     const id = setInterval(() => setNowMs(Date.now()), 1000);
+  //     return () => clearInterval(id);
+  //   }, []);
+  //   const saleActive = nowMs < deadline;
+  //   const fullPrice = 45;
+  //   const salePrice = 35;
+  //   const displayPrice = saleActive ? `$${salePrice}` : `$${fullPrice}`;
+  //   const msRemaining = Math.max(0, deadline - nowMs);
+  //   const d = Math.floor(msRemaining / (24 * 60 * 60 * 1000));
+  //   const h = Math.floor((msRemaining % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+  //   const m = Math.floor((msRemaining % (60 * 60 * 1000)) / (60 * 1000));
+  //   const s = Math.floor((msRemaining % (60 * 1000)) / 1000);
+  // Pass selection
+  const [selectedPass, setSelectedPass] = useState<'inPerson' | 'online'>('inPerson');
 
-// Single full price
-const price = 38;
+  // Single full price
+  const price = 38;
 
 
   return (
@@ -142,153 +154,116 @@ const price = 38;
         </div>
       </section>
 
-   {/* FEATURED: Soulmate Workshop */}
-<section className={`${container} ${sectionY} pt-0`}>
-  <motion.div
-    {...fadeUp}
-    className="rounded-3xl overflow-hidden shadow-lg ring-1 bg-white/80 backdrop-blur"
-    style={{ borderColor: 'rgba(232,180,168,0.35)' }}
-  >
-    <div className="grid md:grid-cols-2">
-      {/* Visual */}
-      <div className="relative p-6 md:p-8" style={{ background: 'linear-gradient(160deg,#fde2e4,#fad2e1)' }}>
-        <div
-          className="absolute -inset-5 -z-10 blur-3xl opacity-50"
-          style={{ background: `radial-gradient(60% 60% at 50% 50%, ${pastel.subtle}, transparent)` }}
-        />
-        <div
-          className="h-full w-full rounded-2xl bg-white/70 backdrop-blur ring-1 p-4 sm:p-6 grid gap-4"
-          style={{ borderColor: 'rgba(232,180,168,0.28)' }}
+      {/* FEATURED: Resilient Workshop */}
+      <section className={`${container} ${sectionY} pt-0`}>
+        <motion.div
+          {...fadeUp}
+          className="rounded-3xl overflow-hidden shadow-lg ring-1 bg-white/80 backdrop-blur"
+          style={{ borderColor: 'rgba(232,180,168,0.35)' }}
         >
-          <ImagePlaceholder ratio="16/9" />
-          <div className="flex items-center gap-2">
-            <Badge><Star className="h-3.5 w-3.5" /> Featured</Badge>
-            <Badge>Women-First</Badge>
-            <Badge>Faith-Aligned</Badge>
+          <div className="grid md:grid-cols-2">
+            {/* Visual */}
+            <div className="relative p-6 md:p-8" style={{ background: 'linear-gradient(160deg,#fde2e4,#fad2e1)' }}>
+              <div
+                className="absolute -inset-5 -z-10 blur-3xl opacity-50"
+                style={{ background: `radial-gradient(60% 60% at 50% 50%, ${pastel.subtle}, transparent)` }}
+              />
+              <div
+                className="h-full w-full rounded-2xl bg-white/70 backdrop-blur ring-1 p-4 sm:p-6 grid gap-4"
+                style={{ borderColor: 'rgba(232,180,168,0.28)' }}
+              >
+                <ImagePlaceholder ratio="16/9" src="/assets/resilient-workshop.png" />
+                <div className="flex items-center gap-2">
+                  <Badge><Star className="h-3.5 w-3.5" /> Featured</Badge>
+                  <Badge>New</Badge>
+                  <Badge>Faith-Aligned</Badge>
+                </div>
+              </div>
+            </div>
+
+            {/* Copy */}
+            <div className="p-6 md:p-10">
+              <div
+                className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs sm:text-sm mb-3"
+                style={{ borderColor: 'rgba(232,180,168,0.35)', color: pastel.text }}
+              >
+                <Sparkles className="h-4 w-4" /> Resilient — Featured Workshop
+              </div>
+
+              <h2 className="font-playfair text-3xl md:text-4xl" style={{ color: pastel.text }}>
+                Resilient Workshop
+              </h2>
+              <p className="font-lato mt-3 opacity-90" style={{ color: pastel.text }}>
+                A sacred space for connection, mindset mastery, and spiritual alignment. Shed the weight of isolation and find your lifelong sisterhood.
+              </p>
+
+              {/* Clear label */}
+              <div className="mt-5 mb-2 text-sm font-lato opacity-80" style={{ color: pastel.text }}>
+                Choose your pass to see the right details & Buy button:
+              </div>
+
+              {/* Big, clear Pass Selector */}
+              <PassSelector selected={selectedPass} onChange={setSelectedPass} />
+
+              {/* Price (full) */}
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <div
+                  className="inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1"
+                  style={{
+                    borderColor: 'rgba(232,180,168,0.35)',
+                    backgroundColor: 'rgba(232,180,168,0.10)',
+                    color: pastel.text
+                  }}
+                >
+                  <span className="text-sm">
+                    Tickets from <strong>$15</strong> USD
+                  </span>
+                </div>
+              </div>
+
+              {/* CTAs */}
+              <div className="mt-4 flex flex-wrap items-center gap-3">
+                <Button
+                  asChild
+                  className="rounded-full px-6 h-11 transition-transform hover:scale-[1.02]"
+                  style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}
+                >
+                  <Link href="/events/resilient-workshop">Learn More</Link>
+                </Button>
+
+                <Button
+                  asChild
+                  variant="outline"
+                  className="rounded-full px-6 h-11 border-2"
+                  style={{ borderColor: pastel.accent, color: pastel.text }}
+                >
+                  <Link
+                    href={
+                      selectedPass === 'inPerson'
+                        ? 'https://shop.hirahsaficoach.com/products/resilient-workshop-in-person'
+                        : 'https://shop.hirahsaficoach.com/products/resilient-workshop-online-person'
+                    }
+                  >
+                    Buy {selectedPass === 'inPerson' ? 'In-Person' : 'Online'} Pass
+                  </Link>
+                </Button>
+
+              </div>
+
+              <div
+                className="mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1"
+                style={{
+                  borderColor: 'rgba(232,180,168,0.35)',
+                  backgroundColor: 'rgba(232,180,168,0.10)',
+                  color: pastel.text
+                }}
+              >
+                Tickets are limited — in-person seats are first come, first served.
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-
-      {/* Copy */}
-      <div className="p-6 md:p-10">
-        <div
-          className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs sm:text-sm mb-3"
-          style={{ borderColor: 'rgba(232,180,168,0.35)', color: pastel.text }}
-        >
-          <Sparkles className="h-4 w-4" /> Soulmate — Featured Workshop
-        </div>
-
-        <h2 className="font-playfair text-3xl md:text-4xl" style={{ color: pastel.text }}>
-          Soulmate Workshop
-        </h2>
-        <p className="font-lato mt-3 opacity-90" style={{ color: pastel.text }}>
-          Not a dating class — a self-rescue mission to stop outsourcing happiness and build unshakeable inner strength.
-        </p>
-
-        {/* Clear label */}
-        <div className="mt-5 mb-2 text-sm font-lato opacity-80" style={{ color: pastel.text }}>
-          Choose your pass to see the right details & Buy button:
-        </div>
-
-        {/* Big, clear Pass Selector */}
-        <PassSelector selected={selectedPass} onChange={setSelectedPass} />
-
-        {/* Price + countdown (compact)
-        <div className="mt-5 flex flex-wrap items-center gap-3">
-          <div
-            className="inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1"
-            style={{
-              borderColor: 'rgba(232,180,168,0.35)',
-              backgroundColor: 'rgba(232,180,168,0.10)',
-              color: pastel.text
-            }}
-          >
-            <span className="text-sm">
-              <s>$45</s> <strong>{displayPrice}</strong>
-            </span>
-            {saleActive && (
-              <span className="text-xs opacity-80">
-                • {d}d {String(h).padStart(2, '0')}:{String(m).padStart(2, '0')}:{String(s).padStart(2, '0')}
-              </span>
-            )}
-          </div>
-        </div> */}
-
-{/* Price (full) */}
-<div className="mt-5 flex flex-wrap items-center gap-3">
-  <div
-    className="inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1"
-    style={{
-      borderColor: 'rgba(232,180,168,0.35)',
-      backgroundColor: 'rgba(232,180,168,0.10)',
-      color: pastel.text
-    }}
-  >
-    <span className="text-sm">
-      <strong>${price}</strong> CAD
-    </span>
-  </div>
-</div>
-
-        {/* CTAs — Learn More (primary) + Buy (depends on selected pass) */}
-        <div className="mt-4 flex flex-wrap items-center gap-3">
-          <Button
-            asChild
-            className="rounded-full px-6 h-11 transition-transform hover:scale-[1.02]"
-            style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}
-          >
-            <Link href="/events/soulmate-workshop">Learn More</Link>
-          </Button>
-
-          {/* <Button
-            asChild
-            variant="outline"
-            className="rounded-full px-6 h-11 border-2"
-            style={{ borderColor: pastel.accent, color: pastel.text }}
-          >
-            <Link
-              href={
-                selectedPass === 'inPerson'
-                  ? 'https://shop.hirahsaficoach.com/products/soulmate-workshop-tickets'
-                  : 'https://shop.hirahsaficoach.com/products/soulmate-workshop-online-pass'
-              }
-            >
-              Buy {selectedPass === 'inPerson' ? 'In-Person' : 'Online'} Pass — {displayPrice}
-            </Link>
-          </Button> */}
-          <Button
-  asChild
-  variant="outline"
-  className="rounded-full px-6 h-11 border-2"
-  style={{ borderColor: pastel.accent, color: pastel.text }}
->
-  <Link
-    href={
-      selectedPass === 'inPerson'
-        ? 'https://shop.hirahsaficoach.com/products/soulmate-workshop-tickets'
-        : 'https://shop.hirahsaficoach.com/products/soulmate-workshop-online-pass'
-    }
-  >
-    Buy {selectedPass === 'inPerson' ? 'In-Person' : 'Online'} Pass — ${price}
-  </Link>
-</Button>
-
-        </div>
-
-     <div
-  className="mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1"
-  style={{
-    borderColor: 'rgba(232,180,168,0.35)',
-    backgroundColor: 'rgba(232,180,168,0.10)',
-    color: pastel.text
-  }}
->
-  Tickets are limited — in-person seats are first come, first served.
-</div>
-      </div>
-    </div>
-  </motion.div>
-</section>
+        </motion.div>
+      </section>
 
 
 
@@ -306,6 +281,20 @@ const price = 38;
 
         <div className="grid gap-6 md:grid-cols-3">
           {upcoming.map((ev) => (
+            <EventCard key={ev.slug} ev={ev} />
+          ))}
+        </div>
+      </section>
+
+      {/* PAST EVENTS */}
+      <section className={`${container} ${sectionY} pt-0`}>
+        <div className="flex items-center justify-between gap-4 flex-wrap mb-6">
+          <h3 className="font-playfair text-2xl md:text-3xl" style={{ color: pastel.text }}>
+            Past Events
+          </h3>
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {past.map((ev) => (
             <EventCard key={ev.slug} ev={ev} />
           ))}
         </div>
@@ -388,43 +377,54 @@ function InfoPill({ icon, text }: { icon: React.ReactNode; text: string }) {
 }
 
 function EventCard({ ev }: { ev: EventItem }) {
-  return (
-    <motion.div whileHover={{ y: -6 }}>
-      <Card
-        className="rounded-3xl border-0 shadow-md hover:shadow-lg transition-shadow ring-1 overflow-hidden bg-white/85 backdrop-blur"
-        style={{ borderColor: 'rgba(232,180,168,0.28)' }}
-      >
-        <div className="h-1.5 w-full bg-gradient-to-r from-[#fde2e4] to-white" />
-        <CardHeader className="pb-2">
-          <CardTitle className="font-playfair text-xl" style={{ color: pastel.text }}>
-            {ev.title}
-          </CardTitle>
-          <div
-            className="mt-2 flex flex-wrap items-center gap-3 text-sm font-lato opacity-90"
-            style={{ color: pastel.text }}
-          >
-            <span className="inline-flex items-center gap-1">
-              <CalendarDays className="h-4 w-4" /> {ev.date}
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <Clock className="h-4 w-4" /> {ev.time}
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <MapPin className="h-4 w-4" /> {ev.city}
-            </span>
+  const isTBA = ev.date === 'TBA';
+  const content = (
+    <Card
+      className={`rounded-3xl border-0 shadow-md transition-shadow ring-1 overflow-hidden bg-white/85 backdrop-blur ${!isTBA ? 'hover:shadow-lg' : ''
+        }`}
+      style={{ borderColor: 'rgba(232,180,168,0.28)' }}
+    >
+      <div className="h-1.5 w-full bg-gradient-to-r from-[#fde2e4] to-white" />
+      <CardHeader className="pb-2">
+        <CardTitle className="font-playfair text-xl" style={{ color: pastel.text }}>
+          {ev.title}
+        </CardTitle>
+        <div
+          className="mt-2 flex flex-wrap items-center gap-3 text-sm font-lato opacity-90"
+          style={{ color: pastel.text }}
+        >
+          <span className="inline-flex items-center gap-1">
+            <CalendarDays className="h-4 w-4" /> {ev.date}
+          </span>
+          <span className="inline-flex items-center gap-1">
+            <Clock className="h-4 w-4" /> {ev.time}
+          </span>
+          <span className="inline-flex items-center gap-1">
+            <MapPin className="h-4 w-4" /> {ev.city}
+          </span>
+        </div>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <p className="font-lato text-sm opacity-90" style={{ color: pastel.text }}>
+          {ev.short}
+        </p>
+        {!isTBA && (
+          <div className="pt-2 text-xs font-semibold uppercase tracking-wider" style={{ color: pastel.accent }}>
+            View Details →
           </div>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <p className="font-lato text-sm opacity-90" style={{ color: pastel.text }}>
-            {ev.short}
-          </p>
-        </CardContent>
-      </Card>
+        )}
+      </CardContent>
+    </Card>
+  );
+
+  return (
+    <motion.div whileHover={!isTBA ? { y: -6 } : {}}>
+      {isTBA ? content : <Link href={`/events/${ev.slug}`}>{content}</Link>}
     </motion.div>
   );
 }
 
-function ImagePlaceholder({ ratio = '4/3' }: { ratio?: '1/1' | '4/3' | '16/9' }) {
+function ImagePlaceholder({ ratio = '4/3', src }: { ratio?: '1/1' | '4/3' | '16/9'; src?: string }) {
   const paddingMap: Record<string, string> = { '1/1': 'pb-[100%]', '4/3': 'pb-[75%]', '16/9': 'pb-[56.25%]' };
   return (
     <div
@@ -439,7 +439,7 @@ function ImagePlaceholder({ ratio = '4/3' }: { ratio?: '1/1' | '4/3' | '16/9' })
       }}
     >
       <div className="absolute inset-0 grid place-items-center text-sm opacity-80" style={{ color: pastel.text }}>
-        <img src="/assets/8.webp" alt="Hirah Safi, life and success coach" className="w-full h-full object-cover" />
+        <img src={src || "/assets/8.webp"} alt="Hirah Safi, life and success coach" className="w-full h-full object-cover" />
       </div>
       <div
         className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
@@ -463,17 +463,17 @@ function PassSelector({
       key: 'inPerson' as const,
       title: 'In-Person (Toronto)',
       emoji: '🏢',
-      date: 'Sat, Nov 29, 2025',
-      time: '11:00 AM–3:00 PM ET',
+      date: 'Sat, Feb 7, 2026',
+      time: 'TBA',
       detailIcon: <MapPin className="h-4 w-4" />,
-      detail: '560 E ,200 King St E, Toronto'
+      detail: 'Toronto, Ontario'
     },
     {
       key: 'online' as const,
       title: 'Online (Zoom)',
       emoji: '💻',
-      date: 'Sun, Nov 30, 2025',
-      time: '11:00 AM–3:00 PM ET',
+      date: 'Sun, Feb 8, 2026',
+      time: 'TBA',
       detailIcon: <Monitor className="h-4 w-4" />,
       detail: 'Link arrives 24h before'
     }
@@ -489,9 +489,8 @@ function PassSelector({
             role="radio"
             aria-checked={active}
             onClick={() => onChange(c.key)}
-            className={`text-left rounded-2xl transition-all ring-1 p-4 bg-white/85 backdrop-blur hover:shadow-sm ${
-              active ? 'ring-2' : ''
-            }`}
+            className={`text-left rounded-2xl transition-all ring-1 p-4 bg-white/85 backdrop-blur hover:shadow-sm ${active ? 'ring-2' : ''
+              }`}
             style={{
               borderColor: active ? 'rgba(232,180,168,0.6)' : 'rgba(232,180,168,0.28)',
               boxShadow: active ? '0 8px 24px rgba(0,0,0,0.06)' : 'none',

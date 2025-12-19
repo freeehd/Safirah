@@ -16,6 +16,7 @@ import {
   KeyRound,
   AlertTriangle,
   Camera,
+  Sparkles,
 } from 'lucide-react';
 
 const theme = {
@@ -295,15 +296,7 @@ function EventDetailsBand() {
               <MapPin className="h-4 w-4 mt-0.5" /> {IN_PERSON.placeLabel}
             </div>
             <div className="pt-1">
-              <a
-                href={IN_PERSON.mapUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs underline"
-                style={{ color: theme.text }}
-              >
-                Open in Google Maps →
-              </a>
+              <span className="text-xs opacity-60 italic">Event Ended</span>
             </div>
           </div>
         </div>
@@ -324,70 +317,19 @@ function EventDetailsBand() {
               <MapPin className="h-4 w-4 mt-0.5" /> {ONLINE.placeLabel}
             </div>
             <div className="pt-1">
-              <a
-                href={LINKS.online}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs underline"
-                style={{ color: theme.text }}
-                aria-label="Get the Online Pass"
-              >
-                Get the Online Pass →
-              </a>
+              <span className="text-xs opacity-60 italic">Event Ended</span>
             </div>
           </div>
         </div>
       </div>
-      <p className="text-xs opacity-80 mt-3 text-center" style={{ color: theme.text }}>
-        Choose <strong>In-Person</strong> (Toronto) or <strong>Online</strong> when purchasing.
-      </p>
     </div>
   );
 }
 
 /* ---------- sticky mobile buy bar ---------- */
 function MobileBuyBar({ displayPrice }: { displayPrice: string }) {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 320);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  if (!visible) return null;
-
-  return (
-    <div className="md:hidden fixed bottom-3 left-3 right-3 z-50">
-      <div
-        className="rounded-2xl ring-1 bg-white/90 backdrop-blur p-2 shadow-lg"
-        style={{ borderColor: hexToRgba(theme.accent2, 0.35) }}
-      >
-        <div className="flex gap-2">
-          <Button
-            asChild
-            className="w-1/2 rounded-xl h-11"
-            style={{ backgroundColor: theme.highlight, color: '#fff' }}
-          >
-            <a href={LINKS.inPerson} target="_blank" rel="noopener noreferrer">
-              In-Person — {displayPrice}
-            </a>
-          </Button>
-          <Button
-            asChild
-            variant="outline"
-            className="w-1/2 rounded-xl h-11 border-2"
-            style={{ borderColor: theme.accent2, color: theme.text }}
-          >
-            <a href={LINKS.online} target="_blank" rel="noopener noreferrer">
-              Online — {displayPrice}
-            </a>
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
+  // Disabled for past event
+  return null;
 }
 
 /* ---------- page ---------- */
@@ -401,6 +343,8 @@ export default function SoulmateWorkshopPage() {
 
   return (
     <div className="page-wrapper" style={{ backgroundColor: theme.bg }}>
+      {/* PAST ALERT BANNER */}
+
       {/* HERO */}
       <section className={`relative isolate overflow-hidden ${sectionY}`}>
         {/* backdrop blobs (hide on xs to prevent overlap) */}
@@ -485,33 +429,19 @@ export default function SoulmateWorkshopPage() {
 
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-2">
                 <Button
-                  asChild
-                  className="rounded-full px-6 h-11 w-full sm:w-auto transition-transform hover:scale-[1.02]"
+                  disabled
+                  className="rounded-full px-6 h-11 w-full sm:w-auto opacity-50 cursor-not-allowed"
                   style={{ backgroundColor: theme.highlight, color: '#fff' }}
                 >
-                  <a
-                    href={LINKS.inPerson}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Buy In-Person Pass at ${displayPrice}`}
-                  >
-                    In-Person Pass — {displayPrice}
-                  </a>
+                  Event Ended
                 </Button>
                 <Button
+                  disabled
                   variant="outline"
-                  asChild
-                  className="rounded-full px-6 h-11 w-full sm:w-auto border-2"
+                  className="rounded-full px-6 h-11 w-full sm:w-auto border-2 opacity-50 cursor-not-allowed"
                   style={{ borderColor: theme.accent2, color: theme.text }}
                 >
-                  <a
-                    href={LINKS.online}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Buy Online Pass at ${displayPrice}`}
-                  >
-                    Online Pass — {displayPrice}
-                  </a>
+                  Online Ended
                 </Button>
                 <Button
                   variant="outline"
@@ -522,7 +452,7 @@ export default function SoulmateWorkshopPage() {
                   }
                   aria-label="Scroll to tickets"
                 >
-                  See Tickets
+                  See Details
                 </Button>
               </div>
               <WhichPassHelper />
@@ -554,7 +484,12 @@ export default function SoulmateWorkshopPage() {
           </div>
         </div>
       </section>
-
+      <div className="w-full bg-stone-100 border-b border-stone-200 relative z-50">
+        <div className={`${container} py-3 flex items-center justify-center text-center gap-2 text-sm font-medium opacity-80`} style={{ color: theme.text }}>
+          <Sparkles className="h-4 w-4 fill-current" />
+          <span>This event has successfully concluded. Thank you to our beautiful community!</span>
+        </div>
+      </div>
       {/* THE REAL PROBLEM */}
       <section className={`${container} ${sectionY} pt-0`}>
         <motion.div {...fadeUp}>
@@ -729,191 +664,7 @@ export default function SoulmateWorkshopPage() {
       </section>
 
       {/* TICKETS */}
-      <section id="tickets" className={`${container} ${sectionY} pt-0 scroll-mt-24`}>
-        <Card
-          className="border-0 rounded-3xl overflow-hidden shadow-xl bg-white/90 relative"
-          style={{ boxShadow: `0 12px 40px -8px ${hexToRgba('#000', 0.12)}` }}
-        >
-          <div
-            className="absolute top-3 sm:top-4 left-3 sm:left-[-30px] sm:rotate-[-15deg] text-[10px] sm:text-xs font-semibold tracking-wide px-3 sm:px-4 py-1 rounded-full shadow-sm z-10"
-            style={{
-              backgroundColor: theme.highlight,
-              color: '#fff',
-              boxShadow: `0 6px 20px -6px ${hexToRgba(theme.highlight, 0.6)}`,
-            }}
-          >
-            WORKSHOP TICKETS
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3">
-            {/* Left */}
-            <div
-              className="md:col-span-2 p-6 sm:p-8 relative"
-              style={{
-                background: `linear-gradient(160deg, ${hexToRgba(
-                  theme.accent1,
-                  0.55,
-                )}, ${hexToRgba(theme.accent2, 0.55)})`,
-              }}
-            >
-              <div
-                className="absolute -inset-6 -z-10 blur-3xl opacity-40 sm:opacity-50"
-                style={{ background: `radial-gradient(60% 60% at 50% 50%, ${hexToRgba(theme.accent1, 0.6)}, transparent)` }}
-                aria-hidden
-              />
-              <div className="max-w-xl">
-                <div
-                  className="inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1 mb-3"
-                  style={{
-                    borderColor: hexToRgba(theme.accent2, 0.45),
-                    backgroundColor: hexToRgba(theme.accent2, 0.18),
-                    color: theme.text,
-                  }}
-                >
-                  💗 Two ticket types: In-Person (Toronto) or Online (Live)
-                </div>
-                <h3
-                  className="font-playfair text-3xl sm:text-4xl md:text-5xl leading-tight"
-                  style={{ color: theme.text }}
-                >
-                  Choose Your Pass
-                </h3>
-                <p
-                  className="font-lato mt-2 opacity-90 text-center sm:text-left"
-                  style={{ color: theme.text }}
-                >
-                  In-Person: <strong>{IN_PERSON.dateLabel}</strong> • {IN_PERSON.timeLabel} • {IN_PERSON.placeLabel}
-                  <br />
-                  Online: <strong>{ONLINE.dateLabel}</strong> • {ONLINE.timeLabel} • Live via secure link
-                </p>
-
-                {/* Price + options */}
-                <div className="mt-5 grid gap-4 sm:grid-cols-2 items-stretch">
-                  <div
-                    className="rounded-2xl bg-white/80 backdrop-blur ring-1 p-4 text-center"
-                    style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
-                  >
-                    <div
-                      className="text-[11px] sm:text-xs uppercase tracking-wider font-lato opacity-70"
-                      style={{ color: theme.text }}
-                    >
-                      Your Ticket
-                    </div>
-                    <div
-                      className="mt-1 font-playfair text-2xl sm:text-3xl md:text-4xl flex items-center justify-center gap-2"
-                      style={{ color: theme.text }}
-                    >
-                      <span className="leading-none">{displayPrice}</span>
-                    </div>
-                    <div className="mt-1 text-xs font-lato opacity-80" style={{ color: theme.text }}>
-                      Per person, per pass (CAD).
-                    </div>
-                  </div>
-                  <div
-                    className="rounded-2xl bg-white/80 backdrop-blur ring-1 p-4 text-center"
-                    style={{ borderColor: hexToRgba(theme.accent2, 0.28) }}
-                  >
-                    <div
-                      className="text-[11px] sm:text-xs uppercase tracking-wider font-lato opacity-70"
-                      style={{ color: theme.text }}
-                    >
-                      Attendance Options
-                    </div>
-                    <div className="mt-2 text-xs sm:text-sm font-lato space-y-1" style={{ color: theme.text }}>
-                      <div>
-                        <strong>In-Person (Toronto)</strong> — full live experience, workbook, treats & gifts.
-                      </div>
-                      <div>
-                        <strong>Online (Live)</strong> — join via Zoom, same curriculum and price.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Benefits */}
-                <ul className="mt-5 grid gap-2 text-sm font-lato" style={{ color: theme.text }}>
-                  <li className="flex items-start gap-2">
-                    <Dot /> Kind, gentle-paced facilitation
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Dot /> Printed workbook to take home
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Dot /> Girls-only, faith-aligned environment
-                  </li>
-                </ul>
-
-                {/* CTA */}
-                <div className="mt-6 flex flex-col sm:flex-row flex-wrap items-center gap-2 sm:gap-3">
-                  <Button
-                    asChild
-                    className="rounded-full px-6 h-12 text-base shadow-md transition-transform hover:scale-[1.02] w-full sm:w-auto"
-                    style={{ backgroundColor: theme.highlight, color: '#fff' }}
-                  >
-                    <a
-                      href={LINKS.inPerson}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Buy In-Person Pass at ${displayPrice}`}
-                    >
-                      In-Person Pass — {displayPrice}
-                    </a>
-                  </Button>
-                  <Button
-                    variant="outline"
-                    asChild
-                    className="rounded-full px-6 h-12 text-base transition-transform hover:scale-[1.02] border-2 w-full sm:w-auto"
-                    style={{ borderColor: theme.accent2, color: theme.text }}
-                  >
-                    <a
-                      href={LINKS.online}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Buy Online Pass at ${displayPrice}`}
-                    >
-                      Online Pass — {displayPrice}
-                    </a>
-                  </Button>
-                  <span
-                    className="text-xs font-lato opacity-70 text-center sm:text-left"
-                    style={{ color: theme.text }}
-                  >
-                    Tickets are limited — in-person seats are first come, first served.
-                  </span>
-                </div>
-                <WhichPassHelper />
-              </div>
-            </div>
-
-            {/* Right visual */}
-            <div className="p-6 sm:p-8 bg-white grid place-items-center">
-              <div className="w-full max-w-md">
-                <ImagePlaceholder ratio="4/3" src="/assets/soulmate.webp" />
-                <div className="mt-4 grid gap-2 text-xs font-lato">
-                  <a
-                    href={IN_PERSON.mapUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline text-center sm:text-left"
-                    style={{ color: theme.text }}
-                  >
-                    📍 Open the Toronto venue in Google Maps
-                  </a>
-                  <a
-                    href={ONLINE.learnUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline text-center sm:text-left"
-                    style={{ color: theme.text }}
-                  >
-                    💻 Learn about the online experience
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Card>
-      </section>
 
       {/* EXPERIENCE DETAILS */}
       <section className={`${container} ${sectionY} pt-0`}>
@@ -1070,33 +821,19 @@ export default function SoulmateWorkshopPage() {
               </p>
               <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3">
                 <Button
-                  asChild
-                  className="rounded-full px-6 h-11 transition-transform hover:scale-[1.02] w-full sm:w-auto"
+                  disabled
+                  className="rounded-full px-6 h-11 w-full sm:w-auto opacity-50 cursor-not-allowed"
                   style={{ backgroundColor: theme.highlight, color: '#fff' }}
                 >
-                  <a
-                    href={LINKS.inPerson}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Buy In-Person Pass at ${displayPrice}`}
-                  >
-                    In-Person Pass — {displayPrice}
-                  </a>
+                  Event Ended
                 </Button>
                 <Button
+                  disabled
                   variant="outline"
-                  asChild
-                  className="rounded-full px-6 h-11 transition-transform hover:scale-[1.02] border-2 w-full sm:w-auto"
+                  className="rounded-full px-6 h-11 w-full sm:w-auto border-2 opacity-50 cursor-not-allowed"
                   style={{ borderColor: theme.accent2, color: theme.text }}
                 >
-                  <a
-                    href={LINKS.online}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Buy Online Pass at ${displayPrice}`}
-                  >
-                    Online Pass — {displayPrice}
-                  </a>
+                  Event Ended
                 </Button>
                 <Button
                   variant="outline"
