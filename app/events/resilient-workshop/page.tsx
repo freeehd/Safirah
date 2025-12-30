@@ -36,14 +36,14 @@ const sectionY = 'py-16 md:py-24 lg:py-32';
 
 /* ---------- event info ---------- */
 const EVENT_INFO = {
-    dateLabel: 'Saturday, Feb 7, 2026',
+    dateLabel: 'Saturday, Jan 31, 2026',
     // timeLabel removed
     placeLabel: 'Toronto, Ontario (Venue TBD)',
     mapUrl: 'https://www.google.com/maps',
 };
 
 const ONLINE_INFO = {
-    dateLabel: 'Sunday, Feb 8, 2026',
+    dateLabel: 'Sunday, Feb 1, 2026',
     // timeLabel removed
     placeLabel: 'Online • Join link emailed 24h before',
 };
@@ -294,13 +294,18 @@ function TicketSelector() {
 
     return (
         <div className="relative inline-block text-left">
-            <Button
-                onClick={() => setIsOpen(!isOpen)}
-                className="rounded-full px-10 h-14 text-base font-semibold shadow-xl transition-all hover:scale-[1.02] hover:shadow-2xl z-20 relative"
-                style={{ backgroundColor: theme.highlight, color: '#fff' }}
-            >
-                Get Tickets <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
-            </Button>
+            <div className="flex flex-col gap-2">
+                <Button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="rounded-full px-10 h-14 text-base font-semibold shadow-xl transition-all hover:scale-[1.02] hover:shadow-2xl z-20 relative"
+                    style={{ backgroundColor: theme.highlight, color: '#fff' }}
+                >
+                    Get Tickets <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                </Button>
+                <div className="text-center font-bold text-sm opacity-60" style={{ color: theme.text }}>
+                    Only $11 CAD
+                </div>
+            </div>
 
             <AnimatePresence>
                 {isOpen && (
@@ -321,7 +326,7 @@ function TicketSelector() {
                                 </div>
                                 <div>
                                     <div className="font-bold text-sm" style={{ color: theme.text }}>In-Person Ticket</div>
-                                    <div className="text-xs opacity-60">Feb 7 • Toronto</div>
+                                    <div className="text-xs opacity-60">Feb 7 • Toronto • $11 CAD</div>
                                 </div>
                             </a>
                             <div className="h-px bg-stone-100 mx-2" />
@@ -334,7 +339,7 @@ function TicketSelector() {
                                 </div>
                                 <div>
                                     <div className="font-bold text-sm" style={{ color: theme.text }}>Online Ticket</div>
-                                    <div className="text-xs opacity-60">Feb 8 • Zoom</div>
+                                    <div className="text-xs opacity-60">Feb 8 • Zoom • $11 CAD</div>
                                 </div>
                             </a>
                         </div>
@@ -361,7 +366,7 @@ export default function ResilientWorkshopPage() {
     return (
         <div className="page-wrapper min-h-screen font-sans" style={{ backgroundColor: theme.bg }}>
             {/* HERO */}
-            <section className={`relative isolate overflow-hidden min-h-[95vh] flex items-center ${sectionY} pt-32 pb-0`}>
+            <section className={`relative isolate min-h-[95vh] flex items-center ${sectionY} pt-32 pb-0`}>
                 {/* backdrop blobs */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
                     <motion.div
@@ -662,7 +667,7 @@ export default function ResilientWorkshopPage() {
                                         </div>
                                         <div>
                                             <div className="font-playfair text-xl font-bold mb-1" style={{ color: theme.text }}>In-Person Ticket</div>
-                                            <div className="text-sm opacity-60">Feb 7 • Toronto</div>
+                                            <div className="text-sm opacity-60">Feb 7 • Toronto • $11 CAD</div>
                                         </div>
                                     </div>
                                     <Button size="lg" className="rounded-full px-8 shadow-md" style={{ backgroundColor: theme.highlight }}>Book</Button>
@@ -678,7 +683,7 @@ export default function ResilientWorkshopPage() {
                                         </div>
                                         <div>
                                             <div className="font-playfair text-xl font-bold mb-1" style={{ color: theme.text }}>Online Ticket</div>
-                                            <div className="text-sm opacity-60">Feb 8 • Zoom</div>
+                                            <div className="text-sm opacity-60">Feb 8 • Zoom • $11 CAD</div>
                                         </div>
                                     </div>
                                     <Button size="lg" variant="outline" className="rounded-full px-8 border-2" style={{ borderColor: theme.accent1, color: theme.text }}>Book</Button>

@@ -216,7 +216,7 @@ export default function EventsPage() {
                   }}
                 >
                   <span className="text-sm">
-                    Tickets from <strong>$15</strong> USD
+                    Tickets from <strong>$11</strong> CAD
                   </span>
                 </div>
               </div>
@@ -463,7 +463,7 @@ function PassSelector({
       key: 'inPerson' as const,
       title: 'In-Person (Toronto)',
       emoji: '🏢',
-      date: 'Sat, Feb 7, 2026',
+      date: 'Sat, Jan 31, 2026',
       time: 'TBA',
       detailIcon: <MapPin className="h-4 w-4" />,
       detail: 'Toronto, Ontario'
@@ -472,7 +472,7 @@ function PassSelector({
       key: 'online' as const,
       title: 'Online (Zoom)',
       emoji: '💻',
-      date: 'Sun, Feb 8, 2026',
+      date: 'Sun, Feb 1, 2026',
       time: 'TBA',
       detailIcon: <Monitor className="h-4 w-4" />,
       detail: 'Link arrives 24h before'
