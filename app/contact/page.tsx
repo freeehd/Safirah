@@ -29,7 +29,7 @@ export default function ConsultationsPage() {
 
   return (
     <main
-      className="relative min-h-screen w-full overflow-hidden"
+      className="page-wrapper relative min-h-screen w-full overflow-hidden"
       style={{
         backgroundColor: COLORS.bg,
         backgroundImage:

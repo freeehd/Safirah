@@ -13,7 +13,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <ConditionalNav />
-    <div className='pt-10'></div>
         <div id="root">{children}</div>
       </body>
     </html>

@@ -72,7 +72,7 @@ function ConfettiCanvas({ durationMs = 6000, density = 180 }: { durationMs?: num
 export default function CongratsPage() {
   return (
     <main
-      className="min-h-screen flex items-center justify-center px-5 py-16 sm:py-20"
+      className="page-wrapper min-h-screen flex items-center justify-center px-5 py-16 sm:py-20"
       style={{ backgroundColor: 'var(--background-color)' }}
     >
       <ConfettiCanvas />

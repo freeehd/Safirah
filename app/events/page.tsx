@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
-import BubbleMenu from '@/components/BubbleMenu';
 import Footer from '@/components/Footer';
 import BrushStrokeHighlight from '@/components/BrushStrokeHighlight';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -73,6 +72,15 @@ const upcoming: EventItem[] = [
 
 const past: EventItem[] = [
   {
+    slug: 'resilient-workshop',
+    title: 'Resilient Workshop',
+    date: 'Jan 31 & Feb 1, 2026',
+    time: 'Ended',
+    city: 'Toronto & Online',
+    mode: 'Hybrid',
+    short: 'A sacred space for connection, mindset mastery, and spiritual alignment. Shed the weight of isolation and find your lifelong sisterhood.'
+  },
+  {
     slug: 'soulmate-workshop',
     title: 'Soulmate Workshop',
     date: 'Nov 29 & 30, 2025',
@@ -86,39 +94,14 @@ const past: EventItem[] = [
 export default function EventsPage() {
   const fadeUp = useFadeUp();
 
-  //   // Early-bird logic (Toronto time)
-  // const [selectedPass, setSelectedPass] = useState<'inPerson' | 'online'>('inPerson');
-
-  //   const deadline = new Date('2025-11-15T23:59:59-05:00').getTime();
-  //   const [nowMs, setNowMs] = useState<number>(Date.now());
-  //   useEffect(() => {
-  //     const id = setInterval(() => setNowMs(Date.now()), 1000);
-  //     return () => clearInterval(id);
-  //   }, []);
-  //   const saleActive = nowMs < deadline;
-  //   const fullPrice = 45;
-  //   const salePrice = 35;
-  //   const displayPrice = saleActive ? `$${salePrice}` : `$${fullPrice}`;
-  //   const msRemaining = Math.max(0, deadline - nowMs);
-  //   const d = Math.floor(msRemaining / (24 * 60 * 60 * 1000));
-  //   const h = Math.floor((msRemaining % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
-  //   const m = Math.floor((msRemaining % (60 * 60 * 1000)) / (60 * 1000));
-  //   const s = Math.floor((msRemaining % (60 * 1000)) / 1000);
-  // Pass selection
-  const [selectedPass, setSelectedPass] = useState<'inPerson' | 'online'>('inPerson');
-
-  // Single full price
-  const price = 38;
-
-
   return (
-    <div className="page-wrapper">
+    <div className="page-wrapper min-h-screen">
       {/* HERO */}
-      <section className={`relative isolate overflow-hidden ${sectionY}`}>
+      <section className={`relative isolate overflow-hidden ${sectionY} pb-0`}>
         {/* soft backdrop blobs */}
         <motion.div
           className="pointer-events-none absolute -top-24 -right-16 h-72 w-72 rounded-full blur-3xl -z-10"
-          style={{ background: 'radial-gradient(circle, rgba(252,213,206,0.55), transparent 60%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(232,180,168,0.55), transparent 60%)' }}
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
         />
@@ -130,7 +113,7 @@ export default function EventsPage() {
         />
 
         <div className={container}>
-          <motion.div {...fadeUp} className="text-center max-w-3xl mx-auto">
+          <motion.div {...fadeUp} className="text-center max-w-3xl mx-auto mb-4">
             <div
               className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs sm:text-sm"
               style={{ borderColor: pastel.accent, backgroundColor: 'rgba(232,180,168,0.10)', color: pastel.text }}
@@ -147,139 +130,101 @@ export default function EventsPage() {
                 your next step
               </BrushStrokeHighlight>
             </h1>
-            <p className="font-lato text-lg leading-relaxed opacity-90 mt-4" style={{ color: pastel.text }}>
+            <p className="font-lato text-lg sm:text-xl leading-relaxed opacity-90 mt-6" style={{ color: pastel.text }}>
               Join a warm, faith-aligned space to build clarity, community, and momentum — online or in person.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* FEATURED: Resilient Workshop */}
-      <section className={`${container} ${sectionY} pt-0`}>
+      {/* FEATURED: The Golden Pearl */}
+      <section className={`${container} ${sectionY} pt-10`}>
         <motion.div
           {...fadeUp}
-          className="rounded-3xl overflow-hidden shadow-lg ring-1 bg-white/80 backdrop-blur"
-          style={{ borderColor: 'rgba(232,180,168,0.35)' }}
+          className="rounded-[3rem] overflow-hidden shadow-2xl ring-1 bg-white/40 backdrop-blur-xl border-t-2"
+          style={{ borderColor: 'rgba(212, 175, 55, 0.3)', borderTopColor: '#D4AF37' }}
         >
-          <div className="grid md:grid-cols-2">
-            {/* Visual */}
-            <div className="relative p-6 md:p-8" style={{ background: 'linear-gradient(160deg,#fde2e4,#fad2e1)' }}>
+          <div className="grid lg:grid-cols-2">
+            {/* Visual Side */}
+            <div className="relative p-8 lg:p-12 overflow-hidden flex items-center justify-center min-h-[420px]" style={{ background: 'linear-gradient(135deg, #F5EAC8 0%, #EAD7A1 100%)' }}>
               <div
-                className="absolute -inset-5 -z-10 blur-3xl opacity-50"
-                style={{ background: `radial-gradient(60% 60% at 50% 50%, ${pastel.subtle}, transparent)` }}
+                className="absolute inset-0 opacity-20"
+                style={{ backgroundImage: 'radial-gradient(circle at center, #9C7A1A 0%, transparent 70%)' }}
               />
-              <div
-                className="h-full w-full rounded-2xl bg-white/70 backdrop-blur ring-1 p-4 sm:p-6 grid gap-4"
-                style={{ borderColor: 'rgba(232,180,168,0.28)' }}
-              >
-                <ImagePlaceholder ratio="16/9" src="/assets/resilient-workshop.png" />
-                <div className="flex items-center gap-2">
-                  <Badge><Star className="h-3.5 w-3.5" /> Featured</Badge>
-                  <Badge>New</Badge>
-                  <Badge>Faith-Aligned</Badge>
+              <div className="relative z-10 w-full group">
+                <div className="absolute -inset-4 bg-yellow-400/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-40 transition-opacity" />
+                <ImagePlaceholder ratio="16/9" src="/assets/golden-pearl.webp" />
+                <div className="absolute -bottom-4 -left-4 flex flex-col gap-2 scale-90 sm:scale-100">
+                  <Badge><Sparkles className="h-3.5 w-3.5 text-yellow-600" /> Now Registering</Badge>
                 </div>
               </div>
             </div>
 
-            {/* Copy */}
-            <div className="p-6 md:p-10">
-              <div
-                className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs sm:text-sm mb-3"
-                style={{ borderColor: 'rgba(232,180,168,0.35)', color: pastel.text }}
-              >
-                <Sparkles className="h-4 w-4" /> Resilient — Featured Workshop
+            {/* Content Side */}
+            <div className="p-8 lg:p-14 flex flex-col justify-center gap-6 bg-white/40 backdrop-blur-sm">
+              <div className="space-y-4">
+                <Badge className="bg-yellow-100/50 text-yellow-800 border-yellow-200">
+                  <Star className="h-4 w-4 fill-yellow-600 text-yellow-600" />
+                  Featured Event
+                </Badge>
+
+                <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tighter text-stone-900">
+                  The <span className="text-yellow-700">Golden Pearl</span>
+                </h2>
+
+                <p className="font-lato text-xl opacity-80 leading-relaxed text-stone-800 font-medium">
+                  Volume 3: Step into your brilliance. Find financial abundance while keeping your peace and Deen intact. This is the sanctuary you&apos;ve been praying for.
+                </p>
               </div>
 
-              <h2 className="font-playfair text-3xl md:text-4xl" style={{ color: pastel.text }}>
-                Resilient Workshop
-              </h2>
-              <p className="font-lato mt-3 opacity-90" style={{ color: pastel.text }}>
-                A sacred space for connection, mindset mastery, and spiritual alignment. Shed the weight of isolation and find your lifelong sisterhood.
-              </p>
-
-              {/* Clear label */}
-              <div className="mt-5 mb-2 text-sm font-lato opacity-80" style={{ color: pastel.text }}>
-                Choose your pass to see the right details & Buy button:
-              </div>
-
-              {/* Big, clear Pass Selector */}
-              <PassSelector selected={selectedPass} onChange={setSelectedPass} />
-
-              {/* Price (full) */}
-              <div className="mt-5 flex flex-wrap items-center gap-3">
-                <div
-                  className="inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1"
-                  style={{
-                    borderColor: 'rgba(232,180,168,0.35)',
-                    backgroundColor: 'rgba(232,180,168,0.10)',
-                    color: pastel.text
-                  }}
-                >
-                  <span className="text-sm">
-                    Tickets from <strong>$11</strong> CAD
-                  </span>
+              <div className="grid grid-cols-2 gap-4 border-y border-stone-200/50 py-6">
+                <div className="space-y-1">
+                  <div className="text-[10px] uppercase tracking-widest text-yellow-800 font-bold opacity-60">Venue / Access</div>
+                  <div className="font-playfair text-lg font-bold text-stone-900">Online & Local</div>
+                </div>
+                <div className="space-y-1">
+                  <div className="text-[10px] uppercase tracking-widest text-yellow-800 font-bold opacity-60">Investment</div>
+                  <div className="font-playfair text-lg font-bold text-stone-900">FREE Admission</div>
                 </div>
               </div>
 
-              {/* CTAs */}
-              <div className="mt-4 flex flex-wrap items-center gap-3">
+              <div className="pt-2 flex flex-wrap gap-4">
                 <Button
                   asChild
-                  className="rounded-full px-6 h-11 transition-transform hover:scale-[1.02]"
-                  style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}
+                  className="rounded-full px-10 h-14 text-lg font-bold shadow-xl transition-all hover:scale-[1.02] hover:shadow-gold-xl"
+                  style={{ backgroundColor: '#9C7A1A', color: '#fff' }}
                 >
-                  <Link href="/events/resilient-workshop">Learn More</Link>
+                  <Link href="/events/golden-pearl">Register Now →</Link>
                 </Button>
-
                 <Button
                   asChild
                   variant="outline"
-                  className="rounded-full px-6 h-11 border-2"
-                  style={{ borderColor: pastel.accent, color: pastel.text }}
+                  className="rounded-full px-10 h-14 text-lg font-bold border-2 transition-all hover:bg-stone-50"
+                  style={{ borderColor: '#D4AF37', color: '#4A3B22' }}
                 >
-                  <Link
-                    href={
-                      selectedPass === 'inPerson'
-                        ? 'https://shop.hirahsaficoach.com/products/resilient-workshop-in-person'
-                        : 'https://shop.hirahsaficoach.com/products/resilient-workshop-online-person'
-                    }
-                  >
-                    Buy {selectedPass === 'inPerson' ? 'In-Person' : 'Online'} Pass
-                  </Link>
+                  <Link href="/events/golden-pearl#details">Explore Experience</Link>
                 </Button>
-
               </div>
 
-              <div
-                className="mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1"
-                style={{
-                  borderColor: 'rgba(232,180,168,0.35)',
-                  backgroundColor: 'rgba(232,180,168,0.10)',
-                  color: pastel.text
-                }}
-              >
-                Tickets are limited — in-person seats are first come, first served.
-              </div>
+              <div className="text-xs opacity-50 font-medium italic">✨ Seats are limited. Registration is strictly required for entry.</div>
             </div>
           </div>
         </motion.div>
       </section>
 
-
-
       {/* UPCOMING WORKSHOPS */}
       <section className={`${container} ${sectionY} pt-0`}>
-        <div className="flex items-center justify-between gap-4 flex-wrap mb-6">
-          <h3 className="font-playfair text-2xl md:text-3xl" style={{ color: pastel.text }}>
+        <div className="flex items-center justify-between gap-4 flex-wrap mb-8">
+          <h3 className="font-playfair text-3xl md:text-4xl font-bold" style={{ color: pastel.text }}>
             Upcoming Workshops
           </h3>
-          <div className="flex items-center gap-2">
-            <Badge>TBA</Badge>
-            <Badge>Online</Badge>
+          <div className="flex items-center gap-3">
+            <Badge className="bg-stone-100 text-stone-600 border-stone-200">Coming Soon</Badge>
+            <Badge className="bg-stone-100 text-stone-600 border-stone-200">Online</Badge>
           </div>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-3">
           {upcoming.map((ev) => (
             <EventCard key={ev.slug} ev={ev} />
           ))}
@@ -288,12 +233,13 @@ export default function EventsPage() {
 
       {/* PAST EVENTS */}
       <section className={`${container} ${sectionY} pt-0`}>
-        <div className="flex items-center justify-between gap-4 flex-wrap mb-6">
-          <h3 className="font-playfair text-2xl md:text-3xl" style={{ color: pastel.text }}>
+        <div className="flex items-center justify-between gap-4 flex-wrap mb-8 border-t border-stone-200/50 pt-12">
+          <h3 className="font-playfair text-3xl md:text-4xl font-bold" style={{ color: pastel.text }}>
             Past Events
           </h3>
+          <p className="font-lato opacity-60 italic">Memories from our previous sessions</p>
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-3">
           {past.map((ev) => (
             <EventCard key={ev.slug} ev={ev} />
           ))}
@@ -302,19 +248,19 @@ export default function EventsPage() {
 
       {/* CTA */}
       <section className={`${container} ${sectionY}`}>
-        <Card className="border-0 rounded-3xl overflow-hidden shadow-lg">
+        <Card className="border-0 rounded-[3rem] overflow-hidden shadow-2xl ring-1 ring-stone-200/50">
           <div className="grid md:grid-cols-3">
-            <div className="md:col-span-2 p-8 bg-white">
-              <h4 className="font-playfair text-3xl mb-3" style={{ color: pastel.text }}>
+            <div className="md:col-span-2 p-10 sm:p-14 bg-white/80 backdrop-blur">
+              <h4 className="font-playfair text-3xl sm:text-4xl font-bold mb-4" style={{ color: pastel.text }}>
                 Be first to know about new dates
               </h4>
-              <p className="font-lato opacity-90 mb-6" style={{ color: pastel.text }}>
-                Join the events list and get priority access when Soulmate and other workshops open.
+              <p className="font-lato text-lg opacity-80 mb-8 max-w-xl" style={{ color: pastel.text }}>
+                Join our community list and get priority access and special gifts when new workshops open.
               </p>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-4">
                 <Button
                   asChild
-                  className="rounded-full px-6 transition-transform hover:scale-[1.02]"
+                  className="rounded-full px-8 h-12 text-base font-bold transition-transform hover:scale-[1.02]"
                   style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}
                 >
                   <Link href="/waitlist">Join the Events List →</Link>
@@ -322,24 +268,24 @@ export default function EventsPage() {
                 <Button
                   asChild
                   variant="outline"
-                  className="rounded-full px-6 border-2"
+                  className="rounded-full px-8 h-12 text-base font-bold border-2"
                   style={{ borderColor: pastel.accent, color: pastel.text }}
                 >
                   <Link href="/services">See Coaching & Tiers</Link>
                 </Button>
               </div>
             </div>
-            <div className="relative p-8" style={{ background: 'linear-gradient(160deg,#fde2e4,#fad2e1)' }}>
+            <div className="relative p-10 flex items-center justify-center overflow-hidden" style={{ background: 'linear-gradient(160deg,#fde2e4,#fad2e1)' }}>
               <div
-                className="absolute -inset-5 -z-10 blur-3xl opacity-50"
-                style={{ background: `radial-gradient(60% 60% at 50% 50%, ${pastel.subtle}, transparent)` }}
+                className="absolute inset-0 -z-10 blur-3xl opacity-50"
+                style={{ background: `radial-gradient(center, ${pastel.subtle}, transparent)` }}
               />
               <div
-                className="h-full w-full rounded-2xl bg-white/70 backdrop-blur grid place-items-center text-center p-6 ring-1"
-                style={{ borderColor: 'rgba(232,180,168,0.28)' }}
+                className="relative z-10 w-full rounded-3xl bg-white/70 backdrop-blur-md grid place-items-center text-center p-8 ring-1 border shadow-lg"
+                style={{ borderColor: 'rgba(232,180,168,0.3)', color: pastel.text }}
               >
-                <div className="font-playfair text-2xl" style={{ color: pastel.text }}>
-                  “Clarity, community, and consistency.”
+                <div className="font-playfair text-2xl italic leading-relaxed">
+                  &quot;Clarity, community, and consistency.&quot;
                 </div>
               </div>
             </div>
@@ -347,70 +293,66 @@ export default function EventsPage() {
         </Card>
       </section>
 
-      <Separator className="opacity-0" />
+      <Separator className="opacity-0 h-10" />
       <Footer />
     </div>
   );
 }
 
 /* ——— components ——— */
-function Badge({ children }: { children: React.ReactNode }) {
+function Badge({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <div
-      className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium ring-1"
-      style={{ color: pastel.text, backgroundColor: 'rgba(232,180,168,0.10)', borderColor: 'rgba(232,180,168,0.35)' }}
+      className={`inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-bold tracking-wide ring-1 shadow-sm ${className}`}
+      style={{ color: pastel.text, backgroundColor: 'rgba(255,255,255,0.85)', borderColor: 'rgba(232,180,168,0.35)' }}
     >
       {children}
     </div>
   );
 }
 
-function InfoPill({ icon, text }: { icon: React.ReactNode; text: string }) {
-  return (
-    <div
-      className="flex items-center gap-2 rounded-full px-3 py-2 text-xs ring-1 bg-white/70 backdrop-blur"
-      style={{ borderColor: 'rgba(232,180,168,0.28)', color: pastel.text }}
-    >
-      {icon} <span>{text}</span>
-    </div>
-  );
-}
-
 function EventCard({ ev }: { ev: EventItem }) {
   const isTBA = ev.date === 'TBA';
+  const isEnded = ev.time === 'Ended';
+
   const content = (
     <Card
-      className={`rounded-3xl border-0 shadow-md transition-shadow ring-1 overflow-hidden bg-white/85 backdrop-blur ${!isTBA ? 'hover:shadow-lg' : ''
+      className={`rounded-[2rem] border-0 shadow-lg transition-all ring-1 overflow-hidden bg-white/90 backdrop-blur group ${!isTBA ? 'hover:shadow-2xl hover:-translate-y-2' : ''
         }`}
-      style={{ borderColor: 'rgba(232,180,168,0.28)' }}
+      style={{ borderColor: 'rgba(232,180,168,0.2)' }}
     >
-      <div className="h-1.5 w-full bg-gradient-to-r from-[#fde2e4] to-white" />
-      <CardHeader className="pb-2">
-        <CardTitle className="font-playfair text-xl" style={{ color: pastel.text }}>
+      <div className={`h-2 w-full bg-gradient-to-r ${isEnded ? 'from-stone-200 to-stone-300' : 'from-[#F5EAC8] to-[#D4AF37]'}`} />
+      <CardHeader className="pb-3 border-b border-stone-100/50">
+        <CardTitle className="font-playfair text-2xl group-hover:text-yellow-800 transition-colors" style={{ color: pastel.text }}>
           {ev.title}
         </CardTitle>
         <div
-          className="mt-2 flex flex-wrap items-center gap-3 text-sm font-lato opacity-90"
+          className="mt-3 grid gap-2 text-sm font-lato opacity-80"
           style={{ color: pastel.text }}
         >
-          <span className="inline-flex items-center gap-1">
-            <CalendarDays className="h-4 w-4" /> {ev.date}
+          <span className="inline-flex items-center gap-2">
+            <CalendarDays className="h-4 w-4 opacity-50" /> {ev.date}
           </span>
-          <span className="inline-flex items-center gap-1">
-            <Clock className="h-4 w-4" /> {ev.time}
+          <span className="inline-flex items-center gap-2">
+            <Clock className="h-4 w-4 opacity-50" /> {ev.time}
           </span>
-          <span className="inline-flex items-center gap-1">
-            <MapPin className="h-4 w-4" /> {ev.city}
+          <span className="inline-flex items-center gap-2">
+            <MapPin className="h-4 w-4 opacity-50" /> {ev.city}
           </span>
         </div>
       </CardHeader>
-      <CardContent className="space-y-4">
-        <p className="font-lato text-sm opacity-90" style={{ color: pastel.text }}>
+      <CardContent className="pt-5 space-y-6">
+        <p className="font-lato text-base opacity-90 leading-relaxed" style={{ color: pastel.text }}>
           {ev.short}
         </p>
-        {!isTBA && (
-          <div className="pt-2 text-xs font-semibold uppercase tracking-wider" style={{ color: pastel.accent }}>
-            View Details →
+        {(!isTBA && !isEnded) && (
+          <div className="pt-2 text-sm font-bold uppercase tracking-widest flex items-center gap-2 transition-all group-hover:gap-3" style={{ color: '#9C7A1A' }}>
+            Explore Session <Sparkles size={14} />
+          </div>
+        )}
+        {isEnded && (
+          <div className="pt-2 text-xs font-bold uppercase tracking-widest text-stone-400">
+            Session Completed
           </div>
         )}
       </CardContent>
@@ -418,7 +360,7 @@ function EventCard({ ev }: { ev: EventItem }) {
   );
 
   return (
-    <motion.div whileHover={!isTBA ? { y: -6 } : {}}>
+    <motion.div whileHover={!isTBA ? { scale: 1.01 } : {}}>
       {isTBA ? content : <Link href={`/events/${ev.slug}`}>{content}</Link>}
     </motion.div>
   );
@@ -428,8 +370,8 @@ function ImagePlaceholder({ ratio = '4/3', src }: { ratio?: '1/1' | '4/3' | '16/
   const paddingMap: Record<string, string> = { '1/1': 'pb-[100%]', '4/3': 'pb-[75%]', '16/9': 'pb-[56.25%]' };
   return (
     <div
-      className={`relative w-full ${paddingMap[ratio]} rounded-2xl overflow-hidden group border shadow-sm bg-white/70 backdrop-blur`}
-      style={{ borderColor: 'rgba(232,180,168,0.35)' }}
+      className={`relative w-full ${paddingMap[ratio]} rounded-[2rem] overflow-hidden group border shadow-xl bg-white/70 backdrop-blur`}
+      style={{ borderColor: 'rgba(212, 175, 55, 0.2)' }}
       onMouseMove={(e) => {
         const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
         const x = ((e.clientX - r.left) / r.width) * 100;
@@ -438,87 +380,21 @@ function ImagePlaceholder({ ratio = '4/3', src }: { ratio?: '1/1' | '4/3' | '16/
         (e.currentTarget as HTMLElement).style.setProperty('--y', y + '%');
       }}
     >
-      <div className="absolute inset-0 grid place-items-center text-sm opacity-80" style={{ color: pastel.text }}>
-        <img src={src || "/assets/8.webp"} alt="Hirah Safi, life and success coach" className="w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-stone-100 grid place-items-center">
+        <img
+          src={src || "/assets/8.webp"}
+          alt="Golden Pearl Event Preview"
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+        />
+        <div className="absolute inset-0 bg-stone-900/10 group-hover:bg-transparent transition-colors duration-500" />
       </div>
       <div
         className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
         style={{
           background:
-            'radial-gradient(160px 160px at var(--x,50%) var(--y,50%), rgba(232,180,168,0.25), transparent 70%)'
+            'radial-gradient(200px 200px at var(--x,50%) var(--y,50%), rgba(212, 175, 55, 0.15), transparent 70%)'
         }}
       />
-    </div>
-  );
-}
-function PassSelector({
-  selected,
-  onChange
-}: {
-  selected: 'inPerson' | 'online';
-  onChange: (v: 'inPerson' | 'online') => void;
-}) {
-  const cards = [
-    {
-      key: 'inPerson' as const,
-      title: 'In-Person (Toronto)',
-      emoji: '🏢',
-      date: 'Sat, Jan 31, 2026',
-      time: 'TBA',
-      detailIcon: <MapPin className="h-4 w-4" />,
-      detail: 'Toronto, Ontario'
-    },
-    {
-      key: 'online' as const,
-      title: 'Online (Zoom)',
-      emoji: '💻',
-      date: 'Sun, Feb 1, 2026',
-      time: 'TBA',
-      detailIcon: <Monitor className="h-4 w-4" />,
-      detail: 'Link arrives 24h before'
-    }
-  ];
-
-  return (
-    <div role="radiogroup" aria-label="Pass type" className="grid sm:grid-cols-2 gap-3">
-      {cards.map(c => {
-        const active = selected === c.key;
-        return (
-          <button
-            key={c.key}
-            role="radio"
-            aria-checked={active}
-            onClick={() => onChange(c.key)}
-            className={`text-left rounded-2xl transition-all ring-1 p-4 bg-white/85 backdrop-blur hover:shadow-sm ${active ? 'ring-2' : ''
-              }`}
-            style={{
-              borderColor: active ? 'rgba(232,180,168,0.6)' : 'rgba(232,180,168,0.28)',
-              boxShadow: active ? '0 8px 24px rgba(0,0,0,0.06)' : 'none',
-              color: pastel.text
-            }}
-          >
-            <div className="flex items-center justify-between gap-2">
-              <div className="font-playfair text-lg">{c.emoji} {c.title}</div>
-              {active && (
-                <span
-                  className="text-[11px] px-2 py-0.5 rounded-full"
-                  style={{
-                    border: '1px solid rgba(232,180,168,0.5)',
-                    background: 'rgba(232,180,168,0.18)'
-                  }}
-                >
-                  Selected
-                </span>
-              )}
-            </div>
-            <div className="mt-2 grid grid-cols-[auto,1fr] gap-x-2 gap-y-1 text-sm font-lato opacity-90">
-              <span className="inline-flex items-center gap-1"><CalendarDays className="h-4 w-4" /> {c.date}</span>
-              <span className="inline-flex items-center gap-1"><Clock className="h-4 w-4" /> {c.time}</span>
-              <span className="inline-flex items-center gap-1">{c.detailIcon} {c.detail}</span>
-            </div>
-          </button>
-        );
-      })}
     </div>
   );
 }

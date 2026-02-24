@@ -73,23 +73,23 @@ export default function ServicesPage() {
   const [wlSubmitting, setWlSubmitting] = useState(false);
   const [wlSuccess, setWlSuccess] = useState<string | null>(null);
   const [wlError, setWlError] = useState<string | null>(null);
-// Early-bird logic — deadline Nov 15, 11:59pm Toronto time (ET)
-const [nowMs, setNowMs] = useState<number>(Date.now());
-useEffect(() => {
-  const id = setInterval(() => setNowMs(Date.now()), 1000);
-  return () => clearInterval(id);
-}, []);
+  // Early-bird logic — deadline Nov 15, 11:59pm Toronto time (ET)
+  const [nowMs, setNowMs] = useState<number>(Date.now());
+  useEffect(() => {
+    const id = setInterval(() => setNowMs(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
 
-const deadline = new Date('2025-11-15T23:59:59-05:00').getTime(); // ET (post-DST)
-const saleActive = nowMs < deadline;
+  const deadline = new Date('2025-11-15T23:59:59-05:00').getTime(); // ET (post-DST)
+  const saleActive = nowMs < deadline;
 
-const fullPrice = 45;
-const salePrice = 35;
+  const fullPrice = 45;
+  const salePrice = 35;
 
-const displayPrice = saleActive ? `$${salePrice}` : `$${fullPrice}`;
-const ctaTextTier1 = saleActive
-  ? `Buy Tickets — $${salePrice} Early-Bird`
-  : `Buy Tickets — $${fullPrice}`;
+  const displayPrice = saleActive ? `$${salePrice}` : `$${fullPrice}`;
+  const ctaTextTier1 = saleActive
+    ? `Buy Tickets — $${salePrice} Early-Bird`
+    : `Buy Tickets — $${fullPrice}`;
   const menuItems = [
     { label: 'Home', href: '/', rotation: -8, hoverStyles: { bgColor: '#FFB5A7', textColor: '#FFFFFF' } },
     { label: 'About', href: '/about', rotation: 8, hoverStyles: { bgColor: '#FCD5CE', textColor: '#57534E' } },
@@ -99,7 +99,7 @@ const ctaTextTier1 = saleActive
 
   return (
     <div className="page-wrapper">
-      
+
 
       {/* HERO */}
       <section className={`relative isolate overflow-hidden ${sectionY}`}>
@@ -162,24 +162,24 @@ const ctaTextTier1 = saleActive
       {/* TIERS — elevated card design */}
       <section className={`${container} ${sectionY}`}>
         <div className="grid gap-6 md:gap-7 lg:gap-8 md:grid-cols-3">
-   <TierCard
-  icon={<Star className="h-6 w-6" />}
-  label={saleActive ? 'Tier 1 • Early-bird' : 'Tier 1'}
-  title="Soulmate Workshop — Toronto (In-Person)"
-  blurb="Girls-only, faith-aligned live workshop (2–3 hours). Not a dating class — a self-rescue mission to expose the “rescue relationship” myth and build your inner anchor."
-  bullets={[
-    'In-person • Toronto, Canada',
-    'Gentle-paced, women-first environment',
-    'Printed workbook to take home',
-    'Beginner-friendly; no force, no shame',
-    'Leave with a 30-day roadmap',
-    saleActive ? 'Early-bird ends Nov 15, 11:59pm ET ($35)' : 'Standard price $45'
-  ]}
-  ctaText="Learn More"
-  ctaIcon={<ArrowRightIcon />}
-  ctaHref="/events/soulmate-workshop"
-  accent="from-[#fde2e4] to-white"
-/>
+          <TierCard
+            icon={<Star className="h-6 w-6" />}
+            label={saleActive ? 'Tier 1 • Early-bird' : 'Tier 1'}
+            title="Soulmate Workshop — Toronto (In-Person)"
+            blurb="Girls-only, faith-aligned live workshop (2–3 hours). Not a dating class — a self-rescue mission to expose the “rescue relationship” myth and build your inner anchor."
+            bullets={[
+              'In-person • Toronto, Canada',
+              'Gentle-paced, women-first environment',
+              'Printed workbook to take home',
+              'Beginner-friendly; no force, no shame',
+              'Leave with a 30-day roadmap',
+              saleActive ? 'Early-bird ends Nov 15, 11:59pm ET ($35)' : 'Standard price $45'
+            ]}
+            ctaText="Learn More"
+            ctaIcon={<ArrowRightIcon />}
+            ctaHref="/events/soulmate-workshop"
+            accent="from-[#fde2e4] to-white"
+          />
 
           {/* Tier 2 — EXACT styling, just renamed + linked */}
           <TierCard
@@ -201,7 +201,7 @@ const ctaTextTier1 = saleActive
           <TierCard
             icon={<Crown className="h-6 w-6" />}
             label="Tier 3"
-            title="The Golden Purl Success Formula"
+            title="The Golden Pearl Success Formula"
             blurb="A 6-week transformation that dissolves Imposter Syndrome and fear of failure while installing a step-by-step navigation system."
             bullets={[
               'Mindset re-patterning (NLP + gentle systems)',
@@ -243,13 +243,13 @@ const ctaTextTier1 = saleActive
           <div className="grid md:grid-cols-3 gap-4 mt-6">
             {[{
               icon: <Users className="h-5 w-5" />, title: 'Attend 3 Events', text: 'Signature workshops spaced ~60 days apart for momentum & community.'
-            },{
+            }, {
               icon: <ListChecks className="h-5 w-5" />, title: 'Get on the List', text: 'Join the waitlist any time — secure priority access to the cohort.'
-            },{
+            }, {
               icon: <Target className="h-5 w-5" />, title: 'Commit to 6 Weeks', text: 'Clarity, mindset, and systems — in a faith-aligned container.'
             }].map((s, i) => (
               <div key={i} className="rounded-2xl bg-white/75 backdrop-blur p-5 flex items-start gap-3 shadow-sm ring-1"
-                   style={{ borderColor: 'rgba(232,180,168,0.28)' }}>
+                style={{ borderColor: 'rgba(232,180,168,0.28)' }}>
                 <div className="h-10 w-10 grid place-items-center rounded-full bg-[color:var(--subtle-accent,#FCD5CE)]/70 text-[color:var(--text-color,#57534E)]">
                   {s.icon}
                 </div>
@@ -290,21 +290,21 @@ const ctaTextTier1 = saleActive
             <div className="md:col-span-2 p-8 bg-white">
               <h3 className="font-playfair text-3xl mb-3" style={{ color: pastel.text }}>Ready to Secure Your Future?</h3>
               <p className="font-lato opacity-90 mb-6" style={{ color: pastel.text }}>
-                Demand is high for the Golden Purl Success Formula. Join the waitlist to receive priority access and cohort dates.
+                Demand is high for the Golden Pearl Success Formula. Join the waitlist to receive priority access and cohort dates.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Button asChild className="rounded-full px-6 transition-transform hover:scale-[1.02]" style={{ backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}>
-                <Link href="/contact">Join the Waitlist <ArrowRightIcon /></Link>
-              </Button>
-              <Button asChild variant="outline" className="rounded-full px-6 border-2" style={{ borderColor: pastel.accent, color: pastel.text }}>
-                <Link href="/events">See Upcoming Events</Link>
-              </Button>
+                  <Link href="/contact">Join the Waitlist <ArrowRightIcon /></Link>
+                </Button>
+                <Button asChild variant="outline" className="rounded-full px-6 border-2" style={{ borderColor: pastel.accent, color: pastel.text }}>
+                  <Link href="/events">See Upcoming Events</Link>
+                </Button>
               </div>
             </div>
             <div className="relative p-8" style={{ background: 'linear-gradient(160deg,#fde2e4,#fad2e1)' }}>
               <div className="absolute -inset-5 -z-10 blur-3xl opacity-50" style={{ background: `radial-gradient(60% 60% at 50% 50%, ${pastel.subtle}, transparent)` }} />
               <div className="h-full w-full rounded-2xl bg-white/70 backdrop-blur grid place-items-center text-center p-6 ring-1"
-                   style={{ borderColor: 'rgba(232,180,168,0.28)' }}>
+                style={{ borderColor: 'rgba(232,180,168,0.28)' }}>
                 <div className="font-playfair text-2xl" style={{ color: pastel.text }}>“Profit with peace. Strategy with softness.”</div>
                 <div className="mt-4 w-full">
                   {/* <ImagePlaceholder ratio="16/9" /> */}
@@ -489,27 +489,27 @@ function TierCard({
           <div className="pt-1">
             {ctaHref ? (
               <Button asChild className="rounded-full px-6 transition-transform hover:scale-[1.02]"
-                      variant={ctaVariant === 'outline' ? 'outline' : undefined}
-                      style={ctaVariant === 'outline'
-                        ? { borderColor: pastel.accent, color: pastel.text }
-                        : { backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}>
+                variant={ctaVariant === 'outline' ? 'outline' : undefined}
+                style={ctaVariant === 'outline'
+                  ? { borderColor: pastel.accent, color: pastel.text }
+                  : { backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}>
                 <Link href={ctaHref}>{ButtonInner}</Link>
               </Button>
             ) : onCtaClick ? (
               <Button className="rounded-full px-6 transition-transform hover:scale-[1.02]"
-                      onClick={onCtaClick}
-                      variant={ctaVariant === 'outline' ? 'outline' : undefined}
-                      style={ctaVariant === 'outline'
-                        ? { borderColor: pastel.accent, color: pastel.text }
-                        : { backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}>
+                onClick={onCtaClick}
+                variant={ctaVariant === 'outline' ? 'outline' : undefined}
+                style={ctaVariant === 'outline'
+                  ? { borderColor: pastel.accent, color: pastel.text }
+                  : { backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}>
                 {ButtonInner}
               </Button>
             ) : (
               <Button asChild className="rounded-full px-6 transition-transform hover:scale-[1.02]"
-                      variant={ctaVariant === 'outline' ? 'outline' : undefined}
-                      style={ctaVariant === 'outline'
-                        ? { borderColor: pastel.accent, color: pastel.text }
-                        : { backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}>
+                variant={ctaVariant === 'outline' ? 'outline' : undefined}
+                style={ctaVariant === 'outline'
+                  ? { borderColor: pastel.accent, color: pastel.text }
+                  : { backgroundColor: 'var(--cta-color,#FFB5A7)', color: 'var(--cta-text-color,#fff)' }}>
                 <Link href={ctaVariant === 'outline' ? '/events' : '/waitlist'}>
                   {ButtonInner}
                 </Link>

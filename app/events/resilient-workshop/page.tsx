@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
 import {
     CalendarDays,
@@ -257,7 +258,7 @@ function MobileBuyBar() {
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
-    if (!visible) return null;
+    return null;
 
     return (
         <div className="md:hidden fixed bottom-6 left-4 right-4 z-50 animate-in slide-in-from-bottom-4 duration-500">
@@ -296,14 +297,14 @@ function TicketSelector() {
         <div className="relative inline-block text-left">
             <div className="flex flex-col gap-2">
                 <Button
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="rounded-full px-10 h-14 text-base font-semibold shadow-xl transition-all hover:scale-[1.02] hover:shadow-2xl z-20 relative"
-                    style={{ backgroundColor: theme.highlight, color: '#fff' }}
+                    disabled
+                    className="rounded-full px-10 h-14 text-base font-semibold shadow-none cursor-not-allowed opacity-50 z-20 relative"
+                    style={{ backgroundColor: '#78716C', color: '#fff' }}
                 >
-                    Get Tickets <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                    Registration Closed
                 </Button>
                 <div className="text-center font-bold text-sm opacity-60" style={{ color: theme.text }}>
-                    Only $11 CAD
+                    Event Completed
                 </div>
             </div>
 
@@ -398,14 +399,13 @@ export default function ResilientWorkshopPage() {
 
                             <div className="space-y-6">
                                 <div
-                                    className="inline-flex items-center gap-2.5 rounded-full border px-5 py-2 text-xs font-semibold tracking-wide uppercase shadow-sm bg-white/40 backdrop-blur-md transition-all hover:bg-white/60"
+                                    className="inline-flex items-center gap-2.5 rounded-full border px-5 py-2 text-xs font-bold tracking-widest uppercase shadow-sm bg-stone-100 text-stone-500"
                                     style={{
-                                        borderColor: theme.accent2,
-                                        color: theme.text,
+                                        borderColor: '#E7E5E4',
                                     }}
                                 >
-                                    <Sparkles className="h-3.5 w-3.5 fill-current opacity-70" />
-                                    <span>A Sacred Space for Connection</span>
+                                    <Clock className="h-3.5 w-3.5 opacity-70" />
+                                    <span>Event Successfully Completed</span>
                                 </div>
 
                                 <h1
@@ -458,7 +458,13 @@ export default function ResilientWorkshopPage() {
                             </div>
 
                             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                                <TicketSelector />
+                                <Button
+                                    asChild
+                                    className="rounded-full px-10 h-14 text-base font-bold shadow-lg transition-all hover:scale-[1.02]"
+                                    style={{ backgroundColor: theme.text, color: '#fff' }}
+                                >
+                                    <Link href="/events">View Upcoming Events →</Link>
+                                </Button>
                                 <Button
                                     variant="ghost"
                                     className="rounded-full px-8 h-14 text-base font-medium hover:bg-white/40"
@@ -658,35 +664,33 @@ export default function ResilientWorkshopPage() {
 
                             <div className="grid gap-6 w-full max-w-xl">
                                 <div
-                                    className="p-6 rounded-[2rem] border bg-stone-50/50 flex items-center justify-between hover:border-stone-400 hover:bg-white hover:shadow-lg transition-all cursor-pointer group"
-                                    onClick={() => window.location.href = LINKS.inPerson}
+                                    className="p-6 rounded-[2rem] border bg-stone-100/50 flex items-center justify-between opacity-70 cursor-not-allowed group"
                                 >
                                     <div className="flex items-center gap-6">
-                                        <div className="h-16 w-16 rounded-full bg-white shadow-sm ring-1 ring-stone-100 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                            <MapPin className="h-6 w-6" color={theme.text} />
+                                        <div className="h-16 w-16 rounded-full bg-white shadow-sm ring-1 ring-stone-100 flex items-center justify-center">
+                                            <MapPin className="h-6 w-6 text-stone-400" />
                                         </div>
                                         <div>
-                                            <div className="font-playfair text-xl font-bold mb-1" style={{ color: theme.text }}>In-Person Ticket</div>
-                                            <div className="text-sm opacity-60">Feb 7 • Toronto • $11 CAD</div>
+                                            <div className="font-playfair text-xl font-bold mb-1 text-stone-500">In-Person Ticket</div>
+                                            <div className="text-sm opacity-60 text-stone-400">Feb 7 • Toronto • Passed</div>
                                         </div>
                                     </div>
-                                    <Button size="lg" className="rounded-full px-8 shadow-md" style={{ backgroundColor: theme.highlight }}>Book</Button>
+                                    <Button disabled size="lg" className="rounded-full px-8 bg-stone-400 text-white shadow-none">Closed</Button>
                                 </div>
 
                                 <div
-                                    className="p-6 rounded-[2rem] border bg-stone-50/50 flex items-center justify-between hover:border-stone-400 hover:bg-white hover:shadow-lg transition-all cursor-pointer group"
-                                    onClick={() => window.location.href = LINKS.online}
+                                    className="p-6 rounded-[2rem] border bg-stone-100/50 flex items-center justify-between opacity-70 cursor-not-allowed group"
                                 >
                                     <div className="flex items-center gap-6">
-                                        <div className="h-16 w-16 rounded-full bg-white shadow-sm ring-1 ring-stone-100 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                            <Users className="h-6 w-6" color={theme.text} />
+                                        <div className="h-16 w-16 rounded-full bg-white shadow-sm ring-1 ring-stone-100 flex items-center justify-center">
+                                            <Users className="h-6 w-6 text-stone-400" />
                                         </div>
                                         <div>
-                                            <div className="font-playfair text-xl font-bold mb-1" style={{ color: theme.text }}>Online Ticket</div>
-                                            <div className="text-sm opacity-60">Feb 8 • Zoom • $11 CAD</div>
+                                            <div className="font-playfair text-xl font-bold mb-1 text-stone-500">Online Ticket</div>
+                                            <div className="text-sm opacity-60 text-stone-400">Feb 8 • Zoom • Passed</div>
                                         </div>
                                     </div>
-                                    <Button size="lg" variant="outline" className="rounded-full px-8 border-2" style={{ borderColor: theme.accent1, color: theme.text }}>Book</Button>
+                                    <Button disabled size="lg" variant="outline" className="rounded-full px-8 border-stone-300 text-stone-400 shadow-none">Closed</Button>
                                 </div>
                             </div>
 

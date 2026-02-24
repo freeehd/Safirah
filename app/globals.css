@@ -66,22 +66,37 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
+  padding-top: 6rem;
+  /* Ensures a consistent cushion below the fixed navbar across all pages! */
+  background: linear-gradient(175deg, #f7f4f1 0%, #ecd9d2 60%, #E0c5bb 100%);
+  background-size: 100% 200%;
+  animation: gradient-background 30s ease infinite;
+}
+
+.page-wrapper-2 {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: clip;
+
   background: linear-gradient(175deg, #f7f4f1 0%, #ecd9d2 60%, #E0c5bb 100%);
   background-size: 100% 200%;
   animation: gradient-background 30s ease infinite;
 }
 
 @keyframes gradient-background {
-	0% {
-		background-position: 50% 0%;
-	}
-	50% {
-		background-position: 50% 100%;
-	}
-	100% {
-		background-position: 50% 0%;
-	}
+  0% {
+    background-position: 50% 0%;
+  }
+
+  50% {
+    background-position: 50% 100%;
+  }
+
+  100% {
+    background-position: 50% 0%;
+  }
 }
 
 /* Energetic CTA shine */
@@ -89,6 +104,7 @@ body {
   position: relative;
   overflow: hidden;
 }
+
 .btn-shine::after {
   content: '';
   position: absolute;
@@ -97,20 +113,23 @@ body {
   left: -50%;
   width: 40%;
   transform: rotate(20deg) translateX(-120%);
-  background: linear-gradient(
-    to right,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.35) 50%,
-    rgba(255,255,255,0) 100%
-  );
+  background: linear-gradient(to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.35) 50%,
+      rgba(255, 255, 255, 0) 100%);
   pointer-events: none;
   filter: blur(0.5px);
   animation: shimmer 2.4s linear infinite;
 }
 
 @keyframes shimmer {
-  0% { transform: rotate(20deg) translateX(-130%); }
-  100% { transform: rotate(20deg) translateX(320%); }
+  0% {
+    transform: rotate(20deg) translateX(-130%);
+  }
+
+  100% {
+    transform: rotate(20deg) translateX(320%);
+  }
 }
 
 /* Soft pulse for badges */
@@ -119,8 +138,17 @@ body {
 }
 
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(232, 180, 168, 0.0); transform: translateY(0); }
-  50% { box-shadow: 0 0 0 10px rgba(232, 180, 168, 0.15); transform: translateY(-1px); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(232, 180, 168, 0.0);
+    transform: translateY(0);
+  }
+
+  50% {
+    box-shadow: 0 0 0 10px rgba(232, 180, 168, 0.15);
+    transform: translateY(-1px);
+  }
 }
 
 .logo-text {
@@ -142,7 +170,9 @@ body {
   box-sizing: border-box;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
 }
@@ -212,6 +242,7 @@ p {
 }
 
 @media (min-width: 992px) {
+
   .shift-to-success-section,
   .benefits-section {
     padding: 6rem 2rem;
@@ -240,19 +271,19 @@ p {
 }
 
 .section-subtitle {
-    font-size: 1.2rem;
-    color: var(--text-color);
-    opacity: 0.9;
-    max-width: 700px;
-    margin: 0.5rem auto 3rem auto;
-    line-height: 1.7;
+  font-size: 1.2rem;
+  color: var(--text-color);
+  opacity: 0.9;
+  max-width: 700px;
+  margin: 0.5rem auto 3rem auto;
+  line-height: 1.7;
 }
 
 .familiar-sounds-content p,
 .benefits-section p {
-    max-width: 650px;
-    margin-left: auto;
-    margin-right: auto;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .pain-points-list {
@@ -265,17 +296,17 @@ p {
 }
 
 @media (min-width: 768px) {
-    .pain-points-list {
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-    }
+  .pain-points-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
 }
 
 .pain-points-list li {
   background: rgba(255, 255, 255, 0.4);
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -284,8 +315,8 @@ p {
 }
 
 .pain-points-list li:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .pain-point-icon {
@@ -298,8 +329,13 @@ p {
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .conclusion {
@@ -350,8 +386,8 @@ p {
 }
 
 .benefit-icon svg {
-    width: 40px;
-    height: 40px;
+  width: 40px;
+  height: 40px;
 }
 
 .benefit-card h3 {
@@ -375,10 +411,10 @@ p {
 }
 
 .social-links {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .social-links a {
@@ -392,9 +428,17 @@ p {
   transform: scale(1.1);
 }
 
-.social-links a:hover[aria-label="Instagram"] { color: #E4405F; }
-.social-links a:hover[aria-label="Facebook"] { color: #1877F2; }
-.social-links a:hover[aria-label="Twitter"] { color: #1DA1F2; }
+.social-links a:hover[aria-label="Instagram"] {
+  color: #E4405F;
+}
+
+.social-links a:hover[aria-label="Facebook"] {
+  color: #1877F2;
+}
+
+.social-links a:hover[aria-label="Twitter"] {
+  color: #1DA1F2;
+}
 
 .social-links svg {
   width: 24px;
@@ -403,8 +447,8 @@ p {
 }
 
 .footer p {
-    margin-top: 1rem;
-    font-size: 0.9rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
 }
 
 @theme inline {
@@ -483,21 +527,26 @@ p {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
+
 /* Ensure text-center works inside Typography (.prose) and against any base p alignment */
 @layer utilities {
+
   /* Force center on elements explicitly marked with text-center */
   p.text-center {
     text-align: center !important;
   }
-  :is(h1,h2,h3,h4,h5,h6).text-center {
+
+  :is(h1, h2, h3, h4, h5, h6).text-center {
     text-align: center !important;
   }
+
   .prose p.text-center,
-  .prose :is(h1,h2,h3,h4,h5,h6).text-center,
+  .prose :is(h1, h2, h3, h4, h5, h6).text-center,
   .prose ul.text-center,
   .prose ol.text-center {
     text-align: center !important;
