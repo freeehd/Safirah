@@ -1,0 +1,42 @@
+{
+  "name": "Hirah Safi Coaching",
+  "short_name": "Hirah Safi",
+  "description": "Faith-aligned life coaching, workshops and resources for Muslim women entrepreneurs to build inner strength, clarity, and self-trust.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f4f1",
+  "theme_color": "#e8b4a8",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "category": "education",
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Book a Session",
+      "short_name": "Book",
+      "description": "Schedule a 1:1 coaching session with Hirah Safi",
+      "url": "/contact",
+      "icons": [{ "src": "/favicon.ico", "sizes": "64x64" }]
+    },
+    {
+      "name": "View Services",
+      "short_name": "Services",
+      "description": "Explore coaching services and workshops",
+      "url": "/services",
+      "icons": [{ "src": "/favicon.ico", "sizes": "64x64" }]
+    },
+    {
+      "name": "About Hirah",
+      "short_name": "About",
+      "description": "Learn about Hirah Safi and her coaching approach",
+      "url": "/about",
+      "icons": [{ "src": "/favicon.ico", "sizes": "64x64" }]
+    }
+  ]
+}
