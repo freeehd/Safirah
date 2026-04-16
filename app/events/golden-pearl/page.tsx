@@ -202,6 +202,9 @@ export default function GoldenPearlPage() {
 
                 <div className={container}>
                     <div className="relative flex flex-col items-center text-center">
+
+
+
                         {/* Hero Header */}
                         <motion.div {...fadeUp} className="max-w-4xl space-y-6 mb-12 lg:mb-16">
                             <Badge className="animate-bounce-subtle">
@@ -217,6 +220,35 @@ export default function GoldenPearlPage() {
                                 Step into a sanctuary of <span className="text-yellow-800">Faith, Strategy, and Sisterhood</span>.
                                 Secure your future by redefining success through your Deen.
                             </p>
+                            <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-0 text-center sm:text-left divide-y sm:divide-y-0 sm:divide-x divide-yellow-400/40">
+
+                                {/* Date */}
+                                <div className="flex flex-col items-center sm:items-start gap-0.5 sm:pr-10 pb-6 sm:pb-0">
+                                    <span className="font-bold text-xs uppercase tracking-[0.22em] mb-1" style={{ color: theme.highlight }}>📅 Date</span>
+                                    <strong className="font-playfair text-3xl sm:text-4xl font-bold leading-tight block" style={{ color: theme.text }}>Thursday</strong>
+                                    <strong className="font-playfair text-2xl sm:text-3xl font-bold block" style={{ color: theme.highlight }}>May 21</strong>
+                                </div>
+
+                                {/* Time */}
+                                <div className="flex flex-col items-center sm:items-start gap-0.5 sm:px-10 pb-6 sm:pb-0 pt-6 sm:pt-0">
+                                    <span className="font-bold text-xs uppercase tracking-[0.22em] mb-1" style={{ color: theme.highlight }}>🕞 Time</span>
+                                    <strong className="font-playfair text-3xl sm:text-4xl font-bold leading-tight block" style={{ color: theme.text }}>3:30 PM</strong>
+                                    <strong className="font-lato text-xl font-bold block opacity-80" style={{ color: theme.text }}>to&nbsp;6:30 PM</strong>
+                                </div>
+
+                                {/* Location */}
+                                <div className="flex flex-col items-center sm:items-start gap-0.5 sm:pl-10 pt-6 sm:pt-0">
+                                    <span className="font-bold text-xs uppercase tracking-[0.22em] mb-1" style={{ color: theme.highlight }}>📍 Location</span>
+                                    <div className="flex items-start gap-2">
+                                        <MapPin className="h-5 w-5 mt-1 flex-shrink-0" style={{ color: theme.highlight }} />
+                                        <div>
+                                            <strong className="font-playfair text-xl sm:text-2xl font-bold block leading-snug" style={{ color: theme.text }}>200 St James King St E</strong>
+                                            <strong className="font-lato text-lg font-bold block" style={{ color: theme.highlight }}>Toronto Downtown</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </motion.div>
 
                         {/* Cinematic Image + Form Overlay */}

@@ -175,6 +175,31 @@ export default function EventsPageClient() {
                 </p>
               </div>
 
+              {/* Event Date / Time / Location */}
+              <div
+                className="rounded-2xl border-2 px-6 py-5 flex flex-col sm:flex-row gap-5 sm:gap-0 divide-y sm:divide-y-0 sm:divide-x divide-yellow-300/50"
+                style={{ borderColor: '#D4AF37', background: 'linear-gradient(135deg, rgba(245,234,200,0.6) 0%, rgba(255,255,255,0.85) 100%)' }}
+              >
+                {/* Date */}
+                <div className="flex flex-col gap-0.5 sm:pr-6 pb-4 sm:pb-0">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-yellow-700">📅 Date</span>
+                  <strong className="font-playfair text-2xl font-bold leading-tight text-stone-900">Thursday</strong>
+                  <strong className="font-playfair text-xl font-bold" style={{ color: '#9C7A1A' }}>May 21</strong>
+                </div>
+                {/* Time */}
+                <div className="flex flex-col gap-0.5 sm:px-6 pb-4 sm:pb-0 pt-4 sm:pt-0">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-yellow-700">🕞 Time</span>
+                  <strong className="font-playfair text-2xl font-bold leading-tight text-stone-900">3:30 PM</strong>
+                  <strong className="font-lato text-base font-bold text-stone-700">to 6:30 PM</strong>
+                </div>
+                {/* Location */}
+                <div className="flex flex-col gap-0.5 sm:pl-6 pt-4 sm:pt-0">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-yellow-700">📍 Location</span>
+                  <strong className="font-playfair text-xl font-bold leading-snug text-stone-900">200 St James King St E</strong>
+                  <strong className="font-lato text-base font-bold" style={{ color: '#9C7A1A' }}>Toronto Downtown</strong>
+                </div>
+              </div>
+
               <div className="grid grid-cols-2 gap-4 border-y border-stone-200/50 py-6">
                 <div className="space-y-1">
                   <div className="text-[10px] uppercase tracking-widest text-yellow-800 font-bold opacity-60">Venue / Access</div>
