@@ -131,7 +131,7 @@ const PillNav: React.FC<PillNavProps> = ({
     
     const menu = mobileMenuRef.current;
     if (menu) {
-      gsap.set(menu, { visibility: 'hidden', opacity: 0, y: -10 });
+      gsap.set(menu, { visibility: 'hidden' });
     }
 
     layout();
@@ -168,6 +168,21 @@ const PillNav: React.FC<PillNavProps> = ({
         clearTimeout(resizeTimeoutRef.current);
       }
       resizeTimeoutRef.current = setTimeout(layout, 150);
+
+      // Close mobile menu if resized past breakpoint
+      if (window.innerWidth >= mobileBreakpoint && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+        const hamburger = hamburgerRef.current;
+        if (hamburger) {
+          const lines = hamburger.querySelectorAll('.hamburger-line');
+          gsap.to(lines[0], { rotation: 0, y: 0, duration: 0.2 });
+          gsap.to(lines[1], { rotation: 0, y: 0, duration: 0.2 });
+        }
+        const menu = mobileMenuRef.current;
+        if (menu) {
+          gsap.set(menu, { visibility: 'hidden' });
+        }
+      }
     };
 
     window.addEventListener('resize', handleResize);
@@ -177,7 +192,7 @@ const PillNav: React.FC<PillNavProps> = ({
         clearTimeout(resizeTimeoutRef.current);
       }
     };
-  }, [layout]);
+  }, [layout, mobileBreakpoint, isMobileMenuOpen]);
 
   useEffect(() => {
     return () => {
@@ -186,6 +201,21 @@ const PillNav: React.FC<PillNavProps> = ({
       logoTweenRef.current?.kill();
     };
   }, []);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
 
   const handleEnter = useCallback((i: number) => {
     const tl = tlRefs.current[i];
@@ -243,32 +273,44 @@ const PillNav: React.FC<PillNavProps> = ({
     }
 
     if (menu) {
+      const panel = menu.querySelector<HTMLElement>('.mobile-menu-panel');
+      const backdrop = menu.querySelector<HTMLElement>('.mobile-menu-backdrop');
       if (newState) {
         gsap.set(menu, { visibility: 'visible' });
-        gsap.fromTo(
-          menu,
-          { opacity: 0, y: -15, scale: 0.92 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.4,
-            ease: 'back.out(1.4)',
-            transformOrigin: 'top center'
-          }
-        );
+        if (backdrop) {
+          gsap.set(backdrop, { opacity: 0 });
+          gsap.to(backdrop, { opacity: 1, duration: 0.3, ease: 'power2.out' });
+        }
+        if (panel) {
+          gsap.fromTo(
+            panel,
+            { x: '100%' },
+            { x: '0%', duration: 0.4, ease: 'power3.out' }
+          );
+        }
       } else {
-        gsap.to(menu, {
-          opacity: 0,
-          y: -10,
-          scale: 0.95,
-          duration: 0.25,
-          ease: 'power2.in',
-          transformOrigin: 'top center',
-          onComplete: () => {
-            gsap.set(menu, { visibility: 'hidden' });
-          }
-        });
+        if (backdrop) {
+          gsap.to(backdrop, { opacity: 0, duration: 0.25, ease: 'power2.in' });
+        }
+        if (panel) {
+          gsap.to(panel, {
+            x: '100%',
+            duration: 0.3,
+            ease: 'power2.in',
+            onComplete: () => {
+              gsap.set(menu, { visibility: 'hidden' });
+            }
+          });
+        } else {
+          gsap.to(menu, {
+            opacity: 0,
+            duration: 0.2,
+            ease: 'power2.in',
+            onComplete: () => {
+              gsap.set(menu, { visibility: 'hidden' });
+            }
+          });
+        }
       }
     }
 
@@ -391,34 +433,40 @@ const PillNav: React.FC<PillNavProps> = ({
         }
 
         .glass-mobile-menu {
-          background: rgba(0, 0, 0, 0.92);
-          backdrop-filter: blur(40px) saturate(180%);
-          -webkit-backdrop-filter: blur(40px) saturate(180%);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          box-shadow: 
-            0 0 0 0.5px rgba(255, 255, 255, 0.05) inset,
-            0 20px 60px rgba(0, 0, 0, 0.5);
+          background: linear-gradient(185deg, rgba(247, 244, 241, 0.98) 0%, rgba(236, 217, 210, 0.96) 50%, rgba(224, 197, 187, 0.92) 100%);
+          backdrop-filter: blur(30px) saturate(150%);
+          -webkit-backdrop-filter: blur(30px) saturate(150%);
+          border-left: 1px solid rgba(255, 255, 255, 0.4);
+          box-shadow:
+            -8px 0 40px rgba(210, 154, 137, 0.18),
+            -2px 0 12px rgba(0, 0, 0, 0.06),
+            inset 0 0 0 0.5px rgba(255, 255, 255, 0.5);
         }
 
         .glass-mobile-item {
-          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
           position: relative;
           overflow: hidden;
+          font-family: 'Lato', sans-serif;
         }
 
         .glass-mobile-item::before {
           content: '';
           position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-          transition: left 0.5s;
+          inset: 0;
+          border-radius: inherit;
+          background: linear-gradient(135deg, rgba(248, 189, 218, 0.15), rgba(210, 154, 137, 0.1));
+          opacity: 0;
+          transition: opacity 0.3s ease;
         }
 
         .glass-mobile-item:hover::before {
-          left: 100%;
+          opacity: 1;
+        }
+
+        .mobile-menu-brand {
+          font-family: 'Playfair Display', serif;
+          color: #57534E;
         }
 
         .active-glow {
@@ -635,29 +683,58 @@ const PillNav: React.FC<PillNavProps> = ({
             />
           </button>
         </nav>
+      </div>
 
-        {/* Mobile Menu */}
+      {/* Mobile Menu — Fullscreen Overlay */}
+      <div
+        ref={mobileMenuRef}
+        className="fixed inset-0 z-[9998] md:hidden pointer-events-auto"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation menu"
+      >
+        {/* Backdrop — warm tinted blur, tap to close */}
         <div
-          ref={mobileMenuRef}
-          className="glass-mobile-menu md:hidden mt-4 rounded-3xl origin-top p-3"
+          className="mobile-menu-backdrop absolute inset-0 bg-[#ecd9d2]/30 backdrop-blur-sm"
+          onClick={closeMobileMenu}
+        />
+        {/* Menu panel — slides in from the right */}
+        <div className="mobile-menu-panel glass-mobile-menu absolute top-0 right-0 bottom-0 w-[min(85vw,380px)] px-6 py-8 flex flex-col overflow-y-auto"
+          style={{ paddingTop: 'max(2rem, env(safe-area-inset-top))' }}
         >
+          {/* Brand header */}
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-3">
+              <span className="inline-flex items-center justify-center rounded-full w-10 h-10"
+                style={{ background: 'linear-gradient(135deg, rgba(248, 189, 218, 0.85), rgba(248, 189, 218, 0.65))' }}
+              >
+                <img src={logoSrc} alt={logoAlt} className="w-6 h-6 object-contain" />
+              </span>
+              <span className="mobile-menu-brand text-lg font-bold tracking-tight">Hirah Safi</span>
+            </div>
+            {/* Close button */}
+            <button
+              onClick={closeMobileMenu}
+              className="p-2 rounded-full hover:bg-[#d29a89]/15 transition-colors"
+              style={{ color: '#57534E' }}
+              aria-label="Close navigation menu"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+
           <ul className="list-none m-0 p-0 flex flex-col gap-1">
             {items.map((item, idx) => {
               const isActive = activeHref === item.href;
-              
-              const linkClasses = `glass-mobile-item block py-3 px-5 text-base font-semibold rounded-2xl ${
-                isActive ? 'glass-pill-active' : ''
+
+              const linkClasses = `glass-mobile-item block py-4 px-6 text-lg font-semibold rounded-2xl no-underline transition-all ${
+                isActive
+                  ? 'bg-[#F8BaaA]/40 text-[#57534E] shadow-[inset_0_0_0_1px_rgba(248,186,170,0.3)]'
+                  : 'text-[#57534E]/80 hover:text-[#57534E] hover:bg-[#F8BaaA]/15 active:scale-[0.98]'
               }`;
-
-              const linkStyle: React.CSSProperties = {
-                color: isActive ? resolvedPillTextColor : pillColor
-              };
-
-              const handleHover = (e: React.MouseEvent<HTMLAnchorElement>, isEnter: boolean) => {
-                if (!isActive) {
-                  e.currentTarget.style.background = isEnter ? 'rgba(248, 189, 218, 0.2)' : 'transparent';
-                }
-              };
 
               return (
                 <li key={`mobile-${item.href}-${idx}`}>
@@ -665,10 +742,7 @@ const PillNav: React.FC<PillNavProps> = ({
                     <Link
                       href={item.href}
                       className={linkClasses}
-                      style={linkStyle}
                       aria-current={isActive ? 'page' : undefined}
-                      onMouseEnter={(e) => handleHover(e, true)}
-                      onMouseLeave={(e) => handleHover(e, false)}
                       onClick={closeMobileMenu}
                     >
                       {item.label}
@@ -677,10 +751,7 @@ const PillNav: React.FC<PillNavProps> = ({
                     <a
                       href={item.href}
                       className={linkClasses}
-                      style={linkStyle}
                       aria-current={isActive ? 'page' : undefined}
-                      onMouseEnter={(e) => handleHover(e, true)}
-                      onMouseLeave={(e) => handleHover(e, false)}
                       onClick={closeMobileMenu}
                       {...(isExternalLink(item.href) && {
                         target: '_blank',
@@ -694,6 +765,16 @@ const PillNav: React.FC<PillNavProps> = ({
               );
             })}
           </ul>
+
+          {/* Footer decoration */}
+          <div className="mt-auto pt-8 text-center">
+            <div className="inline-block h-px w-16 mb-3 rounded-full"
+              style={{ background: 'linear-gradient(90deg, transparent, #d29a89, transparent)' }}
+            />
+            <p className="text-xs tracking-wide" style={{ color: '#57534E', opacity: 0.5 }}>
+              Hirah Safi Coaching
+            </p>
+          </div>
         </div>
       </div>
     </div>
