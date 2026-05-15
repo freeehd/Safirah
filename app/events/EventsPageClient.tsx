@@ -41,6 +41,15 @@ type EventItem = {
 
 const upcoming: EventItem[] = [
   {
+    slug: '6-week-program',
+    title: '6-Week Program',
+    date: 'Coming Soon',
+    time: 'TBA',
+    city: 'TBA',
+    mode: 'TBA',
+    short: 'A transformative 6-week journey to realign your life, career, and Deen — crafted with intention and care. Join the waitlist for early access and exclusive bonuses.'
+  },
+  {
     slug: 'vision-clarity-lab',
     title: 'Vision & Clarity Lab',
     date: 'TBA',
