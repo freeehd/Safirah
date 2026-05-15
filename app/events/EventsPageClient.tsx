@@ -35,7 +35,7 @@ type EventItem = {
   date: string;
   time: string;
   city: string;
-  mode: 'Online' | 'In-Person' | 'Hybrid';
+  mode: 'Online' | 'In-Person' | 'Hybrid' |'TBA';
   short: string;
 };
 
