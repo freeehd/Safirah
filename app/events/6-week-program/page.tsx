@@ -33,6 +33,7 @@ function hex2rgba(hex: string, a: number) {
 export default function SixWeekProgramPage() {
   const prefersReduced = useReducedMotion();
   const [showSuccess, setShowSuccess] = useState(false);
+  const [nameValue, setNameValue] = useState('');
   const formContainerRef = useRef<HTMLDivElement | null>(null);
 
   /* ─── watch for Kit's inline success alert → show popup ─── */
@@ -139,36 +140,23 @@ export default function SixWeekProgramPage() {
             style={{ backgroundColor: hex2rgba(pal.espresso, 0.12) }}
           />
 
-          {/* ─── COMING SOON stamp ─── */}
-          <motion.div
-            initial={prefersReduced ? { opacity: 1 } : { opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 1.2 }}
-            className="mb-7"
+          {/* ─── COMING SOON — clean text ─── */}
+          <motion.p
+            initial={prefersReduced ? { opacity: 1 } : { opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 1.3 }}
+            className="mb-7 text-center"
+            style={{
+              color: pal.cocoa,
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontSize: '13px',
+              letterSpacing: '0.25em',
+              fontWeight: 500,
+              textTransform: 'uppercase',
+            }}
           >
-            <div
-              className="inline-flex items-center justify-center gap-3 px-6 py-2.5 rounded-full border-2 shadow-sm"
-              style={{
-                borderColor: hex2rgba(pal.dustyRose, 0.4),
-                backgroundColor: hex2rgba(pal.blush, 0.2),
-              }}
-            >
-              <span
-                className="w-2 h-2 rounded-full"
-                style={{ backgroundColor: pal.dustyRose }}
-              />
-              <span
-                className="text-xs uppercase tracking-[0.25em] font-medium"
-                style={{
-                  color: pal.cocoa,
-                  fontFamily: "'Playfair Display', Georgia, serif",
-                  fontWeight: 500,
-                }}
-              >
-                Coming Soon
-              </span>
-            </div>
-          </motion.div>
+            &mdash; Coming Soon &mdash;
+          </motion.p>
 
           {/* ─── Signup form ─── */}
           <motion.div
@@ -216,7 +204,10 @@ export default function SixWeekProgramPage() {
                         name="fields[first_name]"
                         aria-label="Name"
                         placeholder="Your name"
+                        required
                         type="text"
+                        value={nameValue}
+                        onChange={(e) => setNameValue(e.target.value)}
                         style={{
                           backgroundColor: '#ffffff',
                           border: `1px solid ${hex2rgba(pal.dustyRose, 0.2)}`,
@@ -227,21 +218,14 @@ export default function SixWeekProgramPage() {
                       />
                     </div>
 
-                    <div className="formkit-field">
+                    {/* ── hidden email — auto-derived from name ── */}
+                    <div className="formkit-field" style={{ display: 'none' }}>
                       <input
-                        className="formkit-input w-full px-4 py-2.5 text-sm rounded-xl outline-none transition-all duration-300"
+                        className="formkit-input"
                         name="email_address"
-                        aria-label="Email Address"
-                        placeholder="Your email"
-                        required
                         type="email"
-                        style={{
-                          backgroundColor: '#ffffff',
-                          border: `1px solid ${hex2rgba(pal.dustyRose, 0.2)}`,
-                          color: pal.espresso,
-                          fontFamily: "'Playfair Display', Georgia, serif",
-                          letterSpacing: '0.02em',
-                        }}
+                        value={`${nameValue.toLowerCase().replace(/[^a-z0-9]/g, '.').replace(/\.+/g, '.').replace(/^\.|\.$/g, '') || 'guest'}@waitlist.hirahsafi.com`}
+                        readOnly
                       />
                     </div>
 
@@ -359,7 +343,7 @@ export default function SixWeekProgramPage() {
                   className="text-xl mb-2"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif", color: pal.espresso, fontWeight: 500 }}
                 >
-                  You&rsquo;re on the list
+                  {nameValue ? `Congratulations, ${nameValue.split(' ')[0]}!` : 'Congratulations!'}
                 </h2>
 
                 {/* body */}
@@ -367,7 +351,7 @@ export default function SixWeekProgramPage() {
                   className="text-sm leading-relaxed mb-6"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif", fontStyle: 'italic', color: pal.stone }}
                 >
-                  Now check your inbox to confirm your spot. We&rsquo;ll notify you the moment doors open.
+                  Thank you for taking this courageous step forward. We&rsquo;re so excited to have you with us on this journey&mdash;you&rsquo;ll be the first to know the moment doors open.
                 </p>
 
                 {/* close CTA */}
