@@ -227,16 +227,21 @@ export default function SixWeekProgramPage() {
 
     const observer = new MutationObserver(() => {
       const success = container.querySelector('.formkit-alert-success');
-      if (success && !showSuccess) {
+      
+      // Kit injects text/HTML into this element on a successful submit.
+      // We check if it actually has content so we don't show the modal prematurely.
+      if (success && success.innerHTML.trim() !== '' && !showSuccess) {
         setShowSuccess(true);
-        (success as HTMLElement).style.display = 'none';
+        // Clear the text so it returns to being :empty (which hides it via your CSS)
+        // and prevents the observer from infinitely re-triggering.
+        success.innerHTML = '';
       }
     });
 
-    observer.observe(container, { childList: true, subtree: true });
+    // We must observe characterData and childList to detect when Kit injects the message
+    observer.observe(container, { childList: true, subtree: true, characterData: true });
     return () => observer.disconnect();
   }, [showSuccess]);
-
   return (
     <>
       <link

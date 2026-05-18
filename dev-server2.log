@@ -1,0 +1,7 @@
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3089
+- Network:       http://172.23.64.1:3089
+✓ Ready in 413ms
+
+○ Compiling /events/6-week-program ...
+ GET /events 200 in 1400ms (next.js: 1067ms, application-code: 333ms)
