@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon, Shield, Sparkles, Star, Sun, X } from 'lucide-react';
+import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon, Shield, Sparkles, Star, Sun, X, Monitor } from 'lucide-react';
 import { Fraunces } from 'next/font/google';
 import Grainient from '@/components/Grainient';
 import TextPressure from '@/components/textpressure';
@@ -132,67 +132,82 @@ export default function SixWeekProgramPage() {
                          ))}
 
                          <motion.div
-                              className="relative z-10 max-w-[640px] w-full mx-auto text-center px-8 py-16 sm:px-14 sm:py-20 rounded-3xl backdrop-blur-md"
+                              className="relative z-10 max-w-[680px] w-full mx-auto text-center px-8 py-16 sm:px-16 sm:py-24 rounded-[2.5rem] backdrop-blur-xl overflow-hidden"
                               style={{
-                                   backgroundColor: 'rgba(255, 255, 255, 0.45)',
-                                   border: '1px solid rgba(255, 255, 255, 0.8)',
-                                   boxShadow: '0 24px 64px -12px rgba(114, 88, 83, 0.15), inset 0 0 0 1px rgba(255,255,255,0.6)',
+                                   backgroundColor: 'rgba(255, 255, 255, 0.4)',
+                                   border: '1px solid rgba(255, 255, 255, 0.6)',
+                                   boxShadow: '0 32px 64px -16px rgba(114, 88, 83, 0.15), inset 0 0 0 1px rgba(255,255,255,0.7)',
                               }}
                               initial={{ opacity: 0, y: 20 }}
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ duration: 1, ease: EASE, delay: 0.1 }}
                          >
+                              {/* Soft inner glow */}
+                              <div className="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent opacity-60 pointer-events-none" />
+
                               <motion.span initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: EASE, delay: 0.2 }}
-                                   className="inline-flex items-center gap-2 text-[11px] sm:text-[13px] font-bold uppercase tracking-[0.2em] text-[#725853] mb-8 bg-white/60 px-4 py-2 rounded-full border border-white">
-                                   <Star size={12} className="text-[#725853]" />
-                                   A 6-Week Journey
-                                   <Star size={12} className="text-[#725853]" />
+                                   className="relative inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.25em] text-[#A05A4A] mb-10 px-5 py-2 rounded-full border border-[#E8C5B8]/40 bg-[#FFF1EC]/30">
+                                   <Star size={10} className="text-[#A05A4A] opacity-70" />
+                                   A 6-Week Transformation
+                                   <Star size={10} className="text-[#A05A4A] opacity-70" />
                               </motion.span>
 
-                              <motion.div className="w-full flex items-center justify-center h-[clamp(3.5rem,12vw,8rem)] mb-6"
+                              <motion.div className="relative w-full flex items-center justify-center h-[clamp(4rem,14vw,9rem)] mb-6"
                                    initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
                                    transition={{ duration: 0.6, ease: EASE, delay: 0.2 }}>
-                                   <TextPressure text="The Becoming" flex alpha={false} stroke={false} width weight={false} italic textColor="#332521" minFontSize={42} />
+                                   <TextPressure text="The Becoming" flex alpha={false} stroke={false} width weight={false} italic textColor="#332521" minFontSize={48} />
                               </motion.div>
 
                               <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
                                    transition={{ duration: 0.8, ease: EASE, delay: 0.4 }}
-                                   className="text-[18px] sm:text-[22px] leading-[1.6] text-[#4F4541] max-w-md mx-auto mb-6">
-                                   <em className="italic text-[#725853] font-medium">Finally. </em> Become the woman you&rsquo;ve been praying to be.
+                                   className="relative text-[19px] sm:text-[24px] font-playfair leading-[1.6] text-[#4F4541] max-w-[420px] mx-auto mb-10">
+                                   <em className="italic text-[#725853] font-medium mr-1">Finally.</em> 
+                                   Become the woman you&rsquo;ve been praying to be.
                               </motion.p>
 
-                              {/* Early Bird urgency callout */}
+                              {/* Tags Row */}
                               <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
                                    transition={{ duration: 0.6, ease: EASE, delay: 0.5 }}
-                                   className="flex items-center justify-center gap-1.5 mb-8">
-                                   <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-[#A05A4A] bg-[#FFF1EC] px-4 py-2 rounded-full border border-[#E8C5B8] shadow-sm">
-                                        <Sparkles size={11} />
-                                        Early Bird &mdash; Save over 60%
-                                        <Sparkles size={11} />
+                                   className="relative flex items-center justify-center gap-3 mb-10 flex-wrap">
+                                   <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.15em] text-[#fc84c0] bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm ring-1 ring-[#fc84c0]/20">
+                                        <Sparkles size={12} className="opacity-80" />
+                                        Save over 60% Today
+                                   </span>
+                                   <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.15em] text-[#4A3B36] bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm ring-1 ring-[#D2C3BF]/40">
+                                        <Monitor size={12} className="opacity-80" />
+                                        100% Online
                                    </span>
                               </motion.div>
 
-                              {/* pricing badge */}
+                              {/* Elegant Pricing Display */}
                               <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
                                    transition={{ duration: 0.6, ease: EASE, delay: 0.5 }}
-                                   className="inline-flex items-center justify-center gap-5 rounded-full border border-white bg-white/80 px-6 py-3 text-[13px] font-semibold tracking-[0.1em] text-[#4F4541] mb-10 shadow-sm backdrop-blur-md">
-                                   <div className="flex flex-col items-center gap-0.5">
-                                        <span className="text-[#9F928B] text-[10px] leading-none line-through">$1,300</span>
-                                        <span className="text-[#332521] leading-none">$475 <span className="text-[#725853] font-medium text-[11px] uppercase tracking-wider ml-1">one-time</span></span>
+                                   className="relative inline-flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 rounded-2xl sm:rounded-full border border-white/60 bg-white/50 px-8 py-4 sm:py-3 text-[13px] font-semibold tracking-[0.1em] text-[#4F4541] mb-12 shadow-[0_8px_32px_-8px_rgba(114,88,83,0.1)] backdrop-blur-md">
+                                   <div className="flex flex-col items-center sm:items-end gap-1">
+                                        <span className="text-[#9F928B] text-[10px] sm:text-[11px] font-medium uppercase tracking-widest line-through">$1,300 Value</span>
+                                        <div className="flex items-baseline gap-1.5">
+                                             <span className="text-[#332521] text-[20px] sm:text-[22px] font-playfair font-bold leading-none">$475</span>
+                                             <span className="text-[#725853] font-medium text-[10px] uppercase tracking-wider">one-time</span>
+                                        </div>
                                    </div>
-                                   <span className="w-px h-8 bg-[#D2C3BF]" />
-                                   <div className="flex flex-col items-center gap-0.5">
-                                        <span className="text-[#9F928B] text-[10px] leading-none line-through">$1,400</span>
-                                        <span className="text-[#332521] leading-none">$287.50 <span className="text-[#725853] font-medium text-[11px] uppercase tracking-wider ml-1">&times; 2</span></span>
+                                   <div className="hidden sm:block w-px h-10 bg-gradient-to-b from-transparent via-[#D2C3BF] to-transparent" />
+                                   <div className="sm:hidden h-px w-20 bg-gradient-to-r from-transparent via-[#D2C3BF] to-transparent" />
+                                   <div className="flex flex-col items-center sm:items-start gap-1">
+                                        <span className="text-[#9F928B] text-[10px] sm:text-[11px] font-medium uppercase tracking-widest line-through">$1,400 Value</span>
+                                        <div className="flex items-baseline gap-1.5">
+                                             <span className="text-[#332521] text-[20px] sm:text-[22px] font-playfair font-bold leading-none">$287.50</span>
+                                             <span className="text-[#725853] font-medium text-[10px] uppercase tracking-wider">&times; 2</span>
+                                        </div>
                                    </div>
                               </motion.div>
 
                               <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
-                                   transition={{ duration: 0.8, ease: EASE, delay: 0.6 }}>
+                                   transition={{ duration: 0.8, ease: EASE, delay: 0.6 }} className="relative">
                                    <a href="#pricing"
-                                        className="inline-flex items-center gap-2 bg-[#4A3B36] text-white text-[13px] font-bold uppercase tracking-[0.15em] px-12 py-5 rounded-full hover:bg-[#332521] transition-all duration-500 shadow-[0_8px_32px_rgba(74,59,54,0.3)] hover:shadow-[0_12px_48px_rgba(74,59,54,0.4)] hover:-translate-y-1">
-                                        Begin the Journey
-                                        <ArrowRight size={16} />
+                                        className="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#4A3B36] to-[#604E48] text-white text-[12px] sm:text-[13px] font-bold uppercase tracking-[0.2em] px-12 py-5 rounded-full hover:from-[#332521] hover:to-[#4A3B36] transition-all duration-500 shadow-[0_12px_40px_-8px_rgba(74,59,54,0.5)] hover:shadow-[0_16px_48px_-8px_rgba(74,59,54,0.6)] hover:-translate-y-1 overflow-hidden">
+                                        <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out" />
+                                        <span className="relative z-10">Begin the Journey</span>
+                                        <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
                                    </a>
                               </motion.div>
                          </motion.div>
@@ -394,7 +409,7 @@ export default function SixWeekProgramPage() {
                                         </div>
                                    </div>
                                    <ul className="flex-1 space-y-3 mb-8">
-                                        {['All 6 weekly sessions', 'Digital workbook & templates', 'Private community access', 'Lifetime access to replays', '90-day integration plan'].map(item => (
+                                        {['All 6 weekly sessions (Online)', 'Digital workbook & templates', 'Private community access', 'Lifetime access to replays', '90-day integration plan'].map(item => (
                                              <li key={item} className="flex items-start gap-2 text-[15px] text-[#4F4541]">
                                                   <CheckCircle size={14} className="mt-0.5 flex-shrink-0 text-[#725853]" />
                                                   <span>{item}</span>
@@ -424,7 +439,7 @@ export default function SixWeekProgramPage() {
                                    </div>
                                    <p className="text-[14px] text-[#725853] mb-6">$575 total</p>
                                    <ul className="flex-1 space-y-3 mb-8">
-                                        {['All 6 weekly sessions', 'Digital workbook & templates', 'Private community access', 'Lifetime access to replays', '90-day integration plan'].map(item => (
+                                        {['All 6 weekly sessions (Online)', 'Digital workbook & templates', 'Private community access', 'Lifetime access to replays', '90-day integration plan'].map(item => (
                                              <li key={item} className="flex items-start gap-2 text-[15px] text-[#4F4541]">
                                                   <CheckCircle size={14} className="mt-0.5 flex-shrink-0 text-[#725853]" />
                                                   <span>{item}</span>

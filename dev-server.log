@@ -3,3 +3,11 @@
 - Network:       http://172.23.64.1:3000
 ✓ Ready in 537ms
 
+○ Compiling /events/6-week-program ...
+ GET /events/6-week-program 200 in 5.0s (next.js: 3.6s, proxy.ts: 209ms, application-code: 1217ms)
+ GET /events/6-week-program 200 in 5.0s (next.js: 3.7s, proxy.ts: 204ms, application-code: 1126ms)
+ GET /events/6-week-program 200 in 5.0s (next.js: 3.7s, proxy.ts: 201ms, application-code: 1094ms)
+ GET /events/6-week-program 200 in 5.0s (next.js: 3.8s, proxy.ts: 203ms, application-code: 1060ms)
+ GET /events/6-week-program 200 in 5.0s (next.js: 3.8s, proxy.ts: 212ms, application-code: 1033ms)
+ GET /events/6-week-program 200 in 5.0s (next.js: 3.8s, proxy.ts: 214ms, application-code: 1003ms)
+ GET /events/6-week-program 200 in 132ms (next.js: 4ms, proxy.ts: 10ms, application-code: 118ms)

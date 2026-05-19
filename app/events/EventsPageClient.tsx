@@ -8,7 +8,7 @@ import BrushStrokeHighlight from '@/components/BrushStrokeHighlight';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { CalendarDays, MapPin, Clock, Sparkles, Star, Monitor } from 'lucide-react';
+import { CalendarDays, MapPin, Clock, Sparkles, Star, Monitor, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const pastel = {
   accent: 'var(--highlight-color, #e8b4a8)',
@@ -40,15 +40,6 @@ type EventItem = {
 };
 
 const upcoming: EventItem[] = [
-  {
-    slug: '6-week-program',
-    title: '6-Week Program',
-    date: 'Coming Soon',
-    time: 'TBA',
-    city: 'TBA',
-    mode: 'TBA',
-    short: 'A transformative 6-week journey to realign your life, career, and Deen — crafted with intention and care. Join the waitlist for early access and exclusive bonuses.'
-  },
   {
     slug: 'vision-clarity-lab',
     title: 'Vision & Clarity Lab',
@@ -101,6 +92,75 @@ const past: EventItem[] = [
 
 export default function EventsPageClient() {
   const fadeUp = useFadeUp();
+  const [featuredIdx, setFeaturedIdx] = useState(0);
+
+  const featured = [
+    {
+      title: "The",
+      highlight: "Becoming",
+      subtitle: "6-Week Program",
+      short: "A transformative 6-week journey to realign your life, career, and Deen. This isn't another course. It's a 6-week transformation.",
+      dateDay: "Upcoming",
+      dateMon: "TBA",
+      timeStart: "TBA",
+      timeEnd: "",
+      locName: "Online",
+      locCity: "Zoom",
+      venue: "Online Only",
+      investment: "$475",
+      splitInvestment: "or $287.50 × 2",
+      originalPrice: "$1,300",
+      discountBadge: "Save over 60%",
+      btnText: "Register Now — $475",
+      link: "/events/6-week-program#pricing",
+      btn2Text: "Explore Program",
+      link2: "/events/6-week-program",
+      image: "/assets/8.webp",
+      badge: "Now Registering",
+      theme: {
+        border1: 'rgba(252, 132, 192, 0.3)',
+        border2: '#fc84c0',
+        bg1: 'linear-gradient(135deg, #FBE8E2 0%, #E8C5B8 100%)',
+        bg2: 'radial-gradient(circle at center, #fc84c0 0%, transparent 70%)',
+        bg3: 'linear-gradient(135deg, rgba(251,232,226,0.6) 0%, rgba(255,255,255,0.85) 100%)',
+        text1: '#725853',
+        text2: '#fc84c0',
+        text3: '#A05A4A'
+      }
+    },
+    {
+      title: "The",
+      highlight: "Golden Pearl",
+      subtitle: "Volume 3",
+      short: "Step into your brilliance. Find financial abundance while keeping your peace and Deen intact. This is the sanctuary you've been praying for.",
+      dateDay: "Thursday",
+      dateMon: "May 21",
+      timeStart: "3:30 PM",
+      timeEnd: "to 6:30 PM",
+      locName: "200 St James King St E",
+      locCity: "Toronto Downtown",
+      venue: "Online & Local",
+      investment: "FREE Admission",
+      btnText: "Register Now →",
+      link: "/events/golden-pearl",
+      btn2Text: "Explore Experience",
+      link2: "/events/golden-pearl#details",
+      image: "/assets/golden-pearl.webp",
+      badge: "Limited Seats",
+      theme: {
+        border1: 'rgba(212, 175, 55, 0.3)',
+        border2: '#D4AF37',
+        bg1: 'linear-gradient(135deg, #F5EAC8 0%, #EAD7A1 100%)',
+        bg2: 'radial-gradient(circle at center, #9C7A1A 0%, transparent 70%)',
+        bg3: 'linear-gradient(135deg, rgba(245,234,200,0.6) 0%, rgba(255,255,255,0.85) 100%)',
+        text1: '#9C7A1A',
+        text2: '#D4AF37',
+        text3: '#7A5C13'
+      }
+    }
+  ];
+
+  const currentFeatured = featured[featuredIdx];
 
   return (
     <div className="page-wrapper min-h-screen">
@@ -144,25 +204,48 @@ export default function EventsPageClient() {
         </div>
       </section>
 
-      {/* FEATURED: The Golden Pearl */}
+      {/* FEATURED CAROUSEL */}
       <section className={`${container} ${sectionY} pt-10`}>
+        <div className="flex items-center justify-between mb-4">
+          <Badge className="bg-stone-100 text-stone-800 border-stone-200">
+            <Star className="h-4 w-4 fill-stone-600 text-stone-600" />
+            Featured Events
+          </Badge>
+          <div className="flex gap-2">
+            <button 
+              onClick={() => setFeaturedIdx((prev) => (prev === 0 ? featured.length - 1 : prev - 1))}
+              className="p-2 rounded-full border bg-white shadow-sm hover:bg-stone-50 transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5 text-stone-600" />
+            </button>
+            <button 
+              onClick={() => setFeaturedIdx((prev) => (prev + 1) % featured.length)}
+              className="p-2 rounded-full border bg-white shadow-sm hover:bg-stone-50 transition-colors"
+            >
+              <ChevronRight className="w-5 h-5 text-stone-600" />
+            </button>
+          </div>
+        </div>
+
         <motion.div
-          {...fadeUp}
+          key={featuredIdx}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
           className="rounded-[3rem] overflow-hidden shadow-2xl ring-1 bg-white/40 backdrop-blur-xl border-t-2"
-          style={{ borderColor: 'rgba(212, 175, 55, 0.3)', borderTopColor: '#D4AF37' }}
+          style={{ borderColor: currentFeatured.theme.border1, borderTopColor: currentFeatured.theme.border2 }}
         >
           <div className="grid lg:grid-cols-2">
             {/* Visual Side */}
-            <div className="relative p-8 lg:p-12 overflow-hidden flex items-center justify-center min-h-[420px]" style={{ background: 'linear-gradient(135deg, #F5EAC8 0%, #EAD7A1 100%)' }}>
+            <div className="relative p-8 lg:p-12 overflow-hidden flex items-center justify-center min-h-[420px]" style={{ background: currentFeatured.theme.bg1 }}>
               <div
                 className="absolute inset-0 opacity-20"
-                style={{ backgroundImage: 'radial-gradient(circle at center, #9C7A1A 0%, transparent 70%)' }}
+                style={{ backgroundImage: currentFeatured.theme.bg2 }}
               />
               <div className="relative z-10 w-full group">
-                <div className="absolute -inset-4 bg-yellow-400/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-40 transition-opacity" />
-                <ImagePlaceholder ratio="16/9" src="/assets/golden-pearl.webp" />
+                <ImagePlaceholder ratio="16/9" src={currentFeatured.image} />
                 <div className="absolute -bottom-4 -left-4 flex flex-col gap-2 scale-90 sm:scale-100">
-                  <Badge><Sparkles className="h-3.5 w-3.5 text-yellow-600" /> Now Registering</Badge>
+                  <Badge><Sparkles className="h-3.5 w-3.5" style={{ color: currentFeatured.theme.text1 }} /> {currentFeatured.badge}</Badge>
                 </div>
               </div>
             </div>
@@ -170,75 +253,93 @@ export default function EventsPageClient() {
             {/* Content Side */}
             <div className="p-8 lg:p-14 flex flex-col justify-center gap-6 bg-white/40 backdrop-blur-sm">
               <div className="space-y-4">
-                <Badge className="bg-yellow-100/50 text-yellow-800 border-yellow-200">
-                  <Star className="h-4 w-4 fill-yellow-600 text-yellow-600" />
-                  Featured Event
-                </Badge>
-
                 <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tighter text-stone-900">
-                  The <span className="text-yellow-700">Golden Pearl</span>
+                  {currentFeatured.title} <span style={{ color: currentFeatured.theme.text1 }}>{currentFeatured.highlight}</span>
                 </h2>
-
+                <div className="font-lato text-sm uppercase tracking-widest font-bold" style={{ color: currentFeatured.theme.text3 }}>{currentFeatured.subtitle}</div>
                 <p className="font-lato text-xl opacity-80 leading-relaxed text-stone-800 font-medium">
-                  Volume 3: Step into your brilliance. Find financial abundance while keeping your peace and Deen intact. This is the sanctuary you've been praying for.
+                  {currentFeatured.short}
                 </p>
               </div>
 
               {/* Event Date / Time / Location */}
               <div
-                className="rounded-2xl border-2 px-6 py-5 flex flex-col sm:flex-row gap-5 sm:gap-0 divide-y sm:divide-y-0 sm:divide-x divide-yellow-300/50"
-                style={{ borderColor: '#D4AF37', background: 'linear-gradient(135deg, rgba(245,234,200,0.6) 0%, rgba(255,255,255,0.85) 100%)' }}
+                className="rounded-2xl border-2 px-6 py-5 flex flex-col sm:flex-row gap-5 sm:gap-0 divide-y sm:divide-y-0 sm:divide-x divide-stone-300/50"
+                style={{ borderColor: currentFeatured.theme.border2, background: currentFeatured.theme.bg3 }}
               >
                 {/* Date */}
                 <div className="flex flex-col gap-0.5 sm:pr-6 pb-4 sm:pb-0">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-yellow-700">📅 Date</span>
-                  <strong className="font-playfair text-2xl font-bold leading-tight text-stone-900">Thursday</strong>
-                  <strong className="font-playfair text-xl font-bold" style={{ color: '#9C7A1A' }}>May 21</strong>
+                  <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: currentFeatured.theme.text3 }}>📅 Date</span>
+                  <strong className="font-playfair text-2xl font-bold leading-tight text-stone-900">{currentFeatured.dateDay}</strong>
+                  <strong className="font-playfair text-xl font-bold" style={{ color: currentFeatured.theme.text1 }}>{currentFeatured.dateMon}</strong>
                 </div>
                 {/* Time */}
                 <div className="flex flex-col gap-0.5 sm:px-6 pb-4 sm:pb-0 pt-4 sm:pt-0">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-yellow-700">🕞 Time</span>
-                  <strong className="font-playfair text-2xl font-bold leading-tight text-stone-900">3:30 PM</strong>
-                  <strong className="font-lato text-base font-bold text-stone-700">to 6:30 PM</strong>
+                  <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: currentFeatured.theme.text3 }}>🕞 Time</span>
+                  <strong className="font-playfair text-2xl font-bold leading-tight text-stone-900">{currentFeatured.timeStart}</strong>
+                  {currentFeatured.timeEnd && <strong className="font-lato text-base font-bold text-stone-700">{currentFeatured.timeEnd}</strong>}
                 </div>
                 {/* Location */}
                 <div className="flex flex-col gap-0.5 sm:pl-6 pt-4 sm:pt-0">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-yellow-700">📍 Location</span>
-                  <strong className="font-playfair text-xl font-bold leading-snug text-stone-900">200 St James King St E</strong>
-                  <strong className="font-lato text-base font-bold" style={{ color: '#9C7A1A' }}>Toronto Downtown</strong>
+                  <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: currentFeatured.theme.text3 }}>📍 Location</span>
+                  <strong className="font-playfair text-xl font-bold leading-snug text-stone-900">{currentFeatured.locName}</strong>
+                  <strong className="font-lato text-base font-bold" style={{ color: currentFeatured.theme.text1 }}>{currentFeatured.locCity}</strong>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4 border-y border-stone-200/50 py-6">
                 <div className="space-y-1">
-                  <div className="text-[10px] uppercase tracking-widest text-yellow-800 font-bold opacity-60">Venue / Access</div>
-                  <div className="font-playfair text-lg font-bold text-stone-900">Online & Local</div>
+                  <div className="text-[10px] uppercase tracking-widest font-bold opacity-60" style={{ color: currentFeatured.theme.text3 }}>Venue / Access</div>
+                  <div className="font-playfair text-lg font-bold text-stone-900">{currentFeatured.venue}</div>
                 </div>
                 <div className="space-y-1">
-                  <div className="text-[10px] uppercase tracking-widest text-yellow-800 font-bold opacity-60">Investment</div>
-                  <div className="font-playfair text-lg font-bold text-stone-900">FREE Admission</div>
+                  <div className="flex items-center gap-2">
+                    <div className="text-[10px] uppercase tracking-widest font-bold opacity-60" style={{ color: currentFeatured.theme.text3 }}>Investment</div>
+                    {currentFeatured.discountBadge && (
+                      <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border shadow-sm" style={{ backgroundColor: currentFeatured.theme.border1, color: currentFeatured.theme.text3, borderColor: currentFeatured.theme.border2 }}>
+                        {currentFeatured.discountBadge}
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 mt-0.5">
+                    <div className="flex items-baseline gap-2">
+                      <div className="font-playfair text-xl md:text-2xl font-bold text-stone-900 leading-none">
+                        {currentFeatured.investment}
+                      </div>
+                      {currentFeatured.originalPrice && (
+                        <div className="text-sm font-medium text-stone-400 line-through leading-none mb-0.5">
+                          {currentFeatured.originalPrice}
+                        </div>
+                      )}
+                    </div>
+                    {currentFeatured.splitInvestment && (
+                      <div className="text-sm font-medium text-stone-600 leading-none">
+                        {currentFeatured.splitInvestment}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
 
               <div className="pt-2 flex flex-wrap gap-4">
                 <Button
                   asChild
-                  className="rounded-full px-10 h-14 text-lg font-bold shadow-xl transition-all hover:scale-[1.02] hover:shadow-gold-xl"
-                  style={{ backgroundColor: '#9C7A1A', color: '#fff' }}
+                  className="rounded-full px-10 h-14 text-lg font-bold shadow-xl transition-all hover:scale-[1.02] hover:shadow-xl"
+                  style={{ backgroundColor: currentFeatured.theme.text1, color: '#fff' }}
                 >
-                  <Link href="/events/golden-pearl">Register Now →</Link>
+                  <Link href={currentFeatured.link}>{currentFeatured.btnText}</Link>
                 </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="rounded-full px-10 h-14 text-lg font-bold border-2 transition-all hover:bg-stone-50"
-                  style={{ borderColor: '#D4AF37', color: '#4A3B22' }}
-                >
-                  <Link href="/events/golden-pearl#details">Explore Experience</Link>
-                </Button>
+                {currentFeatured.btn2Text && currentFeatured.link2 && (
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="rounded-full px-10 h-14 text-lg font-bold border-2 transition-all hover:bg-stone-50"
+                    style={{ borderColor: currentFeatured.theme.border2, color: '#4A3B22' }}
+                  >
+                    <Link href={currentFeatured.link2}>{currentFeatured.btn2Text}</Link>
+                  </Button>
+                )}
               </div>
-
-              <div className="text-xs opacity-50 font-medium italic">✨ Seats are limited. Registration is strictly required for entry.</div>
             </div>
           </div>
         </motion.div>
