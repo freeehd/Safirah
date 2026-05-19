@@ -1,11 +1,1212 @@
-⨯ Failed to start server
-Error: listen EADDRINUSE: address already in use :::3090
-    at <unknown> (Error: listen EADDRINUSE: address already in use :::3090)
-    at new Promise (<anonymous>) {
-  code: 'EADDRINUSE',
-  errno: -4091,
-  syscall: 'listen',
-  address: '::',
-  port: 3090
-}
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://172.23.64.1:3000
+✓ Ready in 468ms
+
+⨯ ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  [90m1 |[0m      [35m1[0m|     [32m'use client'[0m;
+  [90m2 |[0m      [35m2[0m|     
+[31m[1m>[0m [90m3 |[0m      [35m3[0m|     [36mimport[0m { useState } [36mfrom[0m [32m'react'[0m;
+  [90m  |[0m                    [31m[1m^[0m
+  [90m4 |[0m      [35m4[0m|     [36mimport[0m { motion } [36mfrom[0m [32m'framer-motion'[0m;
+  [90m5 |[0m      [35m5[0m|     [36mimport[0m { [33mArrowRight[0m, [33mCheckCircle[0m, [33mCompass[0m, [33mDroplets[0m, [33mFeather[0m, [33mHeart[0m, [33mLeaf[0m, [33mMoon[0m..[33m.[0m
+  [90m6 |[0m      [35m6[0m|     [36mimport[0m { [33mPlayfair_Display[0m } [36mfrom[0m [32m'next/font/google'[0m;
+
+Parsing ecmascript source code failed
+
+
+⨯ ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  [90m1 |[0m      [35m1[0m|     [32m'use client'[0m;
+  [90m2 |[0m      [35m2[0m|     
+[31m[1m>[0m [90m3 |[0m      [35m3[0m|     [36mimport[0m { useState } [36mfrom[0m [32m'react'[0m;
+  [90m  |[0m                    [31m[1m^[0m
+  [90m4 |[0m      [35m4[0m|     [36mimport[0m { motion } [36mfrom[0m [32m'framer-motion'[0m;
+  [90m5 |[0m      [35m5[0m|     [36mimport[0m { [33mArrowRight[0m, [33mCheckCircle[0m, [33mCompass[0m, [33mDroplets[0m, [33mFeather[0m, [33mHeart[0m, [33mLeaf[0m, [33mMoon[0m..[33m.[0m
+  [90m6 |[0m      [35m6[0m|     [36mimport[0m { [33mPlayfair_Display[0m } [36mfrom[0m [32m'next/font/google'[0m;
+
+Parsing ecmascript source code failed
+
+
+⨯ ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  [90m1 |[0m      [35m1[0m|     [32m'use client'[0m;
+  [90m2 |[0m      [35m2[0m|     
+[31m[1m>[0m [90m3 |[0m      [35m3[0m|     [36mimport[0m { useState } [36mfrom[0m [32m'react'[0m;
+  [90m  |[0m                    [31m[1m^[0m
+  [90m4 |[0m      [35m4[0m|     [36mimport[0m { motion } [36mfrom[0m [32m'framer-motion'[0m;
+  [90m5 |[0m      [35m5[0m|     [36mimport[0m { [33mArrowRight[0m, [33mCheckCircle[0m, [33mCompass[0m, [33mDroplets[0m, [33mFeather[0m, [33mHeart[0m, [33mLeaf[0m, [33mMoon[0m..[33m.[0m
+  [90m6 |[0m      [35m6[0m|     [36mimport[0m { [33mPlayfair_Display[0m } [36mfrom[0m [32m'next/font/google'[0m;
+
+Parsing ecmascript source code failed
+
+
+⨯ ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  [90m1 |[0m      [35m1[0m|     [32m'use client'[0m;
+  [90m2 |[0m      [35m2[0m|     
+[31m[1m>[0m [90m3 |[0m      [35m3[0m|     [36mimport[0m { useState } [36mfrom[0m [32m'react'[0m;
+  [90m  |[0m                    [31m[1m^[0m
+  [90m4 |[0m      [35m4[0m|     [36mimport[0m { motion } [36mfrom[0m [32m'framer-motion'[0m;
+  [90m5 |[0m      [35m5[0m|     [36mimport[0m { [33mArrowRight[0m, [33mCheckCircle[0m, [33mCompass[0m, [33mDroplets[0m, [33mFeather[0m, [33mHeart[0m, [33mLeaf[0m, [33mMoon[0m..[33m.[0m
+  [90m6 |[0m      [35m6[0m|     [36mimport[0m { [33mPlayfair_Display[0m } [36mfrom[0m [32m'next/font/google'[0m;
+
+Parsing ecmascript source code failed
+
+
+⨯ ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  [90m1 |[0m      [35m1[0m|     [32m'use client'[0m;
+  [90m2 |[0m      [35m2[0m|     
+[31m[1m>[0m [90m3 |[0m      [35m3[0m|     [36mimport[0m { useState } [36mfrom[0m [32m'react'[0m;
+  [90m  |[0m                    [31m[1m^[0m
+  [90m4 |[0m      [35m4[0m|     [36mimport[0m { motion } [36mfrom[0m [32m'framer-motion'[0m;
+  [90m5 |[0m      [35m5[0m|     [36mimport[0m { [33mArrowRight[0m, [33mCheckCircle[0m, [33mCompass[0m, [33mDroplets[0m, [33mFeather[0m, [33mHeart[0m, [33mLeaf[0m, [33mMoon[0m..[33m.[0m
+  [90m6 |[0m      [35m6[0m|     [36mimport[0m { [33mPlayfair_Display[0m } [36mfrom[0m [32m'next/font/google'[0m;
+
+Parsing ecmascript source code failed
+
+
+⨯ ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  [90m1 |[0m      [35m1[0m|     [32m'use client'[0m;
+  [90m2 |[0m      [35m2[0m|     
+[31m[1m>[0m [90m3 |[0m      [35m3[0m|     [36mimport[0m { useState } [36mfrom[0m [32m'react'[0m;
+  [90m  |[0m                    [31m[1m^[0m
+  [90m4 |[0m      [35m4[0m|     [36mimport[0m { motion } [36mfrom[0m [32m'framer-motion'[0m;
+  [90m5 |[0m      [35m5[0m|     [36mimport[0m { [33mArrowRight[0m, [33mCheckCircle[0m, [33mCompass[0m, [33mDroplets[0m, [33mFeather[0m, [33mHeart[0m, [33mLeaf[0m, [33mMoon[0m..[33m.[0m
+  [90m6 |[0m      [35m6[0m|     [36mimport[0m { [33mPlayfair_Display[0m } [36mfrom[0m [32m'next/font/google'[0m;
+
+Parsing ecmascript source code failed
+
+
+⨯ ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  [90m1 |[0m      [35m1[0m|     [32m'use client'[0m;
+  [90m2 |[0m      [35m2[0m|     
+[31m[1m>[0m [90m3 |[0m      [35m3[0m|     [36mimport[0m { useState } [36mfrom[0m [32m'react'[0m;
+  [90m  |[0m                    [31m[1m^[0m
+  [90m4 |[0m      [35m4[0m|     [36mimport[0m { motion } [36mfrom[0m [32m'framer-motion'[0m;
+  [90m5 |[0m      [35m5[0m|     [36mimport[0m { [33mArrowRight[0m, [33mCheckCircle[0m, [33mCompass[0m, [33mDroplets[0m, [33mFeather[0m, [33mHeart[0m, [33mLeaf[0m, [33mMoon[0m..[33m.[0m
+  [90m6 |[0m      [35m6[0m|     [36mimport[0m { [33mPlayfair_Display[0m } [36mfrom[0m [32m'next/font/google'[0m;
+
+Parsing ecmascript source code failed
+
+
+ GET /events/6-week-program 500 in 3.2s (next.js: 3.1s, application-code: 164ms)
+ GET /events/6-week-program 500 in 3.2s (next.js: 3.2s, application-code: 46ms)
+ GET /events/6-week-program 500 in 3.2s (next.js: 3.2s, application-code: 38ms)
+ GET /events/6-week-program 500 in 3.2s (next.js: 3.2s, application-code: 31ms)
+ GET /events/6-week-program 500 in 3.2s (next.js: 3.2s, application-code: 24ms)
+ GET /events/6-week-program 500 in 3.2s (next.js: 3.2s, application-code: 18ms)
+ GET /events/6-week-program 500 in 3.2s (next.js: 3.2s, application-code: 12ms)
+[browser] Uncaught Error: ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./app/events/6-week-program/page.tsx:3:20)
+    at <unknown> (Error: (./app/events/6-week-program/page.tsx:3:20)
+[browser] Uncaught Error: ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./app/events/6-week-program/page.tsx:3:20)
+    at <unknown> (Error: (./app/events/6-week-program/page.tsx:3:20)
+[browser] Uncaught Error: ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./app/events/6-week-program/page.tsx:3:20)
+    at <unknown> (Error: (./app/events/6-week-program/page.tsx:3:20)
+[browser] Uncaught Error: ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./app/events/6-week-program/page.tsx:3:20)
+    at <unknown> (Error: (./app/events/6-week-program/page.tsx:3:20)
+[browser] Uncaught Error: ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./app/events/6-week-program/page.tsx:3:20)
+    at <unknown> (Error: (./app/events/6-week-program/page.tsx:3:20)
+[browser] Uncaught Error: ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./app/events/6-week-program/page.tsx:3:20)
+    at <unknown> (Error: (./app/events/6-week-program/page.tsx:3:20)
+[browser] Uncaught Error: ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./app/events/6-week-program/page.tsx:3:20)
+    at <unknown> (Error: (./app/events/6-week-program/page.tsx:3:20)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client'
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client'
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client'
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client'
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client'
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client'
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client'
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+⨯ ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  [90m1 |[0m      [35m1[0m|     [32m'use client'[0m;
+  [90m2 |[0m      [35m2[0m|     
+[31m[1m>[0m [90m3 |[0m      [35m3[0m|     [36mimport[0m { useState } [36mfrom[0m [32m'react'[0m;
+  [90m  |[0m                    [31m[1m^[0m
+  [90m4 |[0m      [35m4[0m|     [36mimport[0m { motion } [36mfrom[0m [32m'framer-motion'[0m;
+  [90m5 |[0m      [35m5[0m|     [36mimport[0m { [33mArrowRight[0m, [33mCheckCircle[0m, [33mCompass[0m, [33mDroplets[0m, [33mFeather[0m, [33mHeart[0m, [33mLeaf[0m, [33mMoon[0m..[33m.[0m
+  [90m6 |[0m      [35m6[0m|     [36mimport[0m { [33mPlayfair_Display[0m } [36mfrom[0m [32m'next/font/google'[0m;
+
+Parsing ecmascript source code failed
+
+
+ GET /events/6-week-program 500 in 16ms (next.js: 7ms, application-code: 9ms)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] Uncaught Error: ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./app/events/6-week-program/page.tsx:3:20)
+    at <unknown> (Error: (./app/events/6-week-program/page.tsx:3:20)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+⨯ ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  [90m1 |[0m      [35m1[0m|     [32m'use client'[0m;
+  [90m2 |[0m      [35m2[0m|     
+[31m[1m>[0m [90m3 |[0m      [35m3[0m|     [36mimport[0m { useState } [36mfrom[0m [32m'react'[0m;
+  [90m  |[0m                    [31m[1m^[0m
+  [90m4 |[0m      [35m4[0m|     [36mimport[0m { motion } [36mfrom[0m [32m'framer-motion'[0m;
+  [90m5 |[0m      [35m5[0m|     [36mimport[0m { [33mArrowRight[0m, [33mCheckCircle[0m, [33mCompass[0m, [33mDroplets[0m, [33mFeather[0m, [33mHeart[0m, [33mLeaf[0m, [33mMoon[0m..[33m.[0m
+  [90m6 |[0m      [35m6[0m|     [36mimport[0m { [33mPlayfair_Display[0m } [36mfrom[0m [32m'next/font/google'[0m;
+
+Parsing ecmascript source code failed
+
+
+ GET /events/6-week-program 500 in 25ms (next.js: 12ms, application-code: 13ms)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] Uncaught Error: ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./app/events/6-week-program/page.tsx:3:20)
+    at <unknown> (Error: (./app/events/6-week-program/page.tsx:3:20)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+[browser] ./app/events/6-week-program/page.tsx:3:20
+Import is not allowed here
+  1 |      1|     'use client';
+  2 |      2|     
+> 3 |      3|     import { useState } from 'react';
+    |                    ^
+  4 |      4|     import { motion } from 'framer-motion';
+  5 |      5|     import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon...
+  6 |      6|     import { Playfair_Display } from 'next/font/google';
+
+Parsing ecmascript source code failed 
+    at handleErrors (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
+    at processMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2835:28)
+    at <unknown> (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2680:13)
+    at WebSocket.handleMessage (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2325:17) (file://E:/WORK/Hirah Baji/Safirah/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2774:21)
 [?25h

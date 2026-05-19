@@ -208,10 +208,7 @@ p {
 }
 
 @media (min-width: 992px) {
-  p {
-    margin-left: 0;
-    margin-right: 0;
-  }
+  p {}
 }
 
 .cta-button {
