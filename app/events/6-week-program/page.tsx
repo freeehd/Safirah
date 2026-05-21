@@ -1,17 +1,17 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon, Shield, Sparkles, Star, Sun, X, Monitor } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, CheckCircle, Compass, Droplets, Feather, Heart, Leaf, Moon, Sun, Shield, Sparkles, Star, X, Monitor, PenTool } from 'lucide-react';
 import { Fraunces } from 'next/font/google';
 import Grainient from '@/components/Grainient';
 import TextPressure from '@/components/textpressure';
 import Workbook from './workbook';
+import AssessmentForm from '@/components/AssessmentForm';
 
 const fraunces = Fraunces({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], style: ['normal', 'italic'], display: 'swap' });
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-/* ───── full content from PDF ───── */
 const painPoints = [
      'You start over every Monday — and by Wednesday, you\'re already behind.',
      'You\'re tired of feeling like you\'re capable of so much more but can\'t stay consistent.',
@@ -54,14 +54,22 @@ const weeksData: WeekData[] = [
 const painPointIcons = [Heart, Heart, Moon, X, Feather, Droplets, Moon, Leaf, Heart, Shield, Feather, Sparkles, Star];
 
 export default function SixWeekProgramPage() {
-     const [showModal, setShowModal] = useState(false);
-     const [emailValue, setEmailValue] = useState('');
+     const [showNervousPopup, setShowNervousPopup] = useState(false);
 
-     const handleSubmit = (e: React.FormEvent) => {
-          e.preventDefault();
-          if (!emailValue.trim()) return;
-          setShowModal(true);
-          setEmailValue('');
+     // Trigger the "feeling nervous?" slide-in after 6 seconds of focus
+     useEffect(() => {
+          const timer = setTimeout(() => {
+               setShowNervousPopup(true);
+          }, 6000);
+          return () => clearTimeout(timer);
+     }, []);
+
+     const scrollToAssessment = () => {
+          setShowNervousPopup(false);
+          const element = document.getElementById('assessment');
+          if (element) {
+               element.scrollIntoView({ behavior: 'smooth' });
+          }
      };
 
      return (
@@ -203,7 +211,7 @@ export default function SixWeekProgramPage() {
 
                               <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
                                    transition={{ duration: 0.8, ease: EASE, delay: 0.6 }} className="relative">
-                                   <a href="#pricing"
+                                   <a href="#assessment"
                                         className="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#4A3B36] to-[#604E48] text-white text-[12px] sm:text-[13px] font-bold uppercase tracking-[0.2em] px-12 py-5 rounded-full hover:from-[#332521] hover:to-[#4A3B36] transition-all duration-500 shadow-[0_12px_40px_-8px_rgba(74,59,54,0.5)] hover:shadow-[0_16px_48px_-8px_rgba(74,59,54,0.6)] hover:-translate-y-1 overflow-hidden">
                                         <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out" />
                                         <span className="relative z-10">Begin the Journey</span>
@@ -216,7 +224,6 @@ export default function SixWeekProgramPage() {
                     {/* ================================================================ */}
                     {/* PAIN POINTS — "Does This Sound Familiar?" */}
                     {/* ================================================================ */}
-
                     <section className="py-16 md:py-24 px-5 md:px-16 max-w-[1140px] mx-auto">
                          <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                               transition={{ duration: 0.5, ease: EASE }} className="text-center mb-10 md:mb-14">
@@ -230,7 +237,6 @@ export default function SixWeekProgramPage() {
                          </motion.div>
 
                          <div className="grid grid-rows-2 grid-flow-col sm:block sm:columns-2 md:columns-3 gap-4 overflow-x-auto sm:overflow-visible pb-8 sm:pb-0 -mx-5 px-5 sm:mx-auto sm:px-0 snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                              {/* inline styles above hide scrollbar in Firefox/IE. Webkit scrollbar hidden via Tailwind if possible, but let's just let it be clean */}
                               {painPoints.map((point, i) => {
                                    const Icon = painPointIcons[i] || Feather;
                                    return (
@@ -367,7 +373,7 @@ export default function SixWeekProgramPage() {
                               </p>
                          </motion.div>
 
-                         <div className="grid gap-3 sm:grid-cols-2 max-w-4xl mx-auto">
+                         <div className="grid gap-3 sm:grid-cols-2 max-w-4xl mx-auto text-left">
                               {pleasurePoints.map((point, i) => (
                                    <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }} transition={{ duration: 0.35, delay: i * 0.03, ease: EASE }}>
@@ -383,101 +389,73 @@ export default function SixWeekProgramPage() {
                     </section>
 
                     {/* ================================================================ */}
-                    {/* PRICING */}
+                    {/* REFLECTION ASSESSMENT FORM SECTION */}
                     {/* ================================================================ */}
-                    <section id="pricing" className="py-20 px-5 md:px-16 max-w-[1140px] mx-auto scroll-mt-20">
-                         <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                              transition={{ duration: 0.5, ease: EASE }} className="text-center mb-16">
-                              <h2 className="text-[32px] font-semibold text-[#332521] mb-4">Choose Your Path</h2>
-                              <p className="text-[16px] leading-[1.6] text-[#4F4541] text-center">
-                                   This isn&rsquo;t another course. It&rsquo;s a 6-week transformation — with live sessions,
-                                   a workbook, templates, and a system that actually sticks.
-                              </p>
-                         </motion.div>
-
-                         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                              {/* Full Pay */}
-                              <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                                   transition={{ duration: 0.4, delay: 0.1, ease: EASE }}
-                                   className="bg-white rounded-xl border border-[#D2C3BF] p-10 flex flex-col shadow-[0_20px_40px_rgba(74,59,54,0.04)]">
-                                   <h3 className="text-[24px] font-semibold text-[#332521] mb-2">Full Payment</h3>
-                                   <div className="flex flex-col items-start gap-0 mb-6">
-                                        <span className="text-[#9F928B] text-[14px] leading-none line-through mb-1">$1,300</span>
-                                        <div className="flex items-baseline gap-1">
-                                             <span className="text-[48px] font-bold text-[#332521] leading-[1.1] tracking-[-0.02em]">$475</span>
-                                             <span className="text-[14px] text-[#4F4541]">one-time</span>
-                                        </div>
-                                   </div>
-                                   <ul className="flex-1 space-y-3 mb-8">
-                                        {['All 6 weekly sessions (Online)', 'Digital workbook & templates', 'Private community access', 'Lifetime access to replays', '90-day integration plan'].map(item => (
-                                             <li key={item} className="flex items-start gap-2 text-[15px] text-[#4F4541]">
-                                                  <CheckCircle size={14} className="mt-0.5 flex-shrink-0 text-[#725853]" />
-                                                  <span>{item}</span>
-                                             </li>
-                                        ))}
-                                   </ul>
-                                   <a href="https://shop.hirahsaficoach.com/products/6-week-program-onetime" target="_blank" rel="noopener noreferrer"
-                                        className="w-full text-center bg-[#FFF1EC] text-[#332521] text-[12px] font-semibold leading-none uppercase tracking-[0.1em] px-8 py-4 rounded-full border border-[#725853]/20 hover:bg-[#F5E5E0] transition-all duration-300">
-                                        Secure Your Spot
-                                   </a>
+                    <section id="assessment" className="py-24 px-5 md:px-16 bg-[#FBF9F8] border-y border-[#E8DFDD] scroll-mt-20">
+                         <div className="max-w-3xl mx-auto">
+                              <motion.div 
+                                   initial={{ opacity: 0, y: 12 }} 
+                                   whileInView={{ opacity: 1, y: 0 }} 
+                                   viewport={{ once: true }}
+                                   transition={{ duration: 0.5, ease: EASE }} 
+                                   className="text-center mb-12"
+                              >
+                                   <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#725853] mb-4">
+                                        <PenTool size={12} />
+                                        Step One: Honest Assessment
+                                   </span>
+                                   <h2 className="text-[32px] font-semibold text-[#332521] mb-4">Start Your Self-Discovery</h2>
+                                   <p className="text-[16px] leading-[1.6] text-[#4F4541] max-w-lg mx-auto">
+                                        Take five minutes to answer these diagnostic prompts honestly. This initiates your reflection process before entering our shared space.
+                                   </p>
                               </motion.div>
 
-                              {/* Split Pay */}
-                              <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                                   transition={{ duration: 0.4, delay: 0.2, ease: EASE }}
-                                   className="bg-white rounded-xl border border-[#725853] p-10 flex flex-col shadow-[0_20px_40px_rgba(74,59,54,0.04)] relative">
-                                   <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#FFF1EC] px-4 py-1 rounded-full text-[12px] font-semibold uppercase tracking-[0.1em] text-[#725853] border border-[#725853]/20">
-                                        Flexible
-                                   </div>
-                                   <h3 className="text-[24px] font-semibold text-[#332521] mb-2">Split Payment</h3>
-                                   <div className="flex flex-col items-start gap-0 mb-1">
-                                        <span className="text-[#9F928B] text-[14px] leading-none line-through mb-1">$1,400</span>
-                                        <div className="flex items-baseline gap-1">
-                                             <span className="text-[48px] font-bold text-[#332521] leading-[1.1] tracking-[-0.02em]">$287.50</span>
-                                             <span className="text-[14px] text-[#4F4541]">&times; 2</span>
-                                        </div>
-                                   </div>
-                                   <p className="text-[14px] text-[#725853] mb-6">$575 total</p>
-                                   <ul className="flex-1 space-y-3 mb-8">
-                                        {['All 6 weekly sessions (Online)', 'Digital workbook & templates', 'Private community access', 'Lifetime access to replays', '90-day integration plan'].map(item => (
-                                             <li key={item} className="flex items-start gap-2 text-[15px] text-[#4F4541]">
-                                                  <CheckCircle size={14} className="mt-0.5 flex-shrink-0 text-[#725853]" />
-                                                  <span>{item}</span>
-                                             </li>
-                                        ))}
-                                   </ul>
-                                   <a href="https://shop.hirahsaficoach.com/products/6-week-program-split" target="_blank" rel="noopener noreferrer"
-                                        className="w-full text-center bg-[#4A3B36] text-white text-[12px] font-semibold leading-none uppercase tracking-[0.1em] px-8 py-4 rounded-full hover:bg-[#332521] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5">
-                                        2 Payments
-                                   </a>
-                              </motion.div>
+                              {/* Embedded Isolated Form Component */}
+                              <AssessmentForm />
                          </div>
                     </section>
-
-
-                    {/* ── success modal ── */}
-                    {showModal && (
-                         <div className="fixed inset-0 z-50 flex items-center justify-center p-6">
-                              <div className="absolute inset-0 bg-black/30" onClick={() => setShowModal(false)} />
-                              <div className="relative w-full max-w-sm rounded-xl bg-white p-10 text-center shadow-xl border border-[#D2C3BF]">
-                                   <button onClick={() => setShowModal(false)} className="absolute top-4 right-4 p-1 text-[#4F4541]/40 hover:text-[#332521] transition-colors">
-                                        <X size={18} />
-                                   </button>
-                                   <div className="mx-auto mb-5 flex items-center justify-center w-14 h-14 rounded-full bg-[#FFF1EC]">
-                                        <CheckCircle size={28} className="text-[#725853]" />
-                                   </div>
-                                   <h3 className="text-[24px] font-semibold text-[#332521] mb-2">You&rsquo;re on the List!</h3>
-                                   <p className="text-[16px] leading-[1.6] text-[#4F4541] mb-6">
-                                        Thank you for your interest in The Becoming. We&rsquo;ll notify you the moment doors open.
-                                   </p>
-                                   <button onClick={() => setShowModal(false)}
-                                        className="w-full rounded-full bg-[#4A3B36] text-white text-[12px] font-semibold uppercase tracking-[0.1em] px-8 py-3.5 hover:bg-[#332521] transition-all duration-300">
-                                        Got it
-                                   </button>
-                              </div>
-                         </div>
-                    )}
                </main>
+
+               {/* ================================================================ */}
+               {/* FEELING NERVOUS POPUP */}
+               {/* ================================================================ */}
+               <AnimatePresence>
+                    {showNervousPopup && (
+                         <motion.div
+                              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                              animate={{ opacity: 1, y: 0, scale: 1 }}
+                              exit={{ opacity: 0, y: 20, scale: 0.9 }}
+                              transition={{ duration: 0.5, ease: EASE }}
+                              className="fixed bottom-6 right-6 z-50 max-w-sm w-full bg-white/95 backdrop-blur-md rounded-2xl p-6 border border-[#725853] shadow-[0_16px_48px_rgba(114,88,83,0.15)] text-left"
+                         >
+                              <button 
+                                   onClick={() => setShowNervousPopup(false)} 
+                                   className="absolute top-4 right-4 p-1 text-[#4F4541]/40 hover:text-[#332521] transition-colors"
+                              >
+                                   <X size={16} />
+                              </button>
+                              
+                              <div className="flex items-start gap-4 pr-4">
+                                   <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#FFF1EC] text-[#725853] flex-shrink-0">
+                                        <Feather size={18} />
+                                   </div>
+                                   <div>
+                                        <h4 className="text-[16px] font-bold text-[#332521] mb-1">Feeling hesitant?</h4>
+                                        <p className="text-[13px] leading-relaxed text-[#4F4541] mb-4">
+                                             It is completely natural to feel a bit worried before starting deep work. Take the first step in a quiet, zero-pressure space.
+                                        </p>
+                                        <button 
+                                             onClick={scrollToAssessment}
+                                             className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-widest text-[#725853] hover:text-[#332521] transition-colors cursor-pointer"
+                                        >
+                                             Journal with us
+                                             <ArrowRight size={12} />
+                                        </button>
+                                   </div>
+                              </div>
+                         </motion.div>
+                    )}
+               </AnimatePresence>
           </>
      );
 }
