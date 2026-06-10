@@ -96,6 +96,37 @@ export default function EventsPageClient() {
 
   const featured = [
     {
+      title: "Free",
+      highlight: "Time-Management Workshop",
+      subtitle: "Masterclass • July 5, 2026",
+      short: "A warm, high-energy 75-minute masterclass for ambitious Muslim women ready to reclaim their days, set guilt-free boundaries, and build a faith-aligned routine.",
+      dateDay: "Sunday",
+      dateMon: "July 5",
+      timeStart: "TBA",
+      timeEnd: "",
+      locName: "Online",
+      locCity: "Live via Zoom",
+      venue: "Online Only",
+      investment: "100% FREE",
+      discountBadge: "Limited Spots",
+      btnText: "🌸 Save My Free Seat",
+      link: "/events/free-time-management-masterclass",
+      btn2Text: "",
+      link2: "",
+      image: "/assets/hirah-comfort-zone.jpeg",
+      badge: "Now Open • Free",
+      theme: {
+        border1: 'rgba(254, 200, 154, 0.3)',
+        border2: '#FEC89A',
+        bg1: 'linear-gradient(135deg, #F8EDEB 0%, #F9DCC4 100%)',
+        bg2: 'radial-gradient(circle at center, #E8A87C 0%, transparent 70%)',
+        bg3: 'linear-gradient(135deg, rgba(248,237,235,0.6) 0%, rgba(255,255,255,0.85) 100%)',
+        text1: '#E8A87C',
+        text2: '#FEC89A',
+        text3: '#D4875A'
+      }
+    },
+    {
       title: "The",
       highlight: "Becoming",
       subtitle: "6-Week Program",
@@ -156,6 +187,37 @@ export default function EventsPageClient() {
         text1: '#9C7A1A',
         text2: '#D4AF37',
         text3: '#7A5C13'
+      }
+    },
+    {
+      title: "Free",
+      highlight: "Time-Management",
+      subtitle: "Masterclass • July 5, 2026",
+      short: "A warm, high-energy 75-minute masterclass for ambitious Muslim women ready to reclaim their days, set guilt-free boundaries, and build a faith-aligned routine.",
+      dateDay: "Sunday",
+      dateMon: "July 5",
+      timeStart: "TBA",
+      timeEnd: "",
+      locName: "Online",
+      locCity: "Live via Zoom",
+      venue: "Online Only",
+      investment: "100% FREE",
+      discountBadge: "Limited Spots",
+      btnText: "🌸 Save My Free Seat",
+      link: "/events/free-time-management-masterclass",
+      btn2Text: "",
+      link2: "",
+      image: "/assets/hirah-smile-shrug.jpeg",
+      badge: "Now Open • Free",
+      theme: {
+        border1: 'rgba(254, 200, 154, 0.3)',
+        border2: '#FEC89A',
+        bg1: 'linear-gradient(135deg, #F8EDEB 0%, #F9DCC4 100%)',
+        bg2: 'radial-gradient(circle at center, #E8A87C 0%, transparent 70%)',
+        bg3: 'linear-gradient(135deg, rgba(248,237,235,0.6) 0%, rgba(255,255,255,0.85) 100%)',
+        text1: '#E8A87C',
+        text2: '#FEC89A',
+        text3: '#D4875A'
       }
     }
   ];
