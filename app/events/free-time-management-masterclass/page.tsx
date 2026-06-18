@@ -112,197 +112,222 @@ export default function FreeTimeManagementPage() {
         {/* ================================================================ */}
         {/* HERO — pressed-flower invitation */}
         {/* ================================================================ */}
-        <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden px-5 md:px-16 py-16"
-          style={{ backgroundColor: `${C.cream}` }}>
-          {/* Living watercolor blooms — slow-drifting animated blobs */}
-          <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
-            <motion.div
-              className="absolute w-96 h-96 rounded-full blur-3xl"
-              style={{ background: `radial-gradient(circle, ${C.peach}20, transparent 70%)` }}
-              animate={{
-                x: [0, 30, -20, 10, 0],
-                y: [0, -25, 15, -10, 0],
-              }}
-              transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
-            />
-            <motion.div
-              className="absolute w-80 h-80 rounded-full blur-3xl"
-              style={{ background: `radial-gradient(circle, ${C.deepPeach}15, transparent 70%)` }}
-              animate={{
-                x: [0, -20, 25, -10, 0],
-                y: [0, 20, -15, 25, 0],
-              }}
-              transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
-            />
-            <motion.div
-              className="absolute w-64 h-64 rounded-full blur-3xl"
-              style={{ background: `radial-gradient(circle, ${C.beige}20, transparent 70%)` }}
-              animate={{
-                x: [0, 15, -25, 5, 0],
-                y: [0, -15, 20, -20, 0],
-              }}
-              transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
-            />
-          </div>
 
-          {/* Soft floral watercolor blobs (replaces concentric rings) */}
-          <motion.div className="absolute top-[12%] left-[5%] w-72 h-72 rounded-full -z-10 pointer-events-none opacity-[0.07]"
-            style={{ background: `radial-gradient(circle, ${C.deepPeach} 0%, transparent 70%)` }}
-            initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 0.07 }}
-            transition={{ duration: 3, ease: EASE }} />
-          <motion.div className="absolute bottom-[15%] right-[8%] w-80 h-80 rounded-full -z-10 pointer-events-none opacity-[0.05]"
-            style={{ background: `radial-gradient(circle, ${C.peach} 0%, transparent 70%)` }}
-            initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 0.05 }}
-            transition={{ duration: 3, ease: EASE, delay: 0.3 }} />
-          <motion.div className="absolute top-[40%] right-[3%] w-44 h-44 rounded-full -z-10 pointer-events-none opacity-[0.04]"
-            style={{ background: `radial-gradient(circle, ${C.deepPeach} 0%, transparent 65%)` }}
-            initial={{ scale: 0.4, opacity: 0 }} animate={{ scale: 1, opacity: 0.04 }}
-            transition={{ duration: 3, ease: EASE, delay: 0.5 }} />
+<section className="relative min-h-screen flex items-center justify-center overflow-hidden px-5 md:px-16 py-20"
+  style={{ backgroundColor: C.cream }}>
+  
+  {/* ── Deep atmospheric gradient base ── */}
+  <div className="absolute inset-0 -z-20" style={{
+    background: `radial-gradient(ellipse 80% 60% at 50% 0%, ${C.peach}30 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 80% 100%, ${C.deepPeach}15 0%, transparent 50%),
+                radial-gradient(ellipse 50% 40% at 20% 80%, ${C.beige}25 0%, transparent 50%)`
+  }} />
 
-          {/* Botanical top border */}
-          <div className="absolute top-0 left-0 right-0 h-12 flex items-center justify-center pointer-events-none -z-5">
-            <div className="flex items-center gap-2">
-              <div className="w-16 h-px" style={{ background: `linear-gradient(to right, transparent, ${C.peach}40)` }} />
-              <Leaf size={10} style={{ color: `${C.peach}50` }} className="rotate-[-15deg]" />
-              <Flower2 size={12} style={{ color: `${C.deepPeach}50` }} />
-              <Leaf size={10} style={{ color: `${C.peach}50` }} className="rotate-[15deg]" />
-              <div className="w-16 h-px" style={{ background: `linear-gradient(to left, transparent, ${C.peach}40)` }} />
-            </div>
-          </div>
+  {/* ── Slow organic watercolor orbs ── */}
+  <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
+    <motion.div
+      className="absolute w-[500px] h-[500px] rounded-full blur-[100px]"
+      style={{ background: `radial-gradient(circle, ${C.peach}35, transparent 70%)`, top: '-10%', left: '-5%' }}
+      animate={{ x: [0, 40, -30, 0], y: [0, -30, 20, 0], scale: [1, 1.1, 0.95, 1] }}
+      transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+    />
+    <motion.div
+      className="absolute w-[400px] h-[400px] rounded-full blur-[80px]"
+      style={{ background: `radial-gradient(circle, ${C.deepPeach}20, transparent 70%)`, bottom: '-5%', right: '-5%' }}
+      animate={{ x: [0, -30, 40, 0], y: [0, 20, -30, 0], scale: [1, 0.9, 1.05, 1] }}
+      transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
+    />
+    <motion.div
+      className="absolute w-[300px] h-[300px] rounded-full blur-[60px]"
+      style={{ background: `radial-gradient(circle, ${C.beige}40, transparent 70%)`, top: '40%', left: '60%' }}
+      animate={{ x: [0, 20, -20, 0], y: [0, -20, 15, 0] }}
+      transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+    />
+  </div>
 
-          {/* Falling petals (drift downward diagonally) */}
-          {[...Array(6)].map((_, i) => (
-            <motion.div key={`petal-${i}`} className="absolute z-0 pointer-events-none"
-              initial={{ opacity: 0, x: 0, y: -20 }}
-              animate={{
-                opacity: [0, 0.3, 0.15, 0],
-                y: ['-5vh', '105vh'],
-                x: [0, (i % 2 ? 60 : -60)],
-                rotate: [0, i % 2 ? 30 : -30],
-              }}
-              transition={{ duration: 7 + (i % 3) * 2, repeat: Infinity, delay: i * 1.5, ease: 'linear' }}
-              style={{ left: `${10 + i * 15}%`, top: 0 }}>
-              <Flower2 size={8 + (i % 2) * 4} style={{ color: `${C.peach}50` }} />
-            </motion.div>
-          ))}
+  {/* ── Floating botanical particles ── */}
+  {[...Array(8)].map((_, i) => (
+    <motion.div
+      key={`bloom-${i}`}
+      className="absolute pointer-events-none"
+      style={{ left: `${8 + i * 12}%`, top: `${5 + (i % 3) * 25}%` }}
+      animate={{
+        y: [0, -15, 10, -5, 0],
+        rotate: [0, i % 2 ? 15 : -15, 0],
+        opacity: [0.15, 0.35, 0.2, 0.15],
+      }}
+      transition={{ duration: 6 + i, repeat: Infinity, ease: 'easeInOut', delay: i * 0.7 }}
+    >
+      {i % 3 === 0 ? <Flower2 size={10 + i * 2} style={{ color: C.peach }} /> :
+       i % 3 === 1 ? <Leaf size={10 + i * 2} style={{ color: C.deepPeach }} /> :
+       <Sprout size={10 + i * 2} style={{ color: C.beige }} />}
+    </motion.div>
+  ))}
 
-          {/* Content area — invitation style, no card */}
-          <motion.div className="relative z-10 max-w-[600px] w-full mx-auto text-center"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: EASE, delay: 0.1 }}>
+  {/* ── Top decorative rule ── */}
+  <motion.div
+    initial={{ scaleX: 0, opacity: 0 }}
+    animate={{ scaleX: 1, opacity: 1 }}
+    transition={{ duration: 1.2, ease: EASE, delay: 0.3 }}
+    className="absolute top-8 left-1/2 -translate-x-1/2 flex items-center gap-3"
+  >
+    <div className="h-px w-20" style={{ background: `linear-gradient(to right, transparent, ${C.peach}60)` }} />
+    <Leaf size={9} style={{ color: C.deepPeach }} className="rotate-[-20deg]" />
+    <Flower2 size={11} style={{ color: C.peach }} />
+    <Leaf size={9} style={{ color: C.deepPeach }} className="rotate-[20deg]" />
+    <div className="h-px w-20" style={{ background: `linear-gradient(to left, transparent, ${C.peach}60)` }} />
+  </motion.div>
 
-            {/* Pressed-flower corner decorations */}
-            <div className="absolute -top-6 -left-4 w-20 h-20 pointer-events-none opacity-25">
-              <div className="w-full h-full" style={{
-                background: `radial-gradient(circle at 30% 30%, ${C.peach}70 0%, transparent 60%),
-                            radial-gradient(circle at 60% 60%, ${C.deepPeach}40 0%, transparent 50%)`,
-                borderRadius: '0 60% 60% 0',
-              }} />
-            </div>
-            <div className="absolute -top-6 -right-4 w-20 h-20 pointer-events-none opacity-25">
-              <div className="w-full h-full" style={{
-                background: `radial-gradient(circle at 70% 30%, ${C.peach}70 0%, transparent 60%),
-                            radial-gradient(circle at 40% 60%, ${C.deepPeach}40 0%, transparent 50%)`,
-                borderRadius: '60% 0 0 60%',
-              }} />
-            </div>
-            <div className="absolute -bottom-6 -left-4 w-14 h-14 pointer-events-none opacity-20">
-              <div className="w-full h-full" style={{
-                background: `radial-gradient(circle at 40% 60%, ${C.deepPeach}50 0%, transparent 60%)`,
-                borderRadius: '50%',
-              }} />
-            </div>
-            <div className="absolute -bottom-6 -right-4 w-14 h-14 pointer-events-none opacity-20">
-              <div className="w-full h-full" style={{
-                background: `radial-gradient(circle at 60% 40%, ${C.peach}50 0%, transparent 60%)`,
-                borderRadius: '50%',
-              }} />
-            </div>
+  {/* ── Main Content ── */}
+  <motion.div
+    className="relative z-10 max-w-[720px] w-full mx-auto text-center pt-8"
+    initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}
+  >
+    {/* Eyebrow */}
+    <motion.div
+      initial={{ opacity: 0, y: 16, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.7, ease: EASE, delay: 0.2 }}
+      className="mb-8"
+    >
+      <span
+        className="inline-flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.3em] px-6 py-3 rounded-full"
+        style={{
+          color: C.deepPeach,
+          backgroundColor: `${C.peach}15`,
+          border: `1px solid ${C.peach}35`,
+          boxShadow: `0 4px 20px ${C.peach}12, inset 0 1px 0 ${C.white}40`
+        }}
+      >
+        <Sparkles size={11} />
+        A Free 75-Minute Live Workshop
+      </span>
+    </motion.div>
 
-            {/* Eyebrow */}
-            <motion.span initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: EASE, delay: 0.2 }}
-              className="relative inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.25em] mb-8 px-5 py-2.5 rounded-full"
-              style={{ color: C.deepPeach, backgroundColor: `${C.peach}18`, border: `1px solid ${C.peach}30`, boxShadow: `0 2px 8px ${C.peach}10` }}>
-              <Flower2 size={10} /> A Free 75-Minute Masterclass
-            </motion.span>
+    {/* Headline — NEW TITLE */}
+    <motion.h1
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.9, ease: EASE, delay: 0.35 }}
+      className="text-[clamp(2.4rem,7vw,4.8rem)] font-semibold leading-[0.95] tracking-[-0.04em] mb-6"
+      style={{ color: C.espresso, fontVariationSettings: '"SOFT" 50, "WONK" 1' }}
+    >
+      Free Calendar{' '}
+      <span className="block mt-1">
+        <span className="italic font-light" style={{ color: C.muted, fontVariationSettings: '"SOFT" 80, "WONK" 1' }}>&</span>{' '}
+        Time Management
+      </span>
+      <span className="block mt-1 relative inline-block">
+        Workshop
+        <motion.span
+          className="absolute -bottom-2 left-0 right-0 h-[3px] rounded-full"
+          style={{ background: `linear-gradient(to right, transparent, ${C.deepPeach}, ${C.peach}, transparent)` }}
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{ scaleX: 1, opacity: 1 }}
+          transition={{ duration: 1, ease: EASE, delay: 1 }}
+        />
+      </span>
+    </motion.h1>
 
-            {/* Heading with floral underline */}
-            <motion.h1 initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: EASE, delay: 0.25 }}
-              className="relative text-[clamp(2.8rem,9vw,4.2rem)] font-semibold leading-[1.0] mb-5 tracking-[-0.03em] text-[#332521]"
-              style={{ fontVariationSettings: '"SOFT" 60, "WONK" 1' }}>
-              Welcome Home,{' '}
-              <span className="italic font-light" style={{ color: C.muted, fontVariationSettings: '"SOFT" 80, "WONK" 1' }}>Sister</span>
-              <span style={{ color: C.deepPeach }}>.</span>
-            </motion.h1>
+    {/* Subtitle */}
+    <motion.p
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: EASE, delay: 0.55 }}
+      className="text-[16px] sm:text-[19px] md:text-[21px] leading-[1.65] max-w-[480px] mx-auto mb-10 font-inter"
+      style={{ color: C.body }}
+    >
+      Finally build a schedule that honors your faith, fuels your goals, and protects your peace —{' '}
+      <em className="italic font-medium" style={{ color: C.muted }}>without the burnout.</em>
+    </motion.p>
 
-            {/* Floral underline */}
-            <motion.div initial={{ scaleX: 0, opacity: 0 }} animate={{ scaleX: 1, opacity: 1 }}
-              transition={{ duration: 0.6, ease: EASE, delay: 0.4 }}
-              className="flex items-center justify-center gap-2 mb-6">
-              <div className="h-px w-10" style={{ background: `linear-gradient(to right, transparent, ${C.peach}50)` }} />
-              <Flower2 size={11} style={{ color: `${C.deepPeach}60` }} />
-              <div className="h-px w-10" style={{ background: `linear-gradient(to left, transparent, ${C.peach}50)` }} />
-            </motion.div>
+    {/* Meta tags */}
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: EASE, delay: 0.7 }}
+      className="flex items-center justify-center gap-3 mb-10 flex-wrap"
+    >
+      {[
+        { icon: Calendar, text: 'July 5, 2026' },
+        { icon: Sun, text: 'Live Online' },
+        { icon: Heart, text: 'Sisters Only' },
+        { icon: Gift, text: '100% Free' },
+      ].map((tag, i) => (
+        <span
+          key={i}
+          className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.12em] px-4 py-2.5 rounded-full transition-all duration-300 hover:-translate-y-0.5"
+          style={{
+            color: i === 0 ? C.deepPeach : C.espresso,
+            backgroundColor: `${C.white}70`,
+            border: `1px solid ${i === 0 ? C.peach : C.border}40`,
+            backdropFilter: 'blur(8px)',
+            boxShadow: `0 2px 12px ${C.peach}08`
+          }}
+        >
+          <tag.icon size={11} strokeWidth={2} />
+          {tag.text}
+        </span>
+      ))}
+    </motion.div>
 
-            {/* Subtitle */}
-            <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: EASE, delay: 0.45 }}
-              className="text-[17px] sm:text-[21px] font-inter leading-[1.7] text-[#4F4541] max-w-[420px] mx-auto mb-8">
-              <em className="italic font-medium" style={{ color: C.muted }}>Take a deep breath.</em>{' '}
-              You are in the right place.
-            </motion.p>
+    {/* CTA */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: EASE, delay: 0.85 }}
+    >
+      <a
+        href="#cta-section"
+        className="group relative inline-flex items-center justify-center gap-3 text-white text-[12px] sm:text-[13px] font-bold uppercase tracking-[0.22em] px-14 py-5 rounded-full transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_-10px_rgba(232,168,124,0.45)] overflow-hidden"
+        style={{
+          background: `linear-gradient(135deg, ${C.deepPeach} 0%, ${C.peach} 100%)`,
+          boxShadow: `0 14px 44px -10px ${C.peach}55`
+        }}
+      >
+        <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out" />
+        <span className="relative z-10">Save My Free Seat</span>
+        <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1.5 transition-transform duration-300" />
+      </a>
+    </motion.div>
 
-            {/* Tags */}
-            <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: EASE, delay: 0.55 }}
-              className="flex items-center justify-center gap-3 mb-8 flex-wrap">
-              <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.15em] px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm shadow-sm"
-                style={{ color: C.deepPeach, border: `1px solid ${C.peach}30` }}>
-                <Calendar size={12} /> July 5, 2026
-              </span>
-              <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.15em] px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm shadow-sm"
-                style={{ color: C.espresso, border: `1px solid ${C.border}50` }}>
-                <Sparkles size={12} /> 100% Free
-              </span>
-              <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.15em] px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm shadow-sm"
-                style={{ color: C.espresso, border: `1px solid ${C.border}50` }}>
-                <Sun size={12} /> Live Online
-              </span>
-            </motion.div>
+    {/* Social proof hint */}
+    <motion.p
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6, delay: 1.1 }}
+      className="text-[11px] mt-6 font-inter flex items-center justify-center gap-2"
+      style={{ color: C.muted }}
+    >
+      <span className="inline-flex -space-x-1.5">
+        {[...Array(4)].map((_, i) => (
+          <span key={i} className="inline-block w-5 h-5 rounded-full border-2 border-white" style={{
+            backgroundColor: [C.peach, C.deepPeach, C.beige, C.border][i]
+          }} />
+        ))}
+      </span>
+      <span className="italic">Limited spots — 200+ sisters already registered</span>
+    </motion.p>
+  </motion.div>
 
-            {/* CTA */}
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: EASE, delay: 0.65 }}>
-              <a href="#cta-section"
-                className="group relative inline-flex items-center justify-center gap-3 text-white text-[12px] sm:text-[13px] font-bold uppercase tracking-[0.2em] px-12 py-5 rounded-full transition-all duration-500 hover:-translate-y-1 overflow-hidden"
-                style={{ background: `linear-gradient(135deg, ${C.deepPeach}, ${C.peach})`, boxShadow: `0 12px 40px -8px ${C.peach}50` }}>
-                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out" />
-                <span className="relative z-10">Save My Free Seat</span>
-                <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
-              </a>
-            </motion.div>
-
-            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.85 }}
-              className="text-[11px] text-[#725853] mt-5 font-inter italic">
-              🌸 Limited spots — save yours today
-            </motion.p>
-          </motion.div>
-
-          {/* Botanical bottom border */}
-          <div className="absolute bottom-0 left-0 right-0 h-12 flex items-center justify-center pointer-events-none -z-5">
-            <div className="flex items-center gap-2">
-              <div className="w-16 h-px" style={{ background: `linear-gradient(to right, transparent, ${C.peach}40)` }} />
-              <Flower2 size={10} style={{ color: `${C.deepPeach}40` }} />
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: `${C.peach}40` }} />
-              <Leaf size={10} style={{ color: `${C.peach}40` }} className="rotate-[-15deg]" />
-              <div className="w-16 h-px" style={{ background: `linear-gradient(to left, transparent, ${C.peach}40)` }} />
-            </div>
-          </div>
-        </section>
-
+  {/* ── Bottom scroll indicator ── */}
+  <motion.div
+    className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ delay: 1.4, duration: 0.6 }}
+  >
+    <span className="text-[9px] font-bold uppercase tracking-[0.3em]" style={{ color: `${C.muted}60` }}>Scroll</span>
+    <motion.div
+      className="w-5 h-8 rounded-full border-2 flex justify-center pt-1.5"
+      style={{ borderColor: `${C.peach}50` }}
+      animate={{ y: [0, 4, 0] }}
+      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+    >
+      <div className="w-1 h-1.5 rounded-full" style={{ backgroundColor: C.deepPeach }} />
+    </motion.div>
+  </motion.div>
+</section>
         {/* ================================================================ */}
         {/* PAIN POINTS — "Tired of starting every Monday…" */}
         {/* ================================================================ */}

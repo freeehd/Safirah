@@ -96,7 +96,7 @@ export default function EventsPageClient() {
 
   const featured = [
     {
-      title: "Free",
+      title: "Free Calendar and",
       highlight: "Time-Management Workshop",
       subtitle: "Masterclass • July 5, 2026",
       short: "A warm, high-energy 75-minute masterclass for ambitious Muslim women ready to reclaim their days, set guilt-free boundaries, and build a faith-aligned routine.",
