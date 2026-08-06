@@ -37,6 +37,7 @@ type EventItem = {
   city: string;
   mode: 'Online' | 'In-Person' | 'Hybrid' | 'TBA';
   short: string;
+  link?: string;
 };
 
 const upcoming: EventItem[] = [
@@ -47,7 +48,8 @@ const upcoming: EventItem[] = [
     time: 'TBA',
     city: 'Online • Zoom',
     mode: 'Online',
-    short: 'A gentle deep-dive to map goals, values and next steps without overwhelm.'
+    short: 'A gentle deep-dive to map goals, values and next steps without overwhelm.',
+    link: '/events/vision-clarity-lab'
   },
   {
     slug: 'boundaries-with-barakah',
@@ -87,6 +89,24 @@ const past: EventItem[] = [
     city: 'Toronto & Online',
     mode: 'Hybrid',
     short: 'Not a dating class — a self-rescue mission to stop outsourcing happiness and build unshakeable inner strength.'
+  },
+  {
+    slug: 'golden-pearl',
+    title: 'The Golden Pearl — Volume 3',
+    date: 'May 21, 2026',
+    time: 'Ended',
+    city: 'Toronto & Online',
+    mode: 'Hybrid',
+    short: "Step into your brilliance. Find financial abundance while keeping your peace and Deen intact. This is the sanctuary you've been praying for."
+  },
+  {
+   slug: 'free-time-management-masterclass',
+   title: 'Free Time-Management Masterclass',
+   date: 'July 5, 2026',
+   time: 'Ended',
+   city: 'Online • Zoom',
+   mode: 'Online',
+   short: "A warm, high-energy 75-minute masterclass for ambitious Muslim women ready to reclaim their days, set guilt-free boundaries, and build a faith-aligned routine."
   }
 ];
 
@@ -96,34 +116,34 @@ export default function EventsPageClient() {
 
   const featured = [
     {
-      title: "Free Calendar and",
-      highlight: "Time-Management Workshop",
-      subtitle: "Masterclass • July 5, 2026",
-      short: "A warm, high-energy 75-minute masterclass for ambitious Muslim women ready to reclaim their days, set guilt-free boundaries, and build a faith-aligned routine.",
-      dateDay: "Sunday",
-      dateMon: "July 5",
-      timeStart: "TBA",
-      timeEnd: "",
-      locName: "Online",
-      locCity: "Live via Zoom",
-      venue: "Online Only",
-      investment: "100% FREE",
-      discountBadge: "Limited Spots",
-      btnText: "🌸 Save My Free Seat",
-      link: "/events/free-time-management-masterclass",
-      btn2Text: "",
-      link2: "",
-      image: "/assets/hirah-comfort-zone.jpeg",
-      badge: "Now Open • Free",
+      title: "Bloom &",
+      highlight: "Belong",
+      subtitle: "Flower Circle • Aug 27, 2026",
+      short: "An afternoon for women tired of doing 'new year, new me' alone. Build bouquets for one another in a real circle — mindset work disguised as making something beautiful.",
+      dateDay: "Thursday",
+      dateMon: "Aug 27",
+      timeStart: "3:30 PM",
+      timeEnd: "to 7:00 PM",
+      locName: "George Brown College",
+      locCity: "Toronto Downtown",
+      venue: "In-Person",
+      investment: "$25",
+      discountBadge: "Small Circle",
+      btnText: "Reserve My Seat →",
+      link: "/events/bloom-and-belong",
+      btn2Text: "Explore the Afternoon",
+      link2: "/events/bloom-and-belong#details",
+      image: "/assets/hirah-1.jpeg",
+      badge: "Now Open • $25",
       theme: {
-        border1: 'rgba(254, 200, 154, 0.3)',
-        border2: '#FEC89A',
-        bg1: 'linear-gradient(135deg, #F8EDEB 0%, #F9DCC4 100%)',
-        bg2: 'radial-gradient(circle at center, #E8A87C 0%, transparent 70%)',
-        bg3: 'linear-gradient(135deg, rgba(248,237,235,0.6) 0%, rgba(255,255,255,0.85) 100%)',
-        text1: '#E8A87C',
-        text2: '#FEC89A',
-        text3: '#D4875A'
+        border1: 'rgba(186, 160, 166, 0.35)',
+        border2: '#846A6C',
+        bg1: 'linear-gradient(135deg, #F9F3EA 0%, #EADCD8 100%)',
+        bg2: 'radial-gradient(circle at center, #BAA0A6 0%, transparent 70%)',
+        bg3: 'linear-gradient(135deg, rgba(249,243,234,0.7) 0%, rgba(255,255,255,0.9) 100%)',
+        text1: '#846A6C',
+        text2: '#BAA0A6',
+        text3: '#7D5B3A'
       }
     },
     {
@@ -157,67 +177,6 @@ export default function EventsPageClient() {
         text1: '#725853',
         text2: '#fc84c0',
         text3: '#A05A4A'
-      }
-    },
-    {
-      title: "The",
-      highlight: "Golden Pearl",
-      subtitle: "Volume 3",
-      short: "Step into your brilliance. Find financial abundance while keeping your peace and Deen intact. This is the sanctuary you've been praying for.",
-      dateDay: "Thursday",
-      dateMon: "May 21",
-      timeStart: "3:30 PM",
-      timeEnd: "to 6:30 PM",
-      locName: "200 St James King St E",
-      locCity: "Toronto Downtown",
-      venue: "Online & Local",
-      investment: "FREE Admission",
-      btnText: "Register Now →",
-      link: "/events/golden-pearl",
-      btn2Text: "Explore Experience",
-      link2: "/events/golden-pearl#details",
-      image: "/assets/golden-pearl.webp",
-      badge: "Limited Seats",
-      theme: {
-        border1: 'rgba(212, 175, 55, 0.3)',
-        border2: '#D4AF37',
-        bg1: 'linear-gradient(135deg, #F5EAC8 0%, #EAD7A1 100%)',
-        bg2: 'radial-gradient(circle at center, #9C7A1A 0%, transparent 70%)',
-        bg3: 'linear-gradient(135deg, rgba(245,234,200,0.6) 0%, rgba(255,255,255,0.85) 100%)',
-        text1: '#9C7A1A',
-        text2: '#D4AF37',
-        text3: '#7A5C13'
-      }
-    },
-    {
-      title: "Free",
-      highlight: "Time-Management",
-      subtitle: "Masterclass • July 5, 2026",
-      short: "A warm, high-energy 75-minute masterclass for ambitious Muslim women ready to reclaim their days, set guilt-free boundaries, and build a faith-aligned routine.",
-      dateDay: "Sunday",
-      dateMon: "July 5",
-      timeStart: "TBA",
-      timeEnd: "",
-      locName: "Online",
-      locCity: "Live via Zoom",
-      venue: "Online Only",
-      investment: "100% FREE",
-      discountBadge: "Limited Spots",
-      btnText: "🌸 Save My Free Seat",
-      link: "/events/free-time-management-masterclass",
-      btn2Text: "",
-      link2: "",
-      image: "/assets/hirah-smile-shrug.jpeg",
-      badge: "Now Open • Free",
-      theme: {
-        border1: 'rgba(254, 200, 154, 0.3)',
-        border2: '#FEC89A',
-        bg1: 'linear-gradient(135deg, #F8EDEB 0%, #F9DCC4 100%)',
-        bg2: 'radial-gradient(circle at center, #E8A87C 0%, transparent 70%)',
-        bg3: 'linear-gradient(135deg, rgba(248,237,235,0.6) 0%, rgba(255,255,255,0.85) 100%)',
-        text1: '#E8A87C',
-        text2: '#FEC89A',
-        text3: '#D4875A'
       }
     }
   ];
@@ -556,7 +515,7 @@ function EventCard({ ev }: { ev: EventItem }) {
 
   return (
     <motion.div whileHover={!isTBA ? { scale: 1.01 } : {}}>
-      {isTBA ? content : <Link href={`/events/${ev.slug}`}>{content}</Link>}
+      {isTBA && !ev.link ? content : <Link href={ev.link || `/events/${ev.slug}`}>{content}</Link>}
     </motion.div>
   );
 }
