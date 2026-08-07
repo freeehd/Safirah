@@ -236,124 +236,129 @@ export default function BloomBelongPage() {
         ))}
 
         {/* Hero content */}
-        <motion.div className="relative z-10 max-w-[860px] w-full mx-auto text-center"
+        <motion.div className="relative z-10 w-full max-w-6xl mx-auto"
           initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ duration:0.6 }}
         >
-          {/* Eyebrow */}
-          <motion.div initial={{ opacity:0, y:14 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.7, ease:EASE, delay:0.1 }} className="mb-5">
-            <span className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.28em] px-6 py-2.5 rounded-full backdrop-blur-md shadow-sm"
-              style={{ color:C.cocoa, backgroundColor:`${C.white}95`, border:`1px solid ${C.tan}55` }}>
-              <Sparkles size={12} style={{ color:C.mauve }} />
-              A Flower Circle Afternoon · Toronto
-            </span>
-          </motion.div>
+          <div className="grid md:grid-cols-[1.05fr_0.95fr] gap-12 md:gap-16 items-center">
+            {/* Copy */}
+            <div className="text-center md:text-left">
+              {/* Eyebrow */}
+              <motion.div initial={{ opacity:0, y:14 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.7, ease:EASE, delay:0.1 }} className="mb-5">
+                <span className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.28em] px-6 py-2.5 rounded-full backdrop-blur-md shadow-sm"
+                  style={{ color:C.cocoa, backgroundColor:`${C.white}95`, border:`1px solid ${C.tan}55` }}>
+                  <Sparkles size={12} style={{ color:C.mauve }} />
+                  A Flower Circle Afternoon · Toronto
+                </span>
+              </motion.div>
 
-          {/* Main headline — Alex Brush, two-line editorial layout */}
-          <motion.div
-            initial={{ opacity:0, y:28 }} animate={{ opacity:1, y:0 }} transition={{ duration:1, ease:EASE, delay:0.22 }}
-            className="mb-7"
-          >
-            <div
-              className={`${alexBrush.className} block leading-[0.9]`}
-              style={{ fontSize:'clamp(5rem,15vw,12rem)', color:C.cocoa }}
+              {/* Main headline — Alex Brush */}
+              <motion.div
+                initial={{ opacity:0, y:28 }} animate={{ opacity:1, y:0 }} transition={{ duration:1, ease:EASE, delay:0.22 }}
+                className="mb-7 text-center"
+              >
+                <div
+                  className={`${alexBrush.className} block leading-[0.9]`}
+                  style={{ fontSize:'clamp(5.5rem,16vw,12rem)', color:C.cocoa }}
+                >
+                  Bloom <span style={{ color:C.mauve }}>&amp;</span>
+                </div>
+                <div
+                  className={`${alexBrush.className} block leading-[0.9]`}
+                  style={{ fontSize:'clamp(5.5rem,16vw,12rem)', color:C.cocoa, marginTop:'-0.1em' }}
+                >
+                  Belong
+                </div>
+              </motion.div>
+
+
+              {/* Hook */}
+              <motion.p initial={{ opacity:0, y:16 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.85, ease:EASE, delay:0.45 }}
+                className={`${fraunces.className} text-2xl sm:text-[1.7rem] md:text-[1.9rem] max-w-[620px] mx-auto md:mx-0 mb-10 font-normal leading-[1.5]`}
+                style={{ color:C.cocoa }}
+              >
+                You keep waiting to feel ready.{' '}
+                <span className="italic font-medium" style={{ color:C.deepMauve }}>What if you just felt held instead?</span>
+              </motion.p>
+
+              {/* Event details strip */}
+              <motion.div initial={{ opacity:0, y:12 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.7, ease:EASE, delay:0.58 }}
+                className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden backdrop-blur-md mb-10"
+                style={{ backgroundColor:`${C.tan}35`, border:`1px solid ${C.tan}40`, boxShadow:`0 10px 30px -14px ${rgba(C.mauve,0.2)}` }}
+              >
+                {[
+                  { label:'Date',       value:'Thursday, August 27', sub:'3:30 PM – 7:00 PM' },
+                  { label:'Location',   value:'George Brown College', sub:'185 Queens Quay E, Toronto' },
+                  { label:'Investment', value:'$25',                 sub:'Flowers & refreshments included', accent:true },
+                  { label:'The Circle', value:'Intentionally small', sub:'A real circle, not a crowd' },
+                ].map((d, i) => (
+                  <div key={d.label} className="text-center p-4 sm:p-5"
+                    style={{ backgroundColor: d.accent ? `${C.blush}B3` : `${C.white}E6` }}
+                  >
+                    <div className="text-[10px] font-bold uppercase tracking-[0.2em] mb-1.5" style={{ color:C.mauve }}>{d.label}</div>
+                    <div className={`${cormorant.className} italic font-semibold text-lg sm:text-xl leading-snug`} style={{ color:C.cocoa }}>{d.value}</div>
+                    <div className="text-xs mt-1 leading-relaxed" style={{ color:C.body }}>{d.sub}</div>
+                  </div>
+                ))}
+              </motion.div>
+
+              {/* CTA */}
+              <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.85, ease:EASE, delay:0.72 }}>
+                <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+                  <a href="https://shop.hirahsaficoach.com/products/bloom-belong-workshop" target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2.5 text-white font-bold text-lg sm:text-xl leading-none px-8 sm:px-10 py-4 rounded-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                    style={{
+                      background:C.deepMauve,
+                      boxShadow:`0 10px 30px -12px ${rgba(C.deepMauve,0.5)}`,
+                    }}
+                  >
+                    <span className="text-lg" aria-hidden>🌸</span>
+                    Reserve My Seat — $25
+                    <ArrowRight size={17} />
+                  </a>
+                  <a href="#what-it-is"
+                    className="inline-flex items-center gap-2.5 font-semibold text-lg sm:text-xl leading-none px-8 sm:px-10 py-4 rounded-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                    style={{
+                      color:C.deepMauve,
+                      backgroundColor:`${C.white}90`,
+                      border:`1.5px solid ${C.deepMauve}`,
+                    }}
+                  >
+                    <Sprout size={17} />
+                    See What&apos;s Included
+                  </a>
+                </div>
+                <p className="mt-4 text-xs sm:text-sm font-semibold text-center md:text-left" style={{ color:C.deepMauve }}>✨ Secure checkout · Receipt emailed instantly</p>
+              </motion.div>
+
+              {/* Small circle note */}
+              <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:1.1, duration:0.8 }}
+                className="flex items-center justify-center md:justify-start gap-2 mt-9 text-sm" style={{ color:C.body }}
+              >
+                <span className="inline-flex -space-x-1.5">
+                  {[C.tan, C.blush, C.mauve, C.deepMauve].map((bg,i) => (
+                    <span key={i} className="w-5 h-5 rounded-full border-2 border-white shadow-sm" style={{ backgroundColor:bg }} />
+                  ))}
+                </span>
+                <span className="italic font-medium">Spaces are intentionally small — limited to a real circle, not a crowd.</span>
+              </motion.div>
+            </div>
+
+            {/* Featured image */}
+            <motion.div initial={{ opacity:0, scale:0.95, y:24 }} animate={{ opacity:1, scale:1, y:0 }} transition={{ duration:0.9, ease:EASE, delay:0.3 }}
+              className="relative mx-auto w-full max-w-[420px] hidden md:block"
             >
-              Bloom <span style={{ color:C.mauve }}>&amp;</span>
-            </div>
-            <div
-              className={`${alexBrush.className} block leading-[0.9]`}
-              style={{ fontSize:'clamp(5rem,15vw,12rem)', color:C.cocoa, marginTop:'-0.1em' }}
-            >
-              Belong
-            </div>
-          </motion.div>
-
-          {/* Sub-script decorative tag */}
-          <motion.div initial={{ opacity:0, scaleX:0 }} animate={{ opacity:1, scaleX:1 }} transition={{ duration:0.9, ease:EASE, delay:0.38 }}
-            className="flex items-center justify-center gap-3 mb-7"
-          >
-            <div className="h-px w-16" style={{ background:`linear-gradient(to right, transparent, ${C.tan}80)` }} />
-            <span className={`${cormorant.className} italic text-xl sm:text-2xl font-semibold`} style={{ color:C.deepMauve }}>🌸 August 27, 2025</span>
-            <div className="h-px w-16" style={{ background:`linear-gradient(to left, transparent, ${C.tan}80)` }} />
-          </motion.div>
-
-          {/* Hook */}
-          <motion.p initial={{ opacity:0, y:16 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.85, ease:EASE, delay:0.45 }}
-            className={`${fraunces.className} text-2xl sm:text-[1.7rem] md:text-[2rem] max-w-[720px] mx-auto mb-10 font-normal leading-[1.5]`}
-            style={{ color:C.cocoa }}
-          >
-            You keep waiting to feel ready.{' '}
-            <span className="italic font-medium" style={{ color:C.deepMauve }}>What if you just felt held instead?</span>
-          </motion.p>
-
-          {/* Meta tags — cute pill badges */}
-          <motion.div initial={{ opacity:0, y:12 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.7, ease:EASE, delay:0.58 }}
-            className="flex items-center justify-center gap-2 sm:gap-3 mb-10 flex-wrap"
-          >
-            {[
-              { emoji:'🗓️', text:'Aug 27' },
-              { emoji:'🕒', text:'3:30 – 7 PM' },
-              { emoji:'📍', text:'Toronto' },
-              { emoji:'🌸', text:'Only $25', highlight: true },
-            ].map((tag, i) => (
-              <motion.span key={i}
-                whileHover={{ scale:1.06, y:-2 }}
-                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-full backdrop-blur-md cursor-default select-none"
-                style={{
-                  color: tag.highlight ? C.white : C.cocoa,
-                  backgroundColor: tag.highlight ? C.mauve : `${C.white}92`,
-                  border: tag.highlight ? `1.5px solid ${rgba(C.deepMauve,0.4)}` : `1.5px solid ${rgba(C.blush,0.9)}`,
-                  boxShadow: tag.highlight
-                    ? `0 6px 20px -4px ${rgba(C.mauve,0.45)}, inset 0 1px 0 rgba(255,255,255,0.2)`
-                    : `0 4px 14px -4px ${rgba(C.mauve,0.12)}, inset 0 1px 0 rgba(255,255,255,0.8)`,
-                  letterSpacing:'0.03em',
-                }}
+              <div className="absolute -inset-8 -z-10 rounded-[3rem] blur-3xl" style={{ background:`radial-gradient(ellipse, ${rgba(C.blush,0.55)} 0%, transparent 70%)` }} />
+              <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl rotate-1"
+                style={{ border:`2.5px solid ${C.white}`, boxShadow:`0 30px 70px -20px ${rgba(C.mauve,0.5)}, 0 0 0 2px ${rgba(C.tan,0.45)}` }}
               >
-                <span>{tag.emoji}</span>
-                {tag.text}
-              </motion.span>
-            ))}
-          </motion.div>
-
-          {/* CTA */}
-          <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.85, ease:EASE, delay:0.72 }}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="https://shop.hirahsaficoach.com/products/bloom-belong-workshop" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 text-white font-bold text-lg sm:text-xl leading-none px-8 sm:px-10 py-4 rounded-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-                style={{
-                  background:C.deepMauve,
-                  boxShadow:`0 10px 30px -12px ${rgba(C.deepMauve,0.5)}`,
-                }}
-              >
-                <span className="text-lg" aria-hidden>🌸</span>
-                Reserve My Seat — $25
-                <ArrowRight size={17} />
-              </a>
-              <a href="#what-it-is"
-                className="inline-flex items-center gap-2.5 font-semibold text-lg sm:text-xl leading-none px-8 sm:px-10 py-4 rounded-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-                style={{
-                  color:C.deepMauve,
-                  backgroundColor:`${C.white}90`,
-                  border:`1.5px solid ${C.deepMauve}`,
-                }}
-              >
-                <Sprout size={17} />
-                See What&apos;s Included
-              </a>
-            </div>
-            <p className="mt-4 text-xs sm:text-sm font-semibold" style={{ color:C.deepMauve }}>✨ Secure checkout · Receipt emailed instantly</p>
-          </motion.div>
-
-          {/* Small circle note */}
-          <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:1.1, duration:0.8 }}
-            className="flex items-center justify-center gap-2 mt-9 text-sm" style={{ color:C.body }}
-          >
-            <span className="inline-flex -space-x-1.5">
-              {[C.tan, C.blush, C.mauve, C.deepMauve].map((bg,i) => (
-                <span key={i} className="w-5 h-5 rounded-full border-2 border-white shadow-sm" style={{ backgroundColor:bg }} />
-              ))}
-            </span>
-            <span className="italic font-medium">Spaces are intentionally small — limited to a real circle, not a crowd.</span>
-          </motion.div>
+                <Image src="/assets/bouqutes.webp" alt="Hand-tied bouquets from Bloom & Belong" fill className="object-cover" sizes="(max-width:768px) 100vw,420px" />
+              </div>
+              <div className="absolute -bottom-4 -right-3 sm:-right-6 flex items-center gap-2 rounded-full bg-white/95 backdrop-blur px-5 py-2.5 shadow-xl" style={{ border:`1px solid ${C.tan}50` }}>
+                <Flower2 size={16} style={{ color:C.mauve }} />
+                <span className="text-sm font-bold" style={{ color:C.cocoa }}>Built with love 🌸</span>
+              </div>
+            </motion.div>
+          </div>
         </motion.div>
 
         {/* Scroll cue */}
