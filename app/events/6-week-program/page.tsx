@@ -163,8 +163,21 @@ export default function SixWeekProgramPage() {
                               <motion.div className="relative w-full flex items-center justify-center h-[clamp(4rem,14vw,9rem)] mb-6"
                                    initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
                                    transition={{ duration: 0.6, ease: EASE, delay: 0.2 }}>
-                                   <TextPressure text="The Becoming" flex alpha={false} stroke={false} width weight={false} italic textColor="#332521" minFontSize={48} />
-                              </motion.div>
+                                 
+                                   <TextPressure
+    text="THE BECOMING!"
+    flex={false}
+    alpha={false}
+    stroke={false}
+    width={ false}
+    weight
+    italic={false}
+    textColor="#000000"
+    strokeColor="#000000"
+    minFontSize={36}
+  />
+
+                                   </motion.div>
 
                               <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
                                    transition={{ duration: 0.8, ease: EASE, delay: 0.4 }}

@@ -9,6 +9,7 @@ import QuizCTA from '@/components/QuizCTA';
 import Services from '@/components/Services';
 import Script from 'next/script';
 import TestimonialSection from '@/components/TestimonialSection';
+import FeaturedEventsSection from '@/components/FeaturedEventsSection';
 
 const HomePageClient = () => {
   const router = useRouter();
@@ -25,6 +26,7 @@ const HomePageClient = () => {
           data-uid="beed771b1c"
         />
       <Hero />
+      <FeaturedEventsSection />
       <Services />
          <QuizCTA onStartQuiz={() => router.push('/quiz')} />
             <Benefits />

@@ -89,15 +89,15 @@ const activities = [
 ];
 
 const details = [
-  { icon: Calendar, label: 'Timing', value: 'New Dates TBA', sub: 'Priority notification sent to waitlist first' },
-  { icon: MapPin,   label: 'Location', value: 'Toronto, Ontario', sub: 'Limberlost Bldg / SA Room 303 · Queens Quay' },
+  { icon: Calendar, label: 'Date', value: 'Thursday, October 22', sub: '4:30 PM – 7:00 PM' },
+  { icon: MapPin,   label: 'Location', value: 'Limberlost Place (Room 303)', sub: 'George Brown College · 185 Queens Quay E, Toronto' },
   { icon: Ticket,   label: 'Investment', value: '$25', sub: 'All fresh flowers, supplies & refreshments included' },
 ];
 
-/* ─── Waitlist Form Component ─── */
+/* ─── Registration Form Component ─── */
 const KIT_FORM_ID = '8738698';
 
-function WaitlistPanel() {
+function RegistrationPanel() {
   const [name, setName]     = useState('');
   const [email, setEmail]   = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'done'>('idle');
@@ -136,17 +136,17 @@ function WaitlistPanel() {
       <div className="text-center space-y-4 mb-8">
         <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.24em] px-4 py-1.5 rounded-full"
           style={{ color: C.deepMauve, backgroundColor: `${C.blush}95`, border: `1px solid ${C.tan}50` }}>
-          <Bell size={12} className="text-[#8E7687] animate-pulse" />
-          Priority Waitlist
+          <Flower2 size={13} className="text-[#8E7687]" />
+          Intentionally Limited · 20 Seats
         </div>
 
         <h3 className={`${cormorant.className} text-3xl sm:text-4xl md:text-5xl font-semibold italic`} style={{ color: C.cocoa }}>
-          Be First in the <span style={{ color: C.mauve }}>Circle</span>
+          Join the Circle — <span style={{ color: C.mauve }}>October 22</span>
         </h3>
 
         <p className="text-sm sm:text-base leading-relaxed max-w-md mx-auto" style={{ color: C.body }}>
-          Since Bloom &amp; Belong is being rescheduled, spaces will remain strictly capped to keep the room intimate.
-          Enter your details to receive <strong className="font-semibold text-[#5E4457]">48-hour early access</strong> before public announcements.
+          Thursday, October 22 · 4:30 PM – 7:00 PM at <strong>Limberlost Place</strong> (185 Queens Quay E, Room 303).
+          Flowers, supplies, and refreshments are included.
         </p>
       </div>
 
@@ -161,15 +161,24 @@ function WaitlistPanel() {
             <Flower2 size={32} className="animate-bounce" />
           </div>
           <h4 className={`${cormorant.className} italic font-semibold text-3xl sm:text-4xl`} style={{ color: C.cocoa }}>
-            You&apos;re on the priority list, sister 🌸
+            You&apos;re in the circle, sister! 🌸
           </h4>
           <p className="text-sm sm:text-base leading-relaxed max-w-md mx-auto" style={{ color: C.body }}>
-            Thank you for holding space with us. As soon as the new date &amp; venue are locked in, you will get the private reservation link straight to your inbox.
+            Your registration for <strong>Thursday, October 22</strong> (4:30 PM – 7:00 PM at Limberlost Place) has been received. Please check your email inbox for event details and room confirmation.
           </p>
-          <div className="pt-2">
+          <div className="pt-2 flex flex-col items-center gap-3">
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full" style={{ backgroundColor: `${C.white}90`, color: C.deepMauve }}>
-              <CheckCircle2 size={14} style={{ color: C.mauve }} /> Confirmation recorded
+              <CheckCircle2 size={14} style={{ color: C.mauve }} /> Registration Confirmed
             </span>
+            <a
+              href="https://shop.hirahsaficoach.com/products/bloom-belong-workshop"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-bold underline transition-colors hover:text-[#5E4457]"
+              style={{ color: C.mauve }}
+            >
+              Complete payment receipt ($25) via shop portal →
+            </a>
           </div>
         </motion.div>
       ) : (
@@ -215,22 +224,34 @@ function WaitlistPanel() {
           >
             {status === 'loading' ? (
               <span className="inline-flex items-center gap-2 not-italic text-base">
-                <Loader2 size={18} className="animate-spin" /> Securing your spot…
+                <Loader2 size={18} className="animate-spin" /> Reserving your seat…
               </span>
             ) : (
               <span className="inline-flex items-center gap-2">
-                Join Priority Waitlist <ArrowRight size={20} className="not-italic" />
+                Reserve My Seat — $25 <ArrowRight size={20} className="not-italic" />
               </span>
             )}
           </button>
 
-          <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3 text-xs" style={{ color: C.muted }}>
+          <div className="text-center pt-2">
+            <a
+              href="https://shop.hirahsaficoach.com/products/bloom-belong-workshop"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-semibold underline transition-opacity hover:opacity-80"
+              style={{ color: C.deepMauve }}
+            >
+              Or complete instant online checkout on our shop ($25) →
+            </a>
+          </div>
+
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3 text-xs" style={{ color: C.muted }}>
             <span className="inline-flex items-center gap-1">
-              <CheckCircle2 size={13} style={{ color: C.mauve }} /> No payment required now
+              <CheckCircle2 size={13} style={{ color: C.mauve }} /> All flowers & refreshments included
             </span>
             <span className="hidden sm:inline opacity-40">•</span>
             <span className="inline-flex items-center gap-1">
-              <CheckCircle2 size={13} style={{ color: C.mauve }} /> Early access link sent by email
+              <CheckCircle2 size={13} style={{ color: C.mauve }} /> Room details sent by email
             </span>
           </div>
         </form>
@@ -334,7 +355,7 @@ export default function BloomBelongPage() {
                   }}
                 >
                   <span className="w-2 h-2 rounded-full bg-emerald-300 animate-ping" />
-                  Postponed · Waitlist Open
+                  Thursday, October 22 · 4:30 PM
                 </span>
               </motion.div>
 
@@ -371,7 +392,7 @@ export default function BloomBelongPage() {
                 <span className="italic font-medium" style={{ color: C.deepMauve }}>What if you just felt held instead?</span>
               </motion.p>
 
-              {/* Postponed & Rescheduling Callout Notice */}
+              {/* Confirmed Date Callout Notice */}
               <motion.div
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -385,15 +406,14 @@ export default function BloomBelongPage() {
               >
                 <div className="flex items-start gap-3.5">
                   <div className="p-2.5 rounded-xl flex-shrink-0" style={{ backgroundColor: `${C.blush}80`, color: C.deepMauve }}>
-                    <Info size={20} />
+                    <Calendar size={20} />
                   </div>
                   <div>
                     <h4 className={`${cormorant.className} text-xl sm:text-2xl font-bold italic`} style={{ color: C.cocoa }}>
-                      Rescheduling for an Even Deeper Experience
+                      New Date: Thursday, October 22 · 4:30 PM – 7:00 PM
                     </h4>
                     <p className="text-xs sm:text-sm leading-relaxed mt-1" style={{ color: C.body }}>
-                      We are rescheduling Bloom &amp; Belong to curate the most nourishing, intentional gathering possible.
-                      Sign up on the priority waitlist below to get the exclusive reservation link <strong>48 hours before public launch</strong>.
+                      Join us at <strong>Limberlost Place</strong> for an intimate afternoon of bouquet building, heartfelt connection, and mindful coaching. Spaces strictly limited to 20 sisters.
                     </p>
                   </div>
                 </div>
@@ -408,9 +428,9 @@ export default function BloomBelongPage() {
                 style={{ backgroundColor: `${C.tan}35`, border: `1px solid ${C.tan}40`, boxShadow: `0 10px 30px -14px ${rgba(C.mauve, 0.2)}` }}
               >
                 {[
-                  { label: 'Status',      value: 'Rescheduling',   sub: 'New Dates Announced Soon', accent: true },
-                  { label: 'Location',    value: 'Toronto, ON',    sub: 'Limberlost Bldg · Queens Quay' },
-                  { label: 'Investment',  value: '$25',            sub: 'Fresh flowers & tea included' },
+                  { label: 'Date',        value: 'Thursday, Oct 22', sub: '4:30 PM – 7:00 PM', accent: true },
+                  { label: 'Location',    value: 'Limberlost Place', sub: '185 Queens Quay E, Toronto' },
+                  { label: 'Investment',  value: '$25',              sub: 'Fresh flowers & tea included' },
                   { label: 'The Circle',  value: 'Small & Intimate', sub: 'Strictly capped circle' },
                 ].map((d) => (
                   <div key={d.label} className="text-center p-4 sm:p-5"
@@ -431,15 +451,15 @@ export default function BloomBelongPage() {
               >
                 <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
                   <a
-                    href="#waitlist"
+                    href="#register"
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 text-white font-bold text-lg sm:text-xl leading-none px-8 sm:px-10 py-4 sm:py-4.5 rounded-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl"
                     style={{
                       background: `linear-gradient(135deg, ${C.mauve}, ${C.deepMauve})`,
                       boxShadow: `0 12px 30px -10px ${rgba(C.deepMauve, 0.5)}`,
                     }}
                   >
-                    <Bell size={18} />
-                    Join Priority Waitlist
+                    <Flower2 size={18} />
+                    Reserve My Seat — $25
                     <ArrowRight size={18} />
                   </a>
 
@@ -459,7 +479,7 @@ export default function BloomBelongPage() {
 
                 <div className="flex items-center justify-center md:justify-start gap-2 mt-4 text-xs sm:text-sm" style={{ color: C.body }}>
                   <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                  <span>Free to join · First access to limited spots when announced</span>
+                  <span>Thursday, October 22 · Limberlost Place · Fresh flowers & refreshments included</span>
                 </div>
               </motion.div>
             </div>
@@ -783,25 +803,27 @@ export default function BloomBelongPage() {
         </div>
       </section>
 
-      {/* ═══ PRIORITY WAITLIST & UPDATES ═════════════════════════════ */}
-      <section id="waitlist" className="py-20 md:py-28 px-5 md:px-16 scroll-mt-20">
+      {/* ═══ RESERVATION & REGISTRATION ═══════════════════════════════ */}
+      <section id="register" className="py-20 md:py-28 px-5 md:px-16 scroll-mt-20">
+        {/* Anchor alias for waitlist if any links still target it */}
+        <span id="waitlist" className="block -mt-20 pt-20" aria-hidden="true" />
         <div className="max-w-5xl mx-auto">
           <motion.div {...fadeUp} className="text-center mb-14 space-y-4">
             <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.22em] px-5 py-2 rounded-full shadow-sm"
               style={{ color: C.deepMauve, backgroundColor: `${C.blush}90`, border: `1px solid ${C.tan}50` }}>
-              <Bell size={12} className="text-[#8E7687]" /> Priority Notification List
+              <Sparkles size={12} className="text-[#8E7687]" /> Limited Intimate Gathering
             </span>
             <h2 className={`${cormorant.className} italic font-semibold text-4xl sm:text-5xl md:text-6xl`} style={{ color: C.cocoa }}>
-              Join the <span style={{ color: C.mauve }}>Waitlist</span>
+              Reserve Your <span style={{ color: C.mauve }}>Seat</span>
             </h2>
             <p className={`${fraunces.className} italic text-base sm:text-lg max-w-xl mx-auto`} style={{ color: C.body }}>
-              Be the first to know the moment our rescheduled date and venue are unveiled.
+              Thursday, October 22 · 4:30 PM – 7:00 PM · Limberlost Place (SA Room 303), Toronto
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-[1.2fr_0.8fr] gap-8 items-stretch">
-            {/* Waitlist Signup Form Card */}
-            <WaitlistPanel />
+            {/* Registration Form Card */}
+            <RegistrationPanel />
 
             {/* Share & Connect Card */}
             <motion.div
@@ -821,7 +843,7 @@ export default function BloomBelongPage() {
                 </div>
 
                 <p className="text-xs sm:text-sm leading-relaxed mb-6" style={{ color: C.body }}>
-                  Scan to share this invitation with a friend or save it on your phone for future announcements.
+                  Scan to share this invitation with a friend or save it on your phone for Thursday, October 22 at Limberlost Place.
                 </p>
 
                 <a
@@ -853,7 +875,7 @@ export default function BloomBelongPage() {
         </div>
       </section>
 
-      {/* ═══ STICKY MOBILE WAITLIST BAR ═══════════════════════════════ */}
+      {/* ═══ STICKY MOBILE RESERVATION BAR ════════════════════════════ */}
       <motion.div
         initial={{ y: 80 }}
         animate={{ y: 0 }}
@@ -861,7 +883,7 @@ export default function BloomBelongPage() {
         className="md:hidden fixed bottom-4 left-4 right-4 z-50"
       >
         <a
-          href="#waitlist"
+          href="#register"
           className={`${cormorant.className} italic w-full rounded-2xl py-3.5 text-white font-bold text-lg shadow-2xl flex items-center justify-center gap-2`}
           style={{
             background: `linear-gradient(135deg, ${C.mauve}, ${C.deepMauve})`,
@@ -869,7 +891,7 @@ export default function BloomBelongPage() {
             boxShadow: `0 14px 35px -8px ${rgba(C.deepMauve, 0.6)}`
           }}
         >
-          <Flower2 size={18} className="not-italic" /> Join Priority Waitlist
+          <Flower2 size={18} className="not-italic" /> Reserve My Seat — $25 (Oct 22)
         </a>
       </motion.div>
 
